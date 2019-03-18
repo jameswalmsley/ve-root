@@ -1,0 +1,4 @@
+DISTRIB_ID={{ distro.name }}
+DISTRIB_RELEASE={{ distro.version }}
+DISTRIB_CODENAME={{ distro.codename }}
+DISTRIB_DESCRIPTION="{{ distro.prettyname }}"

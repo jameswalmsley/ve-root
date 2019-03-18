@@ -1,0 +1,2 @@
+{{ distro.name }} - {{ distro.version }} \n \l
+

@@ -1,0 +1,6 @@
+# device        <path>  <fs-type>   <options>       <dump>  <fsck>
+
+# /         Mounted by init script.
+# /data     Mounted by init script.
+
+none            /tmp    tmpfs       defaults,rw         0       0

@@ -1,0 +1,13 @@
+{
+	"distro": {
+		"name": 	"ve-os",
+		"version": 	"v1.0",
+        "support":  "http://vitalelement.co.uk/"
+	},
+
+	"system": {
+		"hostname":	"ilmd",
+		"user":	"ilmd",
+		"pass": "ilmd"
+	}
+}

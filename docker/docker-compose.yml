@@ -1,0 +1,33 @@
+version: "2"
+services:
+  rootbuilder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: rootbuilder:latest
+    volumes:
+      - ./workspace:/root/workspace
+      - ../:/root/develop
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ./.bash_history:/root/.bash_history
+      - /dev:/dev
+      - ./who:/usr/bin/who
+      - ./cache:/var/cache/squid-deb-proxy
+      - ./squid-deb-proxy.conf:/etc/squid-deb-proxy/squid-deb-proxy.conf
+      - /tmp:/tmp
+    environment:
+      - DISPLAY
+      - KEY_PATH=/tmp/prod_keys
+    hostname: ve-root
+    entrypoint: /bin/bash
+    stdin_open: true
+    tty: true
+    privileged: true
+
+  test:
+    image: rootbuilder:latest
+    volumes:
+      - ../:/root/develop
+    hostname: ve-root
+
+    

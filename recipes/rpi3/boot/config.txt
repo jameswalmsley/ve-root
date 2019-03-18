@@ -1,0 +1,14 @@
+# For more options and information see
+# http://rpf.io/configtxt
+# Some settings may impact device functionality. See link above for details
+
+gpu_mem_1024=32
+
+arm_control=0x200
+
+kernel=u-boot.bin
+
+# Enable audio (loads snd_bcm2835)
+dtparam=audio=on
+
+enable_uart=1

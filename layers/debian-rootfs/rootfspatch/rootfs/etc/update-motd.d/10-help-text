@@ -1,0 +1,4 @@
+#!/bin/sh
+
+printf "\n"
+printf " * Support:        {{ distro.support }}\n"

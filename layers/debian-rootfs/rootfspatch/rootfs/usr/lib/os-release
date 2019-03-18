@@ -1,0 +1,10 @@
+NAME="{{ distro.name }}"
+VERSION="{{ distro.version }}"
+ID={{ distro.id }}
+ID_LIKE=debian
+PRETTY_NAME="{{ distro.prettyname }}"
+VERSION_ID="{{ distro.version_id }}"
+HOME_URL="{{ distro.url }}"
+SUPPORT_URL="{{ distro.support }}"
+BUG_REPORT_URL="{{ distro.bugs }}"
+PRIVACY_POLICY_URL="{{ distro.privacy }}"
