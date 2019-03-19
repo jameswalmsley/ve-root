@@ -62,6 +62,7 @@ $(SRCDEST):
 	@echo "Cloning"
 ifeq ("$(wildcard $(SRCDEST))","")
 	git clone --depth 1 -b $(3) $(strip $(2)) $(SOURCE)/$(L)/$(strip $(1))
+	chown -R 1000:1000 $(SOURCE)/$(L)/$(strip $(1))
 endif
 
 source-checkout += $(SRCDEST)
@@ -81,7 +82,10 @@ endef
 define get_archive_impl
 $(eval SRCDEST:=$(SOURCE)/$(L)/$(strip $(1))/$(notdir $(strip $(2))))
 $(SRCDEST):
-	@echo "Fetching"
+	@echo "Fetching $$@"
+	mkdir -p $(SOURCE)/$(L)/$(strip $(1))
+	wget -O $$@ $(2)
+	tar xvf $$@ 
 
 
 source-checkout += $(SRCDEST)
