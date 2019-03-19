@@ -74,6 +74,26 @@ define git_clone
 	$(eval $(git_clone_impl))
 endef
 
+#
+# Archive checkouts
+#
+
+define get_archive_impl
+$(eval SRCDEST:=$(SOURCE)/$(L)/$(strip $(1))/$(notdir $(strip $(2))))
+$(SRCDEST):
+	@echo "Fetching"
+
+
+source-checkout += $(SRCDEST)
+
+$$($(L)): $(SRCDEST)
+
+endef
+
+define get_archive
+	$(eval $(get_archive_impl))
+endef
+
 dependency_error:
 	@echo "Layer dependency not found for layer: $(error_info)"
 

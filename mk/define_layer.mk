@@ -5,6 +5,8 @@ $(eval L:=L_$(LAYER))
 LSTAMP:=$(STAMP)/$(L)
 .PHONY: $(L)
 
+$(eval O_$(LAYER):=$(BUILD)/$(L))
+
 $(eval B_$(LAYER):=$(LBASE))
 
 $(eval S_$(LAYER):=$(SOURCE)/$(L))
