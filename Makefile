@@ -33,7 +33,7 @@ info:
 
 
 recipe: $(recipe)
-$(recipe): | source-checkout
+$(recipe): | $(source-checkout)
 
 source-checkout: | $(source-checkout)
 
