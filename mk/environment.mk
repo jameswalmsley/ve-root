@@ -85,7 +85,7 @@ $(SRCDEST):
 	@echo "Fetching $$@"
 	mkdir -p $(SOURCE)/$(L)/$(strip $(1))
 	wget -O $$@ $(2)
-	tar xvf $$@ 
+	tar xvf $$@ -C $(SOURCE)/$(L)/$(strip $(1)) 
 
 
 source-checkout += $(SRCDEST)
