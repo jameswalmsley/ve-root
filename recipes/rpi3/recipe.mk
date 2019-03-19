@@ -3,19 +3,21 @@
 #
 include $(DEFINE_RECIPE)
 
+LINUX_GIT_URL:=https://github.com/raspberrypi/linux.git
+LINUX_GIT_REF:=rpi-4.19.y
 
 
 #
 # Include all required layers.
 #
-include $(RECIPE)/layers/bootloader.mk
-include $(RECIPE)/layers/kernel.mk
-include $(LAYERS)/debian-rootfs/layer.mk
-include $(RECIPE)/layers/kernel-modules.mk
-include $(RECIPE)/layers/debian-customise.mk
-include $(RECIPE)/layers/rpi-firmware.mk
-include $(RECIPE)/layers/initramfs-base.mk
-include $(RECIPE)/layers/bootramfs.mk
-include $(RECIPE)/layers/bootimage.mk
+LAYERS += bootloader/u-boot
+LAYERS += kernel/linux
+LAYERS += debian/rootfs
+LAYERS += kernel-modules
+LAYERS += debian-customise
+LAYERS += rpi-firmware
+LAYERS += initramfs-base
+LAYERS += bootramfs
+LAYERS += bootimage
 
-
+include $(BUILD_RECIPE)
