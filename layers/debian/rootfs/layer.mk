@@ -1,5 +1,4 @@
 LAYER:=debian-rootfs
-LBASE:=$(BASE)/layers/$(LAYER)
 
 include $(DEFINE_LAYER)
 
@@ -33,7 +32,7 @@ ROOTFS_OUT:=$(BUILD)/$(L)/debian-rootfs-base
 
 $(debian-rootfs-base):
 	rm -rf $(ROOTFS_OUT)
-	cd $(LBASE) && bash genrootfs.sh --arch $(RECIPE_DEB_ARCH) --out $(ROOTFS_OUT) --release $(RECIPE_DEB_RELEASE) --pfile $(RECIPE)/packages.list --efile $(RECIPE)/exclude-packages.list
+	cd $(B_debian-rootfs) && bash genrootfs.sh --arch $(RECIPE_DEB_ARCH) --out $(ROOTFS_OUT) --release $(RECIPE_DEB_RELEASE) --pfile $(RECIPE)/packages.list --efile $(RECIPE)/exclude-packages.list
 	$(stamp)
 
 $(debian-rootfs-base): $(RECIPE)/packages.list
@@ -43,7 +42,7 @@ $(debian-rootfs-patch):
 	rm -rf $(ROOTFS)
 	mkdir -p $(ROOTFS)
 	rsync -av $(ROOTFS_OUT)/* $(ROOTFS)/
-	python3 $(LBASE)/rootfspatch/generate.py $(LBASE)/rootfspatch/rootfs $(ROOTFS) $(RECIPE)/config.json
+	python3 $(B_debian-rootfs)/rootfspatch/generate.py $(B_debian-rootfs)/rootfspatch/rootfs $(ROOTFS) $(call select_file,$(TOP)/config.json,$(RECIPE)/config.json)
 	$(stamp)
 
 $(debian-rootfs-patch): $(debian-rootfs-base)
@@ -60,4 +59,3 @@ $(debian-rootfs-config): $(debian-rootfs-patch)
 $(L).clean:
 	rm -rf $(L_debian-rootfs)
 	rm -rf $(ROOTFS_OUT)
-

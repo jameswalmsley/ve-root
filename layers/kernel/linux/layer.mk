@@ -2,11 +2,15 @@
 LAYER:=kernel
 include $(DEFINE_LAYER)
 
+LINUX_GIT_URL?=https://github.com/torvalds/linux.git
+LINUX_GIT_REF?=master
+LINUX_DEFCONFIG?=bcmrpi3_defconfig
+
 #
 # Define target variables
 #
 kernel:=$(BUILD)/$(L)/linux/arch/$(ARCH)/boot/Image
-kernel-config:=$(RECIPE)/kconfigs/linux-rpi3.config
+kernel-config?=$(RECIPE)/kconfigs/linux.config
 dtb-file:=$(BUILD)/$(L)/linux/arch/$(ARCH)/boot/dts/broadcom/bcm2837-rpi-3-b-plus.dtb
 
 #
@@ -18,7 +22,7 @@ $(L) += $(kernel-config)
 #
 # Specify source checkouts
 #
-$(call git_clone, linux, https://github.com/raspberrypi/linux.git, rpi-4.19.y)
+$(call git_clone, linux, $(LINUX_GIT_URL), $(LINUX_GIT_REF))
 
 #
 # Specify layer dependencies
@@ -37,7 +41,7 @@ include $(BUILD_LAYER)
 
 KERNEL_SOURCE:=$(S_kernel)/linux
 KERNEL_OUT:=$(BUILD)/$(L)/linux
-KERNEL_CONFIG_TARGET:=bcmrpi3_defconfig
+KERNEL_CONFIG_TARGET:=$(LINUX_DEFCONFIG)
 
 $(kernel):
 	mkdir -p $(KERNEL_OUT)
