@@ -1,9 +1,13 @@
 LAYER:=bootloader
 include $(DEFINE_LAYER)
 
+UBOOT_GIT_URL?=https://github.com/u-boot/u-boot.git
+UBOOT_GIT_REF?=master
+
 UBOOT_OUT:=$(BUILD)/$(L)/u-boot
 UBOOT_SOURCE:=$(S_bootloader)/u-boot
-UBOOT_CONFIG:=$(RECIPE)/kconfigs/u-boot.config
+UBOOT_CONFIG?=$(RECIPE)/kconfigs/u-boot.config
+UBOOT_DEFCONFIG?=rpi_3_defconfig
 
 #
 # Define target variables
@@ -21,7 +25,7 @@ $(L) += $(bootloader-config)
 #
 # Specify source checkouts
 #
-$(call git_clone, u-boot, https://github.com/u-boot/u-boot.git, master)
+$(call git_clone, u-boot, $(UBOOT_GIT_URL), $(UBOOT_GIT_REF))
 
 #
 # Specify layer dependencys and run orders.
@@ -43,7 +47,7 @@ $(bootloader):
 
 $(bootloader): $(bootloader-config)
 
-BOOTLOADER_CONFIG_TARGET:=rpi_3_defconfig
+BOOTLOADER_CONFIG_TARGET:=$(UBOOT_DEFCONFIG)
 
 define do_bconfig
 	cd $(UBOOT_SOURCE) && $(MAKE) O=$(UBOOT_OUT) CROSS_COMPILE=$(CROSS_COMPILE) $(BOOTLOADER_CONFIG_TARGET)
