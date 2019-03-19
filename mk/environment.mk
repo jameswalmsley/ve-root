@@ -16,7 +16,6 @@ else
 #
 
 R?=$(CONFIG_RECIPE)
-LAYERS:=$(BASE)/layers
 OUT:=$(shell pwd)/out/$(R)
 TOP:=$(BASE)/recipes/$(R)
 SOURCE:=$(BASE)/sources/$(R)
@@ -25,6 +24,7 @@ STAMP:=$(OUT)/.stamp
 ROOTFS:=$(OUT)/rootfs
 
 DEFINE_RECIPE:=$(BASE)/mk/define_recipe.mk
+BUILD_RECIPE:=$(BASE)/mk/build_recipe.mk
 DEFINE_LAYER:=$(BASE)/mk/define_layer.mk
 BUILD_LAYER:=$(BASE)/mk/build_layer.mk
 
@@ -40,6 +40,14 @@ define touch_stamp
 endef
 
 stamp=$(call touch_stamp)
+
+
+#
+# $(call select_file,try,default)
+#
+define select_file
+	$(if $(wildcard $(1)),$(1),$(2))
+endef
 
 #
 # Git checkouts.

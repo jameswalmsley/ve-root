@@ -1,6 +1,11 @@
+MAKEFILE_LIST:=$(filter-out $(lastword $(MAKEFILE_LIST)), $(MAKEFILE_LIST))
+LBASE:=$(shell readlink -f $(dir $(lastword $(MAKEFILE_LIST))))
+
 $(eval L:=L_$(LAYER))
 LSTAMP:=$(STAMP)/$(L)
 .PHONY: $(L)
+
+$(eval B_$(LAYER):=$(LBASE))
 
 $(eval S_$(LAYER):=$(SOURCE)/$(L))
 
@@ -24,4 +29,3 @@ $(eval $(layer_invalidate))
 DEPENDS:=
 RUNAFTER:=
 
-#$(eval DEPENDS += $(depend_previous))
