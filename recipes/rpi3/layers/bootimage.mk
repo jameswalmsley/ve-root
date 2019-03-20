@@ -20,7 +20,7 @@ include $(BUILD_LAYER)
 BOOT:=$(OUT)/boot
 
 BOOTIMAGE_OUT:=$(BUILD)/$(L)/bootimage
-RPI_FW:=$(S_bootimage)/rpi-firmware
+RPI_FW:=$(SRC_bootimage)/rpi-firmware
 
 $(bootimage.fit):
 	@echo "Generating U-Boot bootimage"
