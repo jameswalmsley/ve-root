@@ -22,7 +22,7 @@ $(gcc-configure):
 $(gcc):
 	mkdir -p $(TC_SYSROOT)/usr/include
 	cd $(BUILD_gcc-bootstrap)/gcc && $(MAKE)
-	cd $(BUILD_gcc-bootstrap)/gcc && $(MAKE) install
+	cd $(BUILD_gcc-bootstrap)/gcc && $(MAKE) install-strip
 	$(stamp)
 
 $(gcc): $(gcc-configure)
