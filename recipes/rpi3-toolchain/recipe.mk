@@ -8,6 +8,7 @@ LAYERS += glibc-bootstrap
 LAYERS += libgcc
 LAYERS += glibc
 LAYERS += gcc
+LAYERS += tarball
 
 hostlibs:=$(OUT)/host-libs
 
