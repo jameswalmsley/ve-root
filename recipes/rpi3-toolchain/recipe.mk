@@ -8,10 +8,10 @@ LAYERS += glibc-bootstrap
 LAYERS += libgcc
 LAYERS += glibc
 LAYERS += gcc
+LAYERS += strip
 LAYERS += tarball
 
 hostlibs:=$(OUT)/host-libs
-
 
 TC_BUILD?=$(shell gcc -dumpmachine)
 TC_HOST?=$(shell $(TC_BUILD)-gcc -dumpmachine)
