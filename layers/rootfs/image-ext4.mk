@@ -1,19 +1,20 @@
 LAYER:=rootfs-ext4-image
 include $(DEFINE_LAYER)
 
-rootfs-ext4-image:=$(OUT)/rootfs.ext4.img
+rootfs-ext4-image:=$(BUILD_rootfs-ext4-image)/rootfs.ext4.img
 
 $(L) += $(rootfs-ext4-image)
 
 include $(BUILD_LAYER)
 
 $(rootfs-ext4-image):
+	mkdir -p $(dir $@)
 	fallocate -l $(SYSTEM_IMAGE_SIZE) $@
 	mkfs.ext4 $@
-	-mkdir $(OUT)/mntfs
-	mount -o loop -t ext4 $@ $(OUT)/mntfs
-	rsync -av $(ROOTFS)/ $(OUT)/mntfs/
+	-mkdir $(builddir)/mntfs
+	mount -o loop -t ext4 $@ $(builddir)/mntfs
+	rsync -av $(ROOTFS)/ $(builddir)/mntfs/
 	sync
-	umount $(OUT)/mntfs
-	rm -rf $(OUT)/mntfs
+	umount $(builddir)/mntfs
+	rm -rf $(builddir)/mntfs
 
