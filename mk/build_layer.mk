@@ -66,11 +66,11 @@ $(eval $(layer_info))
 
 define target_properties
 $(foreach t, $($(L)),\
-	$(t): builddir:=$(BUILD)/$(L)$(\n)\
+$(t): builddir:=$(BUILD)/$(L)$(\n)\
 $(t): srcdir:=$(SOURCE)/$(L)$(\n)\
+$(t): basedir:=$(LBASE)$(\n)\
 )
 
 endef
 
 $(eval $(target_properties))
-
