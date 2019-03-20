@@ -17,6 +17,7 @@ RUN apt-get -y install pigz
 RUN apt-get -y install meson
 RUN apt-get -y install texinfo
 RUN apt-get -y install gawk
+RUN apt-get -y install p7zip-full
 
 WORKDIR /root/develop
 
