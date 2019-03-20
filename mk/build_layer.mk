@@ -58,6 +58,7 @@ define layer_info
 $(L).info:
 	@echo "DEPENDS:       $(DEPENDS)"
 	@echo "RUNAFTER:      $(RUNAFTER)"
+	@echo "LSTAMP:        $(LSTAMP)"
 	@$(foreach t,$($(L)),$(call show_target,$t);)
 endef
 

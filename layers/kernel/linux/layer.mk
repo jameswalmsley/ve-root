@@ -39,7 +39,7 @@ include $(BUILD_LAYER)
 # Layer Build instructions...
 #
 
-KERNEL_SOURCE:=$(S_kernel)/linux
+KERNEL_SOURCE:=$(SRC_kernel)/linux
 KERNEL_OUT:=$(BUILD)/$(L)/linux
 KERNEL_CONFIG_TARGET:=$(LINUX_DEFCONFIG)
 

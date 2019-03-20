@@ -31,7 +31,7 @@ include $(BUILD_LAYER)
 # Layer build instructions...
 #
 FIRMWARE_OUT:=$(BUILD)/$(L)/linux-firmware
-FIRMWARE_SOURCE:=$(S_rpi-firmware)/linux-firmware
+FIRMWARE_SOURCE:=$(SRC_rpi-firmware)/linux-firmware
 
 $(rpi-firmware):
 	mkdir -p $(ROOTFS)/lib/firmware/brcm
