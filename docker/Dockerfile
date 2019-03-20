@@ -16,6 +16,7 @@ RUN apt-get -y install pv
 RUN apt-get -y install pigz
 RUN apt-get -y install meson
 RUN apt-get -y install texinfo
+RUN apt-get -y install gawk
 
 WORKDIR /root/develop
 
