@@ -61,7 +61,8 @@ $(eval SRCDEST:=$(SOURCE)/$(L)/$(strip $(1))/.git/index)
 $(SRCDEST):
 	@echo "Cloning"
 ifeq ("$(wildcard $(SRCDEST))","")
-	git clone --depth 1 -b $(3) $(strip $(2)) $(SOURCE)/$(L)/$(strip $(1))
+	git clone -n --single-branch --depth 1 -b $(strip $(3)) $(strip $(2)) $(SOURCE)/$(L)/$(strip $(1))
+	cd $(SOURCE)/$(L)/$(strip $(1)) && git checkout $(strip $(3))
 	chown -R 1000:1000 $(SOURCE)/$(L)/$(strip $(1))
 endif
 
