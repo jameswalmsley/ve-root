@@ -16,7 +16,7 @@ hostlibs:=$(OUT)/host-libs
 TC_BUILD?=$(shell gcc -dumpmachine)
 TC_HOST?=$(shell $(TC_BUILD)-gcc -dumpmachine)
 TC_TARGET?=aarch64-linux-gnu
-TC_PREFIX?=$(OUT)/$(TC_HOST)/$(TC_TARGET)
+TC_PREFIX?=$(OUT)/toolchains/$(TC_HOST)/$(TC_TARGET)
 TC_SYSROOT?=$(TC_PREFIX)/$(TC_TARGET)
 TC_ARCH?=arm64
 
