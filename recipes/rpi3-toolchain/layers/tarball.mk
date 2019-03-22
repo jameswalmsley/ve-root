@@ -6,7 +6,7 @@ tarball:=$(BUILD_tarball)/$(TC_HOST)-$(TC_TARGET).tar
 7z:=$(OUT)/archives/$(TC_HOST)-$(TC_TARGET).7z
 
 $(L) += $(tarball)
-$(L) += $(7z)
+#$(L) += $(7z)
 
 include $(BUILD_LAYER)
 
