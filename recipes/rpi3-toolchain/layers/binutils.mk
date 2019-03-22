@@ -25,27 +25,25 @@ BINUTILS_CONFIG += --infodir=$(DOCROOT)/info
 BINUTILS_CONFIG += --mandir=$(DOCROOT)/man
 BINUTILS_CONFIG += --pdfdir=$(DOCROOT)/pdf
 
-
-
 $(binutils-configure):
-	rm -rf $(builddir)/binutils
-	mkdir -p $(builddir)/binutils
-	cd $(builddir)/binutils && $(ENVFLAGS) $(srcdir)/binutils/configure --host=$(TC_HOST) --build=$(TC_BUILD) --target=$(TC_TARGET) --prefix=$(TC_PREFIX) $(BINUTILS_CONFIG)
+	rm -rf $(builddir)/$(TC_HOST)/binutils
+	mkdir -p $(builddir)/$(TC_HOST)/binutils
+	cd $(builddir)/$(TC_HOST)/binutils && $(ENVFLAGS) $(srcdir)/binutils/configure --host=$(TC_HOST) --build=$(TC_BUILD) --target=$(TC_TARGET) --prefix=$(TC_PREFIX) $(BINUTILS_CONFIG)
 	$(stamp)
 
 
 $(binutils):
-	cd $(builddir)/binutils && $(MAKE)
+	cd $(builddir)/$(TC_HOST)/binutils && $(MAKE)
 	$(stamp)
 
 $(binutils): $(binutils-configure)
 
 $(binutils-install):
-	cd $(builddir)/binutils && $(MAKE) install
+	cd $(builddir)/$(TC_HOST)/binutils && $(MAKE) install
 	$(stamp)
 
 $(binutils-install): $(binutils)
 
 binutils-docs: $(OUTDIR)/_binutils_build
-	cd $(builddir)/binutils && $(MAKE) install-html install-pdf
+	cd $(builddir)/$(TC_HOST)/binutils && $(MAKE) install-html install-pdf
 	@touch $@

@@ -15,9 +15,14 @@ include $(BUILD_LAYER)
 
 GLIBC_CONFIG:=--with-headers=$(TC_SYSROOT)/include --disable-multilib libc_cv_forced_unwind=yes
 
+ifeq ($(TC_NATIVE),y)
+TC_HOST:=$(TC_BUILD)
+endif
 $(glibc-configure):
+	aarch64-linux-gnu-gcc --version
+	rm -rf $(builddir)/glibc
 	mkdir -p $(builddir)/glibc
-	cd $(builddir)/glibc && $(srcdir)/glibc/configure -v --prefix="" --build=$(TC_BUILD) --host=$(TC_TARGET) $(GLIBC_CONFIG)
+	cd $(builddir)/glibc && $(srcdir)/glibc/configure -v --prefix="" --build=$(TC_HOST) --host=$(TC_TARGET) $(GLIBC_CONFIG)
 	$(stamp)
 
 

@@ -12,7 +12,7 @@ include $(BUILD_LAYER)
 
 $(tarball):
 	mkdir -p $(dir $@)
-	tar cvf $@ -C $(OUT)/$(TC_HOST)/$(TC_TARGET) .
+	tar cvf $@ -C $(OUT)/toolchains/$(TC_HOST)/$(TC_TARGET) .
 
 $(7z):
 	mkdir -p $(dir $@)

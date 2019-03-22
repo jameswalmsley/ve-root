@@ -1,8 +1,8 @@
 LAYER:=strip
 include $(DEFINE_LAYER)
 
-strip-host:=$(LSTAMP)/strip-host
-strip-target:=$(LSTAMP)/strip-target
+strip-host:=$(TC_STAMP)/strip-host
+strip-target:=$(TC_STAMP)/strip-target
 
 $(L) += $(strip-host)
 $(L) += $(strip-target)

@@ -1,12 +1,12 @@
 LAYER:=toolchain-libs
 include $(DEFINE_LAYER)
 
-zlib:=$(LSTAMP)/zlib
-libgmp:=$(LSTAMP)/libgmp
-libmpfr:=$(LSTAMP)/libmpfr
-libmpc:=$(LSTAMP)/libmpc
-libisl:=$(LSTAMP)/libisl
-libexpat:=$(LSTAMP)/libexpat
+zlib:=$(TC_STAMP)/zlib
+libgmp:=$(TC_STAMP)/libgmp
+libmpfr:=$(TC_STAMP)/libmpfr
+libmpc:=$(TC_STAMP)/libmpc
+libisl:=$(TC_STAMP)/libisl
+libexpat:=$(TC_STAMP)/libexpat
 
 VER_GMP:=6.1.0
 VER_MPFR:=3.1.4
@@ -35,113 +35,113 @@ $(call get_archive, libiconv, https://ftp.gnu.org/pub/gnu/libiconv/libiconv-$(VE
 include $(BUILD_LAYER)
 
 $(zlib):
-	rm -rf $(builddir)/zlib
-	mkdir -p $(builddir)/zlib
-	cp -r $(srcdir)/zlib/* $(builddir)/zlib/
-	cd $(builddir)/zlib && $(HOSTENV) ./configure --static --prefix=$(hostlibs)/zlib
-	cd $(builddir)/zlib && $(MAKE)
-	cd $(builddir)/zlib && $(MAKE) install
+	rm -rf $(builddir)/$(TC_HOST)/zlib
+	mkdir -p $(builddir)/$(TC_HOST)/zlib
+	cp -r $(srcdir)/zlib/* $(builddir)/$(TC_HOST)/zlib/
+	cd $(builddir)/$(TC_HOST)/zlib && $(TC_HOSTENV) ./configure --static --prefix=$(hostlibs)/zlib
+	cd $(builddir)/$(TC_HOST)/zlib && $(MAKE)
+	cd $(builddir)/$(TC_HOST)/zlib && $(MAKE) install
 	$(stamp)
 
 $(libgmp):
-	rm -rf $(builddir)/libgmp
-	mkdir -p $(builddir)/libgmp
-	cd $(builddir)/libgmp && CPPFLAGS="-fexceptions" $(srcdir)/libgmp/gmp-$(VER_GMP)/configure \
-		--host=$(T_HOST) \
-		--build=$(T_BUILD) \
+	rm -rf $(builddir)/$(TC_HOST)/libgmp
+	mkdir -p $(builddir)/$(TC_HOST)/libgmp
+	cd $(builddir)/$(TC_HOST)/libgmp && CPPFLAGS="-fexceptions" $(srcdir)/libgmp/gmp-$(VER_GMP)/configure \
+		--host=$(TC_HOST) \
+		--build=$(TC_BUILD) \
 		--prefix=$(hostlibs)/usr \
 		--enable-cxx \
 		--disable-shared
-	cd $(builddir)/libgmp && $(MAKE)
-	cd $(builddir)/libgmp && $(MAKE) install
+	cd $(builddir)/$(TC_HOST)/libgmp && $(MAKE)
+	cd $(builddir)/$(TC_HOST)/libgmp && $(MAKE) install
 	$(stamp)
 
 $(libmpfr):
-	rm -rf $(builddir)/libmpfr
-	mkdir -p $(builddir)/libmpfr
-	cd $(builddir)/libmpfr && $(srcdir)/libmpfr/mpfr-$(VER_MPFR)/configure \
+	rm -rf $(builddir)/$(TC_HOST)/libmpfr
+	mkdir -p $(builddir)/$(TC_HOST)/libmpfr
+	cd $(builddir)/$(TC_HOST)/libmpfr && $(srcdir)/libmpfr/mpfr-$(VER_MPFR)/configure \
 	--host=$(TC_HOST) \
 	--build=$(TC_BUILD) \
 	--prefix=$(hostlibs)/usr \
 	--disable-shared \
 	--with-gmp=$(hostlibs)/usr
-	cd $(builddir)/libmpfr && $(MAKE)
-	cd $(builddir)/libmpfr && $(MAKE) install
+	cd $(builddir)/$(TC_HOST)/libmpfr && $(MAKE)
+	cd $(builddir)/$(TC_HOST)/libmpfr && $(MAKE) install
 	$(stamp)
 
 $(libmpfr): $(libgmp)
 
 $(libmpc):
-	@rm -rf $(buiddir)/libmpc
-	@mkdir -p $(builddir)/libmpc
-	@cd $(builddir)/libmpc && $(srcdir)/libmpc/mpc-$(VER_MPC)/configure \
+	@rm -rf $(buiddir)/$(TC_HOST)/libmpc
+	@mkdir -p $(builddir)/$(TC_HOST)/libmpc
+	@cd $(builddir)/$(TC_HOST)/libmpc && $(srcdir)/libmpc/mpc-$(VER_MPC)/configure \
 	--host=$(TC_HOST) \
 	--build=$(TC_BUILD) \
 	--prefix=$(hostlibs)/usr \
 	--disable-shared \
 	--with-gmp=$(hostlibs)/usr \
 	--with-mpfr=$(hostlibs)/usr
-	cd $(builddir)/libmpc && $(MAKE)
-	cd $(builddir)/libmpc && $(MAKE) install
+	cd $(builddir)/$(TC_HOST)/libmpc && $(MAKE)
+	cd $(builddir)/$(TC_HOST)/libmpc && $(MAKE) install
 	$(stamp)
 
 $(libmpc): $(libmpfr)
 
 $(libisl):
-	rm -rf $(builddir)/libisl
-	mkdir -p $(builddir)/libisl
-	cd $(builddir)/libisl && $(srcdir)/libisl/isl-$(VER_ISL)/configure \
+	rm -rf $(builddir)/$(TC_HOST)/libisl
+	mkdir -p $(builddir)/$(TC_HOST)/libisl
+	cd $(builddir)/$(TC_HOST)/libisl && $(srcdir)/libisl/isl-$(VER_ISL)/configure \
 	--host=$(TC_HOST) \
 	--build=$(TC_BUILD) \
 	--prefix=$(hostlibs)/usr \
 	--disable-shared \
 	--with-gmp-prefix=$(hostlibs)/usr
-	cd $(builddir)/libisl && $(MAKE)
-	cd $(builddir)/libisl && $(MAKE) install
+	cd $(builddir)/$(TC_HOST)/libisl && $(MAKE)
+	cd $(builddir)/$(TC_HOST)/libisl && $(MAKE) install
 	$(stamp)
 
 $(libisl): $(libgmp)
 $(libisl): | $(libmpfr)
 
 $(libexpat):
-	rm -rf $(builddir)/libexpat
-	mkdir -p $(builddir)/libexpat
-	cd $(builddir)/libexpat && $(srcdir)/libexpat/expat-$(VER_EXPAT)/configure \
+	rm -rf $(builddir)/$(TC_HOST)/libexpat
+	mkdir -p $(builddir)/$(TC_HOST)/libexpat
+	cd $(builddir)/$(TC_HOST)/libexpat && $(srcdir)/libexpat/expat-$(VER_EXPAT)/configure \
 	--host=$(TC_HOST) \
 	--build=$(TC_BUILD) \
 	--prefix=$(hostlibs)/usr \
 	--disable-shared
-	cd $(builddir)/libexpat && $(MAKE)
-	cd $(builddir)/libexpat && $(MAKE) install
+	cd $(builddir)/$(TC_HOST)/libexpat && $(MAKE)
+	cd $(builddir)/$(TC_HOST)/libexpat && $(MAKE) install
 	$(stamp)
 
 $(libexpat): | $(libisl)
 
 $(libelf):
-	rm -rf $(builddir)/libelf
-	mkdir -p $(builddir)/libelf
-	cd $(builddir)/libelf && $(srcdir)/libelf/libelf-$(VER_LIBELF)/configure \
+	rm -rf $(builddir)/$(TC_HOST)/libelf
+	mkdir -p $(builddir)/$(TC_HOST)/libelf
+	cd $(builddir)/$(TC_HOST)/libelf && $(srcdir)/libelf/libelf-$(VER_LIBELF)/configure \
 	--host=$(TC_HOST) \
 	--build=$(TC_BUILD) \
 	--prefix=$(hostlibs)/usr \
 	--disable-shared
-	cd $(builddir)/libelf && $(MAKE)
-	cd $(builddir)/libelf && $(MAKE) install
+	cd $(builddir)/$(TC_HOST)/libelf && $(MAKE)
+	cd $(builddir)/$(TC_HOST)/libelf && $(MAKE) install
 	$(stamp)
 
 $(libelf): | $(libexpat)
 
 $(libiconv):
-	rm -rf $(builddir)/libiconv
-	mkdir -p $(builddir)/libiconv
-	cd $(builddir)/libiconv && $(srcdir)/libiconv/libiconv-$(VER_LIBICONV)/configure \
+	rm -rf $(builddir)/$(TC_HOST)/libiconv
+	mkdir -p $(builddir)/$(TC_HOST)/libiconv
+	cd $(builddir)/$(TC_HOST)/libiconv && $(srcdir)/libiconv/libiconv-$(VER_LIBICONV)/configure \
 	--host=$(TC_HOST) \
 	--build=$(TC_BUILD) \
 	--prefix=$(hostlibs)/usr \
 	--disable-nls \
 	--disable-shared
-	cd $(builddir)/libiconv && $(MAKE)
-	cd $(builddir)/libiconv && $(MAKE) install
+	cd $(builddir)/$(TC_HOST)/libiconv && $(MAKE)
+	cd $(builddir)/$(TC_HOST)/libiconv && $(MAKE) install
 	$(stamp)
 
 $(libiconv): | $(libelf)

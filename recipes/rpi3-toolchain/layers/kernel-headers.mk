@@ -1,7 +1,7 @@
 LAYER:=kernel-headers
 include $(DEFINE_LAYER)
 
-kernel-headers:=$(LSTAMP)/kernel-headers
+kernel-headers:=$(TC_STAMP)/kernel-headers
 
 $(L) += $(kernel-headers)
 
