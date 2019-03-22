@@ -1,0 +1,25 @@
+version: "2"
+services:
+  windows-static-x64:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ${BASE}:/work
+      - ./.bash_history:/root/.bash_history
+      - /tmp:/tmp
+      - /proc:/proc
+      - ./entrypoint.sh:/entrypoint.sh
+    environment:
+      - CC=
+      - CXX=
+      - CPP=
+      - LD=
+      - CROSS_TRIPLET=
+      - AR=
+      - AS=
+    hostname: ve-root
+    entrypoint: /entrypoint.sh
+    stdin_open: true
+    tty: true
+

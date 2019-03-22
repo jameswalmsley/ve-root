@@ -7,7 +7,7 @@ services:
     image: rootbuilder:latest
     volumes:
       - ./workspace:/root/workspace
-      - ../:/root/develop
+      - ${BASE}:/root/develop
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ./.bash_history:/root/.bash_history
       - /dev:/dev
@@ -27,7 +27,5 @@ services:
   test:
     image: rootbuilder:latest
     volumes:
-      - ../:/root/develop
+      - ${BASE}:/root/develop
     hostname: ve-root
-
-    

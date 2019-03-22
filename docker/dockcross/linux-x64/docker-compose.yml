@@ -1,0 +1,22 @@
+version: "2"
+services:
+  linux-x64:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ${BASE}:/work
+      - ./.bash_history:/root/.bash_history
+      - /tmp:/tmp
+      - /proc:/proc
+    environment:
+      - CC=
+      - CXX=
+      - CROSS_TRIPLE=
+      - AR=
+      - AS=
+    hostname: ve-root
+    entrypoint: /bin/bash
+    stdin_open: true
+    tty: true
+

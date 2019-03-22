@@ -54,7 +54,21 @@ mrproper:
 
 endif
 
+DOCKER_IMAGE?=vitalelement/rootbuilder
+DOCKER_SERVICE?=$(notdir $(DOCKER_IMAGE))
+DOCKER_NAMESPACE?=$(shell dirname $(DOCKER_IMAGE))
+
+.PHONY: docker.info
+docker.info:
+	@echo $(DOCKER_IMAGE)
+	@echo $(DOCKER_SERVICE)
+	@echo $(DOCKER_NAMESPACE)
 
 .PHONY: docker
 docker:
-	cd $(BASE)/docker && docker-compose run -e ENABLE_DEV=y rootbuilder
+	cd $(BASE)/docker/$(DOCKER_IMAGE) && BASE=$(BASE) docker-compose run -e ENABLE_DEV=y $(DOCKER_SERVICE)
+
+.PHONY: docker.build
+docker.build:
+	cd $(BASE)/docker/$(DOCKER_IMAGE) && BASE=$(BASE) docker-compose build
+
