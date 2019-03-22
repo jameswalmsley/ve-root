@@ -27,6 +27,9 @@ $(glibc-configure):
 
 
 $(glibc-headers):
+ifneq ($(TC_NATIVE),y)
+	-ln -s $(TC_NATIVEDIR)/bin/$(TC_TARGET)-gcc $(TC_PREFIX)/bin/$(TC_TARGET)-gcc
+endif
 	cd $(builddir)/glibc && $(MAKE) install_root=$(TC_SYSROOT) install-bootstrap-headers=yes install-headers
 	cd $(builddir)/glibc && $(MAKE) csu/subdir_lib
 	mkdir -p $(TC_SYSROOT)/lib
@@ -34,6 +37,9 @@ $(glibc-headers):
 	$(TC_PREFIX)/bin/$(TC_TARGET)-gcc -nostdlib -nostartfiles -shared -x c /dev/null -o $(TC_SYSROOT)/lib/libc.so
 	mkdir -p $(TC_SYSROOT)/include/gnu
 	touch $(TC_SYSROOT)/include/gnu/stubs.h
+ifneq ($(TC_NATIVE),y)
+	rm $(TC_PREFIX)/bin/$(TC_TARGET)-gcc
+endif
 	$(stamp)
 
 $(glibc-headers): $(glibc-configure)
