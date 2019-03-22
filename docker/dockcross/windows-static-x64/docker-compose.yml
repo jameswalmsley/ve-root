@@ -10,6 +10,7 @@ services:
       - /tmp:/tmp
       - /proc:/proc
       - ./entrypoint.sh:/entrypoint.sh
+      - ../../docker-ve-root.sh:/docker-ve-root.sh
     environment:
       - CC=
       - CXX=

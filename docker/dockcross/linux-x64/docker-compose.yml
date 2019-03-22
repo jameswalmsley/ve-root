@@ -6,6 +6,8 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ${BASE}:/work
+      - ./entrypoint.sh:/entrypoint.sh
+      - ../../docker-ve-root.sh:/docker-ve-root.sh
       - ./.bash_history:/root/.bash_history
       - /tmp:/tmp
       - /proc:/proc
@@ -16,7 +18,7 @@ services:
       - AR=
       - AS=
     hostname: ve-root
-    entrypoint: /bin/bash
+    entrypoint: /entrypoint.sh
     stdin_open: true
     tty: true
 

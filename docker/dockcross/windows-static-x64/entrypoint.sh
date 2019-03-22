@@ -8,4 +8,6 @@ unset LD
 unset AR
 unset AS
 
-bash
+. /docker-ve-root.sh
+
+$@

@@ -8,6 +8,7 @@ services:
     volumes:
       - ${BASE}:/root/develop
       - ./entrypoint.sh:/entrypoint.sh
+      - ../../docker-ve-root.sh:/docker-ve-root.sh
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ./.bash_history:/root/.bash_history
       - /dev:/dev
