@@ -11,7 +11,7 @@ $(L) += $(binutils-install)
 
 DEPENDS += toolchain-libs
 
-$(call git_clone, binutils, https://github.com/bminor/binutils-gdb.git, binutils-2_29_1.1)
+$(call git_clone, binutils, https://github.com/bminor/binutils-gdb.git, binutils-2_32)
 
 include $(BUILD_LAYER)
 
