@@ -1,0 +1,3 @@
+CONFIG_RECIPE:=rpi3-toolchain
+DOCKER_IMAGE:=dockcross/linux-x64
+
