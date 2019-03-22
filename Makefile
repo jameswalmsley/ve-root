@@ -57,6 +57,7 @@ endif
 DOCKER_IMAGE?=vitalelement/rootbuilder
 DOCKER_SERVICE?=$(notdir $(DOCKER_IMAGE))
 DOCKER_NAMESPACE?=$(shell dirname $(DOCKER_IMAGE))
+DOCKER_COMMAND?=
 
 .PHONY: docker.info
 docker.info:
@@ -66,7 +67,7 @@ docker.info:
 
 .PHONY: docker
 docker:
-	cd $(BASE)/docker/$(DOCKER_IMAGE) && BASE=$(BASE) docker-compose run -e ENABLE_DEV=y $(DOCKER_SERVICE)
+	cd $(BASE)/docker/$(DOCKER_IMAGE) && BASE=$(BASE) docker-compose run -e ENABLE_DEV=y $(DOCKER_SERVICE) $(DOCKER_COMMAND)
 
 .PHONY: docker.build
 docker.build:

@@ -6,8 +6,8 @@ services:
       dockerfile: Dockerfile
     image: rootbuilder:latest
     volumes:
-      - ./workspace:/root/workspace
       - ${BASE}:/root/develop
+      - ./entrypoint.sh:/entrypoint.sh
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ./.bash_history:/root/.bash_history
       - /dev:/dev
@@ -19,7 +19,7 @@ services:
       - DISPLAY
       - KEY_PATH=/tmp/prod_keys
     hostname: ve-root
-    entrypoint: /bin/bash
+    entrypoint: /entrypoint.sh
     stdin_open: true
     tty: true
     privileged: true
