@@ -20,10 +20,12 @@ BINUTILS_CONFIG += --enable-interwork
 BINUTILS_CONFIG += --disable-sim
 BINUTILS_CONFIG += --disable-gdb
 BINUTILS_CONFIG += --enable-plugins
-BINUTILS_CONFIG += --with-sysroot=$(SYSROOT)
+BINUTILS_CONFIG += --with-sysroot
+BINUTILS_CONFIG += --enable-multilib
 BINUTILS_CONFIG += --infodir=$(DOCROOT)/info
 BINUTILS_CONFIG += --mandir=$(DOCROOT)/man
 BINUTILS_CONFIG += --pdfdir=$(DOCROOT)/pdf
+BINUTILS_CONFIG += --enable-multiarch
 
 $(binutils-configure):
 	rm -rf $(builddir)/$(TC_HOST)/binutils

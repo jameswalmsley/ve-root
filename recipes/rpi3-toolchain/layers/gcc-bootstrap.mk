@@ -41,7 +41,8 @@ GCC_CONFIG += --enable-languages=c,c++
 GCC_CONFIG += $(GCC_ARCH_CONFIG)
 GCC_CONFIG += --disable-shared
 GCC_CONFIG += --enable-mingw-wildcard
-GCC_CONFIG += --disable-multilib
+GCC_CONFIG += --enable-multilib
+GCC_CONFIG += --enable-multiarch
 GCC_CONFIG += --disable-nls
 GCC_CONFIG += --libexecdir=$(TC_PREFIX)/lib
 GCC_CONFIG += --with-sysroot=$(TC_SYSROOT)
