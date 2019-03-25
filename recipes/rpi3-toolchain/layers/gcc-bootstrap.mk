@@ -27,6 +27,7 @@ GCC_OPTIONS += --with-mpc=$(hostlibs)/usr
 GCC_OPTIONS += --with-isl=$(hostlibs)/usr
 GCC_OPTIONS += --with-libelf=$(hostlibs)/usr
 GCC_OPTIONS += --with-libiconv-prefix=$(hostlibs)/usr
+GCC_OPTIONS += --with-zlib=$(hostlibs)/usr
 
 GCC_BOOTSTRAP_CONFIG += $(GCC_OPTIONS)
 GCC_BOOTSTRAP_CONFIG += --enable-languages=c,c++
@@ -41,7 +42,7 @@ GCC_CONFIG += --enable-languages=c,c++
 GCC_CONFIG += $(GCC_ARCH_CONFIG)
 GCC_CONFIG += --disable-shared
 GCC_CONFIG += --enable-mingw-wildcard
-GCC_CONFIG += --enable-multilib
+GCC_CONFIG += --disable-multilib
 GCC_CONFIG += --enable-multiarch
 GCC_CONFIG += --disable-nls
 GCC_CONFIG += --libexecdir=$(TC_PREFIX)/lib

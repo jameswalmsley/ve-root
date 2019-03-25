@@ -38,7 +38,7 @@ $(zlib):
 	rm -rf $(builddir)/$(TC_HOST)/zlib
 	mkdir -p $(builddir)/$(TC_HOST)/zlib
 	cp -r $(srcdir)/zlib/* $(builddir)/$(TC_HOST)/zlib/
-	cd $(builddir)/$(TC_HOST)/zlib && $(TC_HOSTENV) ./configure --static --prefix=$(hostlibs)/zlib
+	cd $(builddir)/$(TC_HOST)/zlib && $(TC_HOSTENV) ./configure --static --prefix=$(hostlibs)/usr
 	cd $(builddir)/$(TC_HOST)/zlib && $(MAKE)
 	cd $(builddir)/$(TC_HOST)/zlib && $(MAKE) install
 	$(stamp)
