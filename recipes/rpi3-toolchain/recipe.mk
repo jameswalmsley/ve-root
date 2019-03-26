@@ -40,7 +40,11 @@ LAYERS += glibc-bootstrap
 LAYERS += libgcc
 LAYERS += glibc
 LAYERS += gcc
-LAYERS += strip
+#LAYERS += strip
+
+ifneq ($(TC_NATIVE),y)
+LAYERS += copylibs
+endif
 
 #ifeq ($(ENABLE_TARBALL),y)
 LAYERS += tarball

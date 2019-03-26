@@ -1,7 +1,7 @@
 LAYER:=libgcc
 include $(DEFINE_LAYER)
 
-libgcc:=$(LSTAMP)/libgcc
+libgcc:=$(TC_STAMP)/libgcc
 
 $(L) += $(libgcc)
 
