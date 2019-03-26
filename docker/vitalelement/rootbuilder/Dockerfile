@@ -18,6 +18,8 @@ RUN apt-get -y install meson
 RUN apt-get -y install texinfo
 RUN apt-get -y install gawk
 RUN apt-get -y install p7zip-full
+RUN apt-get -y install dosfstools
+RUN apt-get -y install kpartx
 
 WORKDIR /root/develop
 
