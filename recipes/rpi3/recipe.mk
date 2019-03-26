@@ -24,5 +24,6 @@ LAYERS += bootramfs
 LAYERS += bootimage
 LAYERS += rootfs/tarball
 LAYERS += rootfs/image-ext4
+LAYERS += rootfs/sysroot
 
 include $(BUILD_RECIPE)
