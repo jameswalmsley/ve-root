@@ -69,6 +69,7 @@ $(foreach t, $($(L)),\
 $(t): builddir:=$(BUILD)/$(L)$(\n)\
 $(t): srcdir:=$(SOURCE)/$(L)$(\n)\
 $(t): basedir:=$(LBASE)$(\n)\
+$(t): RECIPE:=$(RECIPE)$(\n)\
 )
 
 endef
