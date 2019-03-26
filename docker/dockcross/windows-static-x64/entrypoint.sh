@@ -9,5 +9,3 @@ unset AR
 unset AS
 
 . /docker-ve-root.sh
-
-$@

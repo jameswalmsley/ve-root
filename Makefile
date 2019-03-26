@@ -57,7 +57,7 @@ endif
 DOCKER_IMAGE?=vitalelement/rootbuilder
 DOCKER_SERVICE?=$(notdir $(DOCKER_IMAGE))
 DOCKER_NAMESPACE?=$(shell dirname $(DOCKER_IMAGE))
-DOCKER_COMMAND?=
+DOCKER_COMMAND?=bash
 
 .PHONY: docker.info
 docker.info:
