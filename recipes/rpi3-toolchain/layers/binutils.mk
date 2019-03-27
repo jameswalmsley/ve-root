@@ -1,9 +1,9 @@
 LAYER:=binutils
 include $(DEFINE_LAYER)
 
-binutils-configure:=$(LSTAMP)/binutils-configure
-binutils:=$(LSTAMP)/binutils
-binutils-install:=$(LSTAMP)/binutils-install
+binutils-configure:=$(TC_STAMP)/binutils-configure
+binutils:=$(TC_STAMP)/binutils
+binutils-install:=$(TC_STAMP)/binutils-install
 
 $(L) += $(binutils-configure)
 $(L) += $(binutils)

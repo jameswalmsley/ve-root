@@ -33,23 +33,21 @@ endif
 LAYERS += toolchain-libs
 LAYERS += binutils
 
-LAYERS += gcc-bootstrap
 
+#ifeq ($(TC_NATIVE),y)
+LAYERS += gcc-bootstrap
 LAYERS += kernel-headers
 LAYERS += glibc-bootstrap
 LAYERS += libgcc
 LAYERS += glibc
-LAYERS += gcc
-#LAYERS += strip
-
-ifneq ($(TC_NATIVE),y)
-LAYERS += copylibs
-endif
-
-#ifeq ($(ENABLE_TARBALL),y)
-LAYERS += tarball
+LAYERS += strip
 #endif
 
+#ifneq ($(TC_NATIVE),y)
+LAYERS += copylibs
+#endif
+
+LAYERS += gcc
+LAYERS += gdb
 
 include $(BUILD_RECIPE)
-

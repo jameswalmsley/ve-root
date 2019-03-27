@@ -1,8 +1,8 @@
 LAYER:=glibc-bootstrap
 include $(DEFINE_LAYER)
 
-glibc-configure:=$(LSTAMP)/glibc-configure
-glibc-headers:=$(LSTAMP)/glibc-headers
+glibc-configure:=$(TC_STAMP)/glibc-configure
+glibc-headers:=$(TC_STAMP)/glibc-headers
 
 $(L) += $(glibc-configure)
 $(L) += $(glibc-headers)

@@ -1,7 +1,7 @@
 LAYER:=glibc
 include $(DEFINE_LAYER)
 
-glibc:=$(LSTAMP)/glibc
+glibc:=$(TC_STAMP)/glibc
 
 $(L) += $(glibc)
 
