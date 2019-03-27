@@ -20,6 +20,13 @@ $(L) += $(kernel)
 $(L) += $(kernel-config)
 
 #
+# Register optional targets.
+#
+$(T) += kernel-config
+$(T) += kernelversion
+$(T) += dtbs
+
+#
 # Specify source checkouts
 #
 $(call git_clone, linux, $(LINUX_GIT_URL), $(LINUX_GIT_REF))
@@ -55,7 +62,7 @@ $(kernel):
 $(kernel): $(kernel-config)
 
 define do_kconfig
-	cd $(KERNEL_SOURCE) && $(MAKE) O=$(KERNEL_OUT) ARCH=$(ARCH) $(KERNEL_CONFIG_TARGET)
+	cd $(KERNEL_SOURCE) && $(MAKE) O=$(KERNEL_OUT) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) $(KERNEL_CONFIG_TARGET)
 	cp $(KERNEL_OUT)/.config $(kernel-config)
 endef
 

@@ -21,6 +21,11 @@ bootloader-config:=$(UBOOT_OUT)/.config
 $(L) += $(bootloader)
 $(L) += $(bootloader-config)
 
+#
+# Register optional targets
+#
+$(T) += bootloader-config
+
 
 #
 # Specify source checkouts
@@ -63,6 +68,7 @@ $(bootloader-config): $(UBOOT_CONFIG)
 
 .PHONY: bootloader-config
 bootloader-config: BOOTLOADER_CONFIG_TARGET:=menuconfig
+
 bootloader-config:
 	cp $(UBOOT_CONFIG) $(UBOOT_OUT)/.config
 	$(call do_bconfig)
