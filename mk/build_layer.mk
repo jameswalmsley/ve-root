@@ -3,6 +3,8 @@
 # L_kernel: $(L_kernel)
 $(eval $(L):$$($(L)))
 
+$(eval $($(L)): $(LFILE))
+
 #
 #  Layer DEPENDS and RUNAFTER.
 #
