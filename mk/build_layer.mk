@@ -59,13 +59,13 @@ $(L).info:
 	@echo "DEPENDS:       $(DEPENDS)"
 	@echo "RUNAFTER:      $(RUNAFTER)"
 	@echo "LSTAMP:        $(LSTAMP)"
-	@$(foreach t,$($(L)),$(call show_target,$t);)
+	@$(foreach t,$($(L)) $($(T)),$(call show_target,$t);)
 endef
 
 $(eval $(layer_info))
 
 define target_properties
-$(foreach t, $($(L)),\
+$(foreach t, $($(L)) $($(T)),\
 $(t): builddir:=$(BUILD)/$(L)$(\n)\
 $(t): srcdir:=$(SOURCE)/$(L)$(\n)\
 $(t): basedir:=$(LBASE)$(\n)\
