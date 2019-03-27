@@ -16,5 +16,5 @@ initramfs-tools
 pv
 rsync
 alsa-utils
- 
+avahi-daemon
  
