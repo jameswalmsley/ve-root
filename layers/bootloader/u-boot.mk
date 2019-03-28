@@ -18,8 +18,8 @@ bootloader-config:=$(UBOOT_OUT)/.config
 #
 # Hook layer targets
 #
-$(L) += $(bootloader)
 $(L) += $(bootloader-config)
+$(L) += $(bootloader)
 
 #
 # Register optional targets
