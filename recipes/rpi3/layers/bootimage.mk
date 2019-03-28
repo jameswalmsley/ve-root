@@ -48,9 +48,6 @@ $(bootimage):
 	cp $(bootimage.fit) $(BOOT)
 	cp $(bootloader) $(BOOT)
 	cp $(RECIPE)/boot/config.txt $(BOOT)
-	#cp -r $(RPI_FW)/boot/overlays $(BOOT)
-	#cp $(RPI_FW)/boot/bcm2710-rpi-3-b-plus.dtb $(BOOT)
-	#cp $(kernel) $(BOOT)/kernel8.img
 	$(stamp)
 
 $(bootimage): $(RECIPE)/boot/config.txt
