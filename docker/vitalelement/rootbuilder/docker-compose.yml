@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile
     image: rootbuilder:latest
     volumes:
-      - ${BASE}:/root/develop
+      - ${BASE}:/work
       - ./entrypoint.sh:/entrypoint.sh
       - ../../docker-ve-root.sh:/docker-ve-root.sh
       - /tmp/.X11-unix:/tmp/.X11-unix
@@ -24,9 +24,4 @@ services:
     stdin_open: true
     tty: true
     privileged: true
-
-  test:
-    image: rootbuilder:latest
-    volumes:
-      - ${BASE}:/root/develop
-    hostname: ve-root
+    working_dir: /work
