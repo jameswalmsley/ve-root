@@ -13,7 +13,7 @@ services:
       - ./.bash_history:/root/.bash_history
       - /dev:/dev
       - ./who:/usr/bin/who
-      - ./cache:/var/cache/squid-deb-proxy
+      - /tmp/ve-root/squid-cache:/var/cache/squid-deb-proxy
       - ./squid-deb-proxy.conf:/etc/squid-deb-proxy/squid-deb-proxy.conf
       - /tmp:/tmp
     environment:
