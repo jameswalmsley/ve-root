@@ -5,10 +5,13 @@ rootfs-ext4-image:=$(BUILD_rootfs-ext4-image)/rootfs.ext4.img
 
 $(L) += $(rootfs-ext4-image)
 
+DEPENDS += rootfs
+
 include $(BUILD_LAYER)
 
 $(rootfs-ext4-image):
 	mkdir -p $(dir $@)
+	-rm $@
 	fallocate -l $(SYSTEM_IMAGE_SIZE) $@
 	mkfs.ext4 $@
 	-mkdir $(builddir)/mntfs
@@ -16,5 +19,6 @@ $(rootfs-ext4-image):
 	rsync -av $(ROOTFS)/ $(builddir)/mntfs/
 	sync
 	umount $(builddir)/mntfs
+	sync
 	rm -rf $(builddir)/mntfs
 
