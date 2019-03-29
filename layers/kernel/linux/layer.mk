@@ -22,7 +22,6 @@ dtb-file:=$(BUILD)/$(L)/linux/arch/$(ARCH)/boot/dts/broadcom/bcm2837-rpi-3-b-plu
 #
 $(L) += $(kernel)
 $(L) += $(kernel-config)
-$(L) += $(LINUX_CONFIG)
 
 #
 # Register optional targets.
@@ -52,7 +51,7 @@ include $(BUILD_LAYER)
 #
 $(kernel):
 	mkdir -p $(KERNEL_OUT)
-	cp $(kernel-config) $(KERNEL_OUT)/.config
+	cd $(KERNEL_SOURCE) && $(MAKE) O=$(KERNEL_OUT) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) olddefconfig
 	cd $(KERNEL_SOURCE) && $(MAKE) O=$(KERNEL_OUT) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) modules_prepare
 	cd $(KERNEL_SOURCE) && $(MAKE) O=$(KERNEL_OUT) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) Image
 	cd $(KERNEL_SOURCE) && $(MAKE) O=$(KERNEL_OUT) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) dtbs
