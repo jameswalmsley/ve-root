@@ -20,6 +20,7 @@ bootloader-config:=$(UBOOT_OUT)/.config
 #
 $(L) += $(bootloader)
 $(L) += $(bootloader-config)
+$(L) += $(UBOOT_CONFIG)
 
 #
 # Register optional targets
