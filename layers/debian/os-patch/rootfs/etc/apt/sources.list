@@ -1,0 +1,2 @@
+{% for source in config['aptitude'].sources %}{{ source }} 
+{% endfor %}
