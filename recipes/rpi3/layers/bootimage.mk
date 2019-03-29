@@ -3,11 +3,9 @@ include $(DEFINE_LAYER)
 
 bootimage.fit:=$(BUILD)/$(L)/bootimage.fit
 bootimage:=$(LSTAMP)/bootimage
-memory-overlay:=$(BUILD)/$(L)/rpi3-memory.dtbo
 
 $(L) += $(bootimage.fit)
 $(L) += $(bootimage)
-$(L) += $(memory-overlay)
 
 $(call git_clone, rpi-firmware, https://github.com/raspberrypi/firmware.git, master)
 

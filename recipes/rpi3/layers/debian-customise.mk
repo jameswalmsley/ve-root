@@ -30,10 +30,15 @@ $(custom-rootfs):
 ifeq ($(ENABLE_DEV),y)
 	rsync -av --checksum --chown=root:root --chmod=D755,F644 $(RECIPE)/dev-rootfs/ $(ROOTFS)/
 endif
+ifneq ($(RECIPE),$(TOP))
+	rsync -av --checksum --chown=root:root --chmod=D755,F644 $(TOP)/rootfs $(ROOTFS)/
+endif
 	$(stamp)
 
-
 $(custom-rootfs): $(shell find $(RECIPE)/rootfs -type f) $(shell find $(RECIPE)/dev-rootfs -type f)
+ifneq ($(RECIPE),$(TOP))
+$(custom-rootfs): $(shell find $(TOP)/rootfs -type f)
+endif
 
 KMOD_VERSION=$(notdir $(shell find $(ROOTFS)/lib/modules/ -name $(KERNEL_VERSION)*))
 
@@ -46,6 +51,9 @@ $(custom-configure):
 	cp $(RECIPE)/scripts/configure.sh $(ROOTFS)
 	cp $(RECIPE)/dev-packages.list $(ROOTFS)
 	cp $(RECIPE)/permissions.list $(ROOTFS)
+ifneq ($(RECIPE),$(TOP))
+	-cat $(TOP)/permissions.list >> $(ROOTFS)/permissions.list
+endif
 	chroot $(ROOTFS) /bin/bash /configure.sh $(KMOD_VERSION)
 	rm $(ROOTFS)/configure.sh
 	rm $(ROOTFS)/dev-packages.list

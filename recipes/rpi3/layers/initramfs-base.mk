@@ -5,7 +5,7 @@ initramfs-base:=$(LSTAMP)/initramfs-base
 
 $(L) += $(initramfs-base)
 
-DEPENDS += debian-rootfs
+DEPENDS += debian-provision
 
 
 include $(BUILD_LAYER)

@@ -20,7 +20,7 @@ $(call git_clone, linux-firmware, https://kernel.googlesource.com/pub/scm/linux/
 # Specify layer dependencies
 #
 RUNAFTER += kernel-modules
-DEPENDS += debian-rootfs
+DEPENDS += debian-provision
 
 #
 # Hook layer into build system.
