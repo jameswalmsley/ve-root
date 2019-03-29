@@ -43,9 +43,9 @@ LAYERS += glibc
 LAYERS += strip
 #endif
 
-#ifneq ($(TC_NATIVE),y)
+ifneq ($(TC_NATIVE),y)
 LAYERS += copylibs
-#endif
+endif
 
 LAYERS += gcc
 LAYERS += gdb
