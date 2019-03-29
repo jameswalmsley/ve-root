@@ -15,6 +15,9 @@ PACKAGES=$(cat packages.list | xargs)
 
 DEBIAN_FRONTEND=noninteractive apt -y install ${PACKAGES} ${DPKG_OPTIONS}
 
+apt autoclean
+apt clean
+
 rm /etc/resolv.conf
 mv /etc/resolv.conf.old /etc/resolv.conf
 

@@ -5,6 +5,8 @@ debian-full-upgrade:=$(LSTAMP)/full-upgrade
 
 $(L) += $(debian-full-upgrade)
 
+DEPENDS += debian-provision
+
 include $(BUILD_LAYER)
 
 $(debian-full-upgrade):

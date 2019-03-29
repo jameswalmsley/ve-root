@@ -5,6 +5,8 @@ debian-install-packages:=$(LSTAMP)/install-packages
 
 $(L) += $(debian-install-packages)
 
+DEPENDS += debian-provision
+
 include $(BUILD_LAYER)
 
 $(debian-install-packages):

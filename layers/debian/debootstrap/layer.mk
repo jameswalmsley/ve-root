@@ -17,7 +17,7 @@ $(debian-debootstrap):
 		--verbose \
 		--foreign \
 		--variant=minbase \
-		--include=apt-utils \
+		--include=apt-utils,kmod \
 		$(RECIPE_DEB_RELEASE) \
 		$(builddir)/rootfs
 	cp /usr/bin/qemu-aarch64-static $(builddir)/rootfs/usr/bin
