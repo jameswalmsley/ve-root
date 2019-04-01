@@ -1,1 +1,1 @@
-8250.nr_uarts=1 bcm2708_fb.fbwidth=1920 bcm2708_fb.fbheight=1080 bcm2708_fb.fbswap=1 vc_mem.mem_base=0xec00000 vc_mem.mem_size=0x10000000  console=ttyS0,115200 console=ttyAMA0,115200 console=ttyS0 console=ttyS0 console=tty1 root=/dev/mmcblk0p2 rootwait earlyprintk loglevel=8
+8250.nr_uarts=1 bcm2708_fb.fbwidth=1920 bcm2708_fb.fbheight=1080 bcm2708_fb.fbswap=1 vc_mem.mem_base=0xec00000 vc_mem.mem_size=0x10000000  console=ttyS0,115200 root=/dev/mmcblk0p2 rootwait earlyprintk loglevel=8
