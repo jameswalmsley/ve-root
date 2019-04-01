@@ -2,8 +2,10 @@ LAYER:=rootfs-ext4-image
 include $(DEFINE_LAYER)
 
 rootfs-ext4-image:=$(BUILD_rootfs-ext4-image)/rootfs.ext4.img
+rootfs-ext4-image.gz:=$(BUILD_rootfs-ext4-image)/rootfs.ext4.img.gz
 
 $(L) += $(rootfs-ext4-image)
+$(L) += $(rootfs-ext4-image.gz)
 
 DEPENDS += rootfs
 
@@ -22,3 +24,7 @@ $(rootfs-ext4-image):
 	sync
 	rm -rf $(builddir)/mntfs
 
+$(rootfs-ext4-image.gz):
+	pv $(rootfs-ext4-image) | pigz -c -9 > $@
+
+$(rootfs-ext4-image.gz): $(rootfs-ext4-image)
