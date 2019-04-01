@@ -36,6 +36,7 @@ LAYERS += rootfs
 LAYERS += initramfs-base
 LAYERS += bootramfs
 LAYERS += bootimage
+LAYERS += updateimage
 
 LAYERS += rootfs/tarball
 LAYERS += rootfs/image-ext4
