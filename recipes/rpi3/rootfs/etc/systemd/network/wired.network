@@ -3,5 +3,5 @@ Name=eth0
 
 [Network]
 DHCP=both
-
-
+MulticastDNS=yes
+LLMNR=yes

@@ -8,7 +8,7 @@ UBOOT_GIT_REF?=v2019.01
 LINUX_GIT_URL:=https://github.com/raspberrypi/linux.git
 LINUX_GIT_REF:=rpi-4.19.y
 
-SYSTEM_IMAGE_SIZE:=500M
+SYSTEM_IMAGE_SIZE:=600M
 
 #
 # Include all required layers.
@@ -26,12 +26,12 @@ LAYERS += debian/customise
 LAYERS += debian/configure
 LAYERS += rpi-firmware
 LAYERS += debian/minimise
+LAYERS += rootfs/permissions
 
 #
 # Add virtual rootfs - sync layer!
 #
 LAYERS += rootfs
-LAYERS += rootfs/permissions
 
 LAYERS += initramfs-base
 LAYERS += bootramfs

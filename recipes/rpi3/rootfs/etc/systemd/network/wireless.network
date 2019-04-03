@@ -4,6 +4,8 @@ Name=wlan0
 [Network]
 Address=172.28.138.1/24
 DHCPServer=yes
+MulticastDNS=yes
+LLMNR=yes
 
 [DHCP]
 RouteMetric=20
