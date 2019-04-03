@@ -16,7 +16,7 @@ ifeq ($(ENABLE_DEV),y)
 	rsync -av --checksum --chown=root:root --chmod=D755,F644 $(RECIPE)/dev-rootfs/ $(ROOTFS)/
 endif
 ifneq ($(RECIPE),$(TOP))
-	rsync -av --checksum --chown=root:root --chmod=D755,F644 $(TOP)/rootfs $(ROOTFS)/
+	rsync -av --checksum --chown=root:root --chmod=D755,F644 $(TOP)/rootfs/ $(ROOTFS)/
 endif
 	$(stamp)
 
