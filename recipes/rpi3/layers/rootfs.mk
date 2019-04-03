@@ -10,6 +10,7 @@ rootfs:=$(LSTAMP)/rootfs
 $(L) += $(rootfs)
 
 DEPENDS += debian-minimise
+DEPENDS += debian-os-patch
 DEPENDS += debian-customise
 
 include $(BUILD_LAYER)
