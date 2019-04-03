@@ -23,7 +23,6 @@ LAYERS += debian/packages
 LAYERS += kernel/modules
 LAYERS += debian/depmod
 LAYERS += debian/customise
-LAYERS += rootfs/permissions
 LAYERS += debian/configure
 LAYERS += rpi-firmware
 LAYERS += debian/minimise
@@ -32,6 +31,7 @@ LAYERS += debian/minimise
 # Add virtual rootfs - sync layer!
 #
 LAYERS += rootfs
+LAYERS += rootfs/permissions
 
 LAYERS += initramfs-base
 LAYERS += bootramfs
