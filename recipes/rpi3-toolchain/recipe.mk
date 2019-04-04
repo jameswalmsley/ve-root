@@ -43,11 +43,12 @@ LAYERS += glibc
 LAYERS += strip
 #endif
 
+LAYERS += gcc
+
 ifneq ($(TC_NATIVE),y)
 LAYERS += copylibs
 endif
 
-LAYERS += gcc
 LAYERS += gdb
 
 include $(BUILD_RECIPE)
