@@ -1,4 +1,4 @@
 # Path:find-type:chmod options:mode
-/root:d:R:700
-/root:f:R:644
-/root/.ssh/authorized_keys:::600
+/root:-type d:chmod 600
+/root:-type f:chmod 644
+/root/.ssh/authorized_keys::chmod 600
