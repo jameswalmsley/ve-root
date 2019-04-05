@@ -102,7 +102,7 @@ rm -rf /data
 
 echo "INFO: Attempting to mount {{k}}"
 mkdir /mnt/newroot{{k}}
-mount -t ext4 {{ mount.blkdev }} /mnt/newroot{{k}}
+mount -t ext4 {{ '-o {}'.format(mount.mount_options) if 'mount_options' in mount }} {{ mount.blkdev }} /mnt/newroot{{k}}
 {% if 'chown' in mount %}
 chown -R {{ mount.chown }} /mnt/newroot{{k}}
 {% endif %}
