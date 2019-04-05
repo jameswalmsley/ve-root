@@ -7,9 +7,14 @@
 
 	"system": {
 		"hostname":	"raspberrypi",
-		"users": [
-			"pi:raspberry"
-		]
+		"users": {
+			"pi": {
+				"password": "raspberry",
+				"groups": [
+					"sudo"
+				]
+			}
+		}
 	},
 
 	"aptitude": {
