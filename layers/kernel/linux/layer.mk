@@ -64,7 +64,6 @@ KERNEL_CONFIG_TARGET:=$(LINUX_DEFCONFIG)
 
 define do_kconfig
 	cd $(KERNEL_SOURCE) && $(MAKE) O=$(KERNEL_OUT) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) $(KERNEL_CONFIG_TARGET)
-	cp $(KERNEL_OUT)/.config $(kernel-config)
 endef
 
 $(kernel-config):
