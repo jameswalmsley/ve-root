@@ -38,17 +38,20 @@
 			"blkdev": "/dev/mmcblk0p2"
 		},
 		"/boot": {
-			"blkdev": "/dev/mmcblk0p1"
+			"blkdev": "/dev/mmcblk0p1",
+			"mount_options": "ro"
 		},
 		"/config": {
 			"blkdev": "/dev/mmcblk0p3",
 			"chown": "1000:1000",
-			"format": "first-flash"
+			"format": "first-flash",
+			"mount_options": "ro"
 		},
 		"/data": {
 			"blkdev": "/dev/mmcblk0p4",
 			"chown": "1000:1000",
-			"format": "first-flash,mount-error"
+			"format": "first-flash,mount-error",
+			"mount_options": "rw"
 		}
 	},
 
