@@ -10,7 +10,7 @@ config=sys.argv[3]
 print(root, destdir)
 
 template_loader = jinja2.FileSystemLoader(searchpath=root)
-template_env = jinja2.Environment(loader=template_loader)
+template_env = jinja2.Environment(loader=template_loader, trim_blocks=True, lstrip_blocks=True)
 
 with open(config) as f:
     data = json.load(f)
@@ -22,7 +22,7 @@ for path, subdirs, files in os.walk(root):
         file=os.path.join(path, name)
         file=os.path.relpath(file, root)
         template = template_env.get_template(file)
-        output = template.render(config=config, distro=config['distro'], system=config['system'])
+        output = template.render(config=config, os=os, distro=config['distro'], system=config['system'])
 
         out = os.path.join(destdir, file)
 

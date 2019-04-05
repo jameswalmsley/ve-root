@@ -11,4 +11,7 @@ include $(BUILD_LAYER)
 
 $(debian-minimise):
 	rm -rf $(ROOTFS)/var/cache/apt
+	rm -rf $(ROOTFS)/usr/share/doc
+	rm -rf $(ROOTFS)/usr/share/man
+	rm -rf $(ROOTFS)/usr/share/locale
 	$(stamp)

@@ -35,6 +35,11 @@ define \n
 
 endef
 
+null:=
+space:= $(null) #
+comma:= ,
+
+
 define touch_stamp
 	mkdir -p $(dir $@) && touch $@
 endef

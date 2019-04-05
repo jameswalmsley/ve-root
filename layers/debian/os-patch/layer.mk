@@ -7,7 +7,7 @@ debian-os-patch:=$(LSTAMP)/debian-os-patch
 
 $(L) += $(debian-os-patch)
 
-DEPENDS += debian-provision
+DEPENDS += debian-packages
 
 include $(BUILD_LAYER)
 
