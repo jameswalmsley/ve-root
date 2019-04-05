@@ -33,14 +33,16 @@ LAYERS += rootfs/permissions
 #
 LAYERS += rootfs
 
-LAYERS += initramfs-base
-LAYERS += bootramfs
-LAYERS += bootimage
-LAYERS += updateimage
+LAYERS += debian/initramfs
+LAYERS += debian/bootramfs
+LAYERS += bootloader/bootimage
+LAYERS += bootloader/updateimage
 
 LAYERS += rootfs/tarball
 LAYERS += rootfs/image-ext4
-
 LAYERS += rootfs/sysroot
+
+LAYERS += bootimage
+LAYERS += updateimage
 
 include $(BUILD_RECIPE)

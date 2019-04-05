@@ -7,7 +7,7 @@ updateramfs:=$(BUILD)/$(L)/updateramfs.cpio.gz
 $(L) += $(bootramfs)
 $(L) += $(updateramfs)
 
-DEPENDS += initramfs-base
+DEPENDS += debian-initramfs
 
 include $(BUILD_LAYER)
 

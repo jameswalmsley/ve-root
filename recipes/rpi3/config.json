@@ -24,5 +24,39 @@
 			"deb http://ports.ubuntu.com/ubuntu-ports bionic universe",
 			"deb http://ports.ubuntu.com/ubuntu-ports bionic-updates universe"
 		]
+	},
+
+	"block-devices": {
+		"/dev/mmcblk0": {
+			"sffile": "partitions/mmcblk0.sfdisk",
+			"expand": "/dev/mmcblk0p4"
+		}
+	},
+
+	"mount-points": {
+		"/": {
+			"blkdev": "/dev/mmcblk0p2"
+		},
+		"/boot": {
+			"blkdev": "/dev/mmcblk0p1"
+		},
+		"/config": {
+			"blkdev": "/dev/mmcblk0p3",
+			"chown": "1000:1000",
+			"format": "first-flash"
+		},
+		"/data": {
+			"blkdev": "/dev/mmcblk0p4",
+			"chown": "1000:1000",
+			"format": "first-flash,mount-error"
+		}
+	},
+
+	"bootimage": {
+		"kernel_load":  "0x00800000",
+        "kernel_entry": "0x00800000",
+		"dtb_load":     "0x02600000",
+		"initrd_load":  "0x03000000",
+		"boot-config": "/data"
 	}
 }
