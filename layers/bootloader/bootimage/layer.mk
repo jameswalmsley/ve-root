@@ -26,7 +26,7 @@ $(bootloader-bootimage.fit):
 	mkdir -p $(BOOTIMAGE_OUT)
 	cp $(kernel) $(BOOTIMAGE_OUT)/Image
 	cp $(dtb-file) $(BOOTIMAGE_OUT)/dtree.dtb
-	cp $(bootramfs) $(BOOTIMAGE_OUT)/initramfs.cpio.gz
+	cp $(debian-bootramfs) $(BOOTIMAGE_OUT)/initramfs.cpio.gz
 	cd $(BOOTIMAGE_OUT) && dtc -p 0x1000 -I dtb -O dtb dtree.dtb -o devicetree.dtb
 	cd $(BOOTIMAGE_OUT) && fdtput -ts devicetree.dtb "/chosen" "bootargs" "$(shell cat $(RECIPE)/bootargs.txt)"
 	cp $(bootloader-bootimage.its) $(BOOTIMAGE_OUT)

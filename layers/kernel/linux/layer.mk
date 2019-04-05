@@ -15,7 +15,7 @@ LINUX_DEFCONFIG?=bcmrpi3_defconfig
 #
 kernel:=$(BUILD)/$(L)/linux/arch/$(ARCH)/boot/Image
 kernel-config:=$(KERNEL_OUT)/.config
-dtb-file:=$(BUILD)/$(L)/linux/arch/$(ARCH)/boot/dts/broadcom/bcm2837-rpi-3-b-plus.dtb
+dtb-file?=$(BUILD)/$(L)/linux/arch/$(ARCH)/boot/dts/broadcom/bcm2837-rpi-3-b-plus.dtb
 
 #
 # Hook layer targets

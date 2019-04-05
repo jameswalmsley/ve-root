@@ -2,16 +2,21 @@ LAYER:=debian-bootramfs
 include $(DEFINE_LAYER)
 
 bootinit.sh:=$(BUILD)/$(L)/ramdisk/bootinit.sh
+updateinit.sh:=$(BUILD)/$(L)/ramdisk/updateinit.sh
 debian-bootramfs:=$(BUILD)/$(L)/bootramfs.cpio.gz
+debian-updateramfs:=$(BUILD)/$(L)/updateramfs.cpio.gz
 
 $(L) += $(bootinit.sh)
 $(L) += $(debian-bootramfs)
+$(L) += $(updateinit.sh)
+$(L) += $(debian-updateramfs)
 
 include $(BUILD_LAYER)
 
 DEBIAN_PACKAGES += pv
 
 BOOTRAMFS_OUT:=$(BUILD)/$(L)/bootramfs
+UPDATERAMFS_OUT:=$(BUILD)/$(L)/updateramfs
 
 BOOTFILES += $(ROOTFS)/usr/bin/pv:bin
 BOOTFILES += $(ROOTFS)/sbin/resize2fs:sbin
@@ -38,9 +43,6 @@ JQUERY=python3 $(BASE_debian-bootramfs)/query.py
 BLK_DEVICES:=$(shell $(JQUERY) $(DEBIAN_OS_PATCH_CONFIG) json '" ".join([*config["block-devices"].keys()])')
 BLK_SFFILES:=$(shell $(JQUERY) $(DEBIAN_OS_PATCH_CONFIG) json '" ".join([f["sffile"] for k,f in config["block-devices"].items() if "sffile" in f])')
 
-block.info:
-	@echo $(BLK_DEVICES)
-	@echo $(BLK_SFFILES)
 
 define copy_bootfiles
 $(foreach f,$(BOOTFILES),\
@@ -67,11 +69,24 @@ $(debian-bootramfs):
 $(debian-bootramfs): $(bootinit.sh)
 
 
-$(bootinit.sh):
+$(bootinit.sh) $(updateinit.sh):
 	python3 $(DEBIAN_PATCH)/generate.py $(BASE_debian-bootramfs)/ramdisk $(dir $(bootinit.sh)) $(DEBIAN_OS_PATCH_CONFIG)
 
 $(bootinit.sh): $(DEBIAN_OS_PATCH_CONFIG)
 $(bootinit.sh): $(BASE_debian-bootramfs)/ramdisk/bootinit.sh
+$(updateinit.sh): $(BASE_debian-bootramfs)/ramdisk/updateinit.sh
+
+$(debian-updateramfs):
+	mkdir -p $(UPDATERAMFS_OUT)
+	rsync -avH --delete $(INITRAMFS_OUT)/* $(UPDATERAMFS_OUT)
+	cp $(updateinit.sh) $(UPDATERAMFS_OUT)/init
+	$(call copy_bootfiles,$(UPDATERAMFS_OUT))
+	-mkdir $(UPDATERAMFS_OUT)/partitions
+	$(call copy_sffiles)
+	cd $(UPDATERAMFS_OUT) && find . | cpio --quiet -H newc -o | gzip -9 -n > $@
+
+$(debian-updateramfs): $(updateinit.sh)
+
 
 bootramfs:=$(debian-bootramfs)
 
