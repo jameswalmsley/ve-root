@@ -17,4 +17,5 @@ pv
 rsync
 alsa-utils
 avahi-daemon
- 
+usbutils
+
