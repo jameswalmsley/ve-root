@@ -16,12 +16,11 @@ do
         fi
 
         if [[ -z "$type" ]] ; then
-            $command $path
+            $command $path || true
         else
-            find $path $type | xargs $command
+            find $path $type | xargs $command || true
         fi
 
 
     fi
 done
- 
