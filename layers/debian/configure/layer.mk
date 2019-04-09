@@ -9,10 +9,8 @@ DEPENDS += debian-provision
 
 include $(BUILD_LAYER)
 
-DEBIAN_CONFIG:=$(call select_file,$(TOP)/config.json,$(RECIPE)/config.json)
-
 $(debian-configure):
-	python3 $(DEBIAN_PATCH)/generate.py $(BASE_debian-configure)/rootfs $(ROOTFS) $(DEBIAN_CONFIG)
+	python3 $(DEBIAN_PATCH)/generate.py $(BASE_debian-configure)/rootfs $(ROOTFS) $(DEBIAN_OS_PATCH_CONFIG)
 	$(QEMU_START)
 	chmod +x $(ROOTFS)/users.sh
 	chroot $(ROOTFS) bash -c /users.sh
