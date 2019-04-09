@@ -5,7 +5,8 @@ UBOOT_GIT_URL?=https://github.com/u-boot/u-boot.git
 UBOOT_GIT_REF?=master
 
 UBOOT_OUT:=$(BUILD)/$(L)/u-boot
-UBOOT_SOURCE:=$(SRC_bootloader)/u-boot
+UBOOT_CHECKOUT_DIR?=u-boot
+UBOOT_SOURCE:=$(SRC_bootloader)/$(UBOOT_CHECKOUT_DIR)
 UBOOT_CONFIG?=$(RECIPE)/kconfigs/u-boot.config
 UBOOT_DEFCONFIG?=rpi_3_defconfig
 
@@ -30,7 +31,7 @@ $(T) += bootloader-config
 #
 # Specify source checkouts
 #
-$(call git_clone, u-boot, $(UBOOT_GIT_URL), $(UBOOT_GIT_REF))
+$(call git_clone, $(UBOOT_CHECKOUT_DIR), $(UBOOT_GIT_URL), $(UBOOT_GIT_REF))
 
 #
 # Specify layer dependencys and run orders.
