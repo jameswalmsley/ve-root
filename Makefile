@@ -27,6 +27,7 @@ info:
 	@echo "LAYERS:         $(LAYERS)"
 	@echo "TOP:            $(TOP)"
 	@echo "OUT:            $(OUT)"
+	@echo "BUILD:          $(BUILD)"
 	@echo "ROOTFS:         $(ROOTFS)"
 	@echo "ENABLE_DEV:     $(ENABLE_DEV)"
 	@$(foreach l,$(recipe),$(call show_layer,$l);)
