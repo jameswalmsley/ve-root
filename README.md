@@ -34,6 +34,14 @@ The recipe/later model is very strict. Leaving this pattern will send you
 into a wild goose chase around Make! :(
 
 ## Recipes
+```
+!!NOTE!! Before building any recipe, complete a source-checkout first:
+
+make -j$(nproc) source-checkout
+
+Some recipes may rely on source-checkout to generate internal variables.
+
+```
 
 
 ## Layers
