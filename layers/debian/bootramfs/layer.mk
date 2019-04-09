@@ -73,6 +73,13 @@ $(bootinit.sh) $(updateinit.sh):
 	python3 $(DEBIAN_PATCH)/generate.py $(BASE_debian-bootramfs)/ramdisk $(dir $(bootinit.sh)) $(DEBIAN_OS_PATCH_CONFIG)
 
 $(bootinit.sh): $(DEBIAN_OS_PATCH_CONFIG)
+
+#
+# Synchronise the 
+#
+$(updateinit.sh): | $(bootinit.sh)
+
+$(bootinit.sh): $(DEBIAN_OS_PATCH_CONFIG)
 $(bootinit.sh): $(BASE_debian-bootramfs)/ramdisk/bootinit.sh
 $(updateinit.sh): $(BASE_debian-bootramfs)/ramdisk/updateinit.sh
 
@@ -89,6 +96,3 @@ $(debian-updateramfs): $(updateinit.sh)
 
 
 bootramfs:=$(debian-bootramfs)
-
-
-
