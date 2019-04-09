@@ -84,7 +84,9 @@ $(LINUX_CONFIG):
 	$(call do_kconfig)
 	cp $(KERNEL_OUT)/.config $@
 
+ifneq ($(wildcard $(KERNEL_SOURCE)),)
 KERNEL_VERSION:=$(shell cd $(KERNEL_SOURCE) && $(MAKE) --quiet O=$(KERNEL_OUT) ARCH=$(ARCH) kernelversion)
+endif
 
 .PHONY: kernelversion
 kernelversion:
