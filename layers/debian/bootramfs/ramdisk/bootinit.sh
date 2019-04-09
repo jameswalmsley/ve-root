@@ -50,6 +50,8 @@ if [ -e "/mnt/lower/.first-flash" ]; then
     sfdisk -d {{k}} > ._partitions.sfdisk
     linenum=$(cat ._partitions.sfdisk | grep -n {{blkdev.expand}} | cut -d: -f1)
     sed -i "${linenum}s/size=[ \t]*[0-9]*,//" ._partitions.sfdisk
+    sed -i '/^first-lba:/ d' ._partitions.sfdisk
+    sed -i '/^last-lba:/ d' ._partitions.sfdisk
     sfdisk {{k}} < ._partitions.sfdisk
 {% endif %}
 
