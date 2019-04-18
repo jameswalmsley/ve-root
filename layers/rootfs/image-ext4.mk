@@ -21,6 +21,9 @@ $(rootfs-ext4-image):
 	mount -o loop -t ext4 $@.tmp $(builddir)/mntfs
 	rsync -av $(ROOTFS)/ $(builddir)/mntfs/
 	sync
+ifeq ($(CONFIG_EXT4_IMAGE_FIRST_FLASH),y)	
+	touch $(builddir)/mntfs/.first-flash
+endif
 	umount $(builddir)/mntfs
 	sync
 	rm -rf $(builddir)/mntfs
