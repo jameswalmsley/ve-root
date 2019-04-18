@@ -4,10 +4,13 @@ include $(DEFINE_LAYER)
 bootloader-bootimage.fit:=$(BUILD)/$(L)/bootimage.fit
 bootloader-bootimage.its:=$(BUILD)/$(L)/bootimage.its
 
+bootloader-bootargs?=$(RECIPE)/bootargs.txt
+
 $(L) += $(bootloader-bootimage.fit)
 $(L) += $(bootloader-bootimage.its)
 
 DEPENDS += kernel
+DEPENDS += bootloader
 DEPENDS += debian-bootramfs
 
 include $(BUILD_LAYER)
@@ -28,13 +31,13 @@ $(bootloader-bootimage.fit):
 	cp $(dtb-file) $(BOOTIMAGE_OUT)/dtree.dtb
 	cp $(debian-bootramfs) $(BOOTIMAGE_OUT)/initramfs.cpio.gz
 	cd $(BOOTIMAGE_OUT) && dtc -p 0x1000 -I dtb -O dtb dtree.dtb -o devicetree.dtb
-	cd $(BOOTIMAGE_OUT) && fdtput -ts devicetree.dtb "/chosen" "bootargs" "$(shell cat $(RECIPE)/bootargs.txt)"
+	cd $(BOOTIMAGE_OUT) && fdtput -ts devicetree.dtb "/chosen" "bootargs" "$(shell cat $(bootloader-bootargs))"
 	cp $(bootloader-bootimage.its) $(BOOTIMAGE_OUT)
 	cd $(BOOTIMAGE_OUT) && $(MKIMAGE) -D "-I dts -O dtb -p 0x1000" -f bootimage.its $@
 
 
 $(bootloader-bootimage.fit): $(bootloader-bootimage.its)
-$(bootloader-bootimage.fit): $(RECIPE)/bootargs.txt
+$(bootloader-bootimage.fit): $(bootloader-bootargs)
 
 $(bootloader-bootimage.its):
 	python3 $(DEBIAN_PATCH)/generate.py $(BASE_bootloader-bootimage)/bootimage $(dir $(bootloader-bootimage.its)) $(DEBIAN_OS_PATCH_CONFIG)
