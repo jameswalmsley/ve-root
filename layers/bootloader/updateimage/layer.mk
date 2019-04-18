@@ -28,13 +28,13 @@ $(bootloader-updateimage.fit):
 	cp $(dtb-file) $(UPDATEIMAGE_OUT)/dtree.dtb
 	cp $(debian-updateramfs) $(UPDATEIMAGE_OUT)/initramfs.cpio.gz
 	cd $(UPDATEIMAGE_OUT) && dtc -p 0x1000 -I dtb -O dtb dtree.dtb -o devicetree.dtb
-	cd $(UPDATEIMAGE_OUT) && fdtput -ts devicetree.dtb "/chosen" "bootargs" "$(shell cat $(RECIPE)/bootargs.txt)"
+	cd $(UPDATEIMAGE_OUT) && fdtput -ts devicetree.dtb "/chosen" "bootargs" "$(shell cat $(bootloader-bootargs))"
 	cp $(bootloader-updateimage.its) $(UPDATEIMAGE_OUT)
 	cd $(UPDATEIMAGE_OUT) && $(MKIMAGE) -D "-I dts -O dtb -p 0x1000" -f updateimage.its $@
 
 
 $(bootloader-updateimage.fit): $(bootloader-updateimage.its)
-$(bootloader-updateimage.fit): $(RECIPE)/bootargs.txt
+$(bootloader-updateimage.fit): $(bootloader-bootargs)
 
 $(bootloader-updateimage.its):
 	python3 $(DEBIAN_PATCH)/generate.py $(BASE_bootloader-updateimage)/updateimage $(dir $(bootloader-updateimage.its)) $(DEBIAN_OS_PATCH_CONFIG)
