@@ -59,7 +59,11 @@
 		"kernel_load":  "0x00800000",
         "kernel_entry": "0x00800000",
 		"dtb_load":     "0x02600000",
+		"overlay_load": "0x02700000",
 		"initrd_load":  "0x03000000",
-		"boot-config": "/data"
+		"boot-config": "/data",
+		"overlays": [
+			"enable-audio.dtbo"
+		]
 	}
 }

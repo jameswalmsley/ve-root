@@ -35,6 +35,9 @@ LAYERS += rootfs
 
 LAYERS += debian/initramfs
 LAYERS += debian/bootramfs
+
+LAYERS += overlays
+
 LAYERS += bootloader/bootimage
 LAYERS += bootloader/updateimage
 
