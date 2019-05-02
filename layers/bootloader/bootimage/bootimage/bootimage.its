@@ -67,7 +67,7 @@
                         description = "VE-ROOT BootImage";
                         kernel = "linux_kernel@1";
 {% if 'overlays' in config['bootimage'] %}
-                        fdt = "fdt@1"{% for overlay in config['bootimage'].overlays %},"{{ overlay.replace('.dtbo', '') }}@1{% endfor %}";
+                        fdt = "fdt@1"{% for overlay in config['bootimage'].overlays %},"overlay_{{ overlay.replace('.dtbo', '') }}@1{% endfor %}";
 {% else %}
                         fdt = "fdt@1";
 {% endif %}
