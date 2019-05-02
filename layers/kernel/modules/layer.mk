@@ -12,6 +12,6 @@ include $(BUILD_LAYER)
 
 $(kernel-modules):
 	rm -rf $(ROOTFS)/lib/modules
-	cd $(KERNEL_SOURCE) && $(MAKE) O=$(KERNEL_OUT) ARCH=$(ARCH) modules_install INSTALL_MOD_PATH=$(ROOTFS)
+	cd $(KERNEL_SOURCE) && $(MAKE) O=$(KERNEL_OUT) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) modules_install INSTALL_MOD_PATH=$(ROOTFS)
 	$(stamp)
 

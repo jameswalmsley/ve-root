@@ -15,7 +15,7 @@ LINUX_DEFCONFIG?=bcmrpi3_defconfig
 #
 kernel:=$(BUILD)/$(L)/linux/arch/$(ARCH)/boot/Image
 kernel-config:=$(KERNEL_OUT)/.config
-dtb-file?=$(BUILD)/$(L)/linux/arch/$(ARCH)/boot/dts/broadcom/bcm2837-rpi-3-b-plus.dtb
+dtb-file:=$(BUILD)/$(L)/linux/arch/$(ARCH)/boot/dts/broadcom/bcm2837-rpi-3-b-plus.dtb
 
 #
 # Hook layer targets
@@ -80,6 +80,7 @@ kernel-config: KERNEL_CONFIG_TARGET:=menuconfig
 kernel-config:
 	cp $(LINUX_CONFIG) $(KERNEL_OUT)/.config
 	$(call do_kconfig)
+	cp $(KERNEL_OUT)/.config $(LINUX_CONFIG)
 
 $(LINUX_CONFIG):
 	$(call do_kconfig)
