@@ -9,27 +9,23 @@ bootloader-bootargs?=$(RECIPE)/bootargs.txt
 $(L) += $(bootloader-bootimage.fit)
 $(L) += $(bootloader-bootimage.its)
 
+DEPENDS += bootloader
 DEPENDS += kernel
 DEPENDS += bootloader
 DEPENDS += debian-bootramfs
 
 include $(BUILD_LAYER)
 
-ifeq ($(BOOTIMAGE_FILES),)
 BOOTIMAGE_FILES += $(dtb-file)
 BOOTIMAGE_FILES += $(kernel)
-BOOTIMAGE_FILES += $(bootramfs)
-endif
-
+BOOTIMAGE_FILES += $(debian-bootramfs)
 
 BOOTIMAGE_OUT:=$(BUILD)/$(L)/bootimage
 
 $(bootloader-bootimage.fit):
 	@echo "Generating U-Boot bootimage"
 	mkdir -p $(BOOTIMAGE_OUT)
-	cp $(kernel) $(BOOTIMAGE_OUT)/Image
-	cp $(dtb-file) $(BOOTIMAGE_OUT)/dtree.dtb
-	cp $(debian-bootramfs) $(BOOTIMAGE_OUT)/initramfs.cpio.gz
+	cp $(BOOTIMAGE_FILES) $(BOOTIMAGE_OUT)
 	cd $(BOOTIMAGE_OUT) && dtc -p 0x1000 -I dtb -O dtb dtree.dtb -o devicetree.dtb
 	cd $(BOOTIMAGE_OUT) && fdtput -ts devicetree.dtb "/chosen" "bootargs" "$(shell cat $(bootloader-bootargs))"
 	cp $(bootloader-bootimage.its) $(BOOTIMAGE_OUT)
