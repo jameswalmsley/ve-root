@@ -17,6 +17,8 @@ DEPENDS += debian-customise
 DEPENDS += rootfs-permissions
 DEPENDS += debian-configure
 DEPENDS += debian-minimise
+DEPENDS += debian-depmod
+DEPENDS += rpi-firmware
 
 include $(BUILD_LAYER)
 
