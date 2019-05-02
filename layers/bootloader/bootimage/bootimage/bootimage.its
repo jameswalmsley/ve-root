@@ -41,6 +41,24 @@
                                 algo = "sha256";
                         };
                 };
+{% if 'overlays' in config['bootimage'] %}
+{% for overlay in config['bootimage'].overlays %}
+
+                overlay_{{ overlay.replace('.dtbo', '') }}@1 {
+                        data = /incbin/("{{ overlay }}");
+                        type = "flat_dt";
+                        arch = "arm64";
+                        load = <{{ hex(int(config['bootimage'].overlay_load, 16)|int + (4096 * loop.index0)) }}>;
+                        compression = "none";
+                        hash@1 {
+                                algo = "sha256";
+                        };
+                };
+
+{% endfor %}
+{% endif %}
+
+
         };
 
         configurations {
@@ -48,7 +66,11 @@
                 config@1{
                         description = "VE-ROOT BootImage";
                         kernel = "linux_kernel@1";
+{% if 'overlays' in config['bootimage'] %}
+                        fdt = "fdt@1"{% for overlay in config['bootimage'].overlays %},"{{ overlay.replace('.dtbo', '') }}@1{% endfor %}";
+{% else %}
                         fdt = "fdt@1";
+{% endif %}
                         ramdisk = "initramfs@1";
                         signature@1{
                                 algo = "sha256,rsa2048";

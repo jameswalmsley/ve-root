@@ -22,7 +22,7 @@ for path, subdirs, files in os.walk(root):
         file=os.path.join(path, name)
         file=os.path.relpath(file, root)
         template = template_env.get_template(file)
-        output = template.render(config=config, os=os, distro=config['distro'], system=config['system'])
+        output = template.render(int=int, hex=hex, config=config, os=os, distro=config['distro'], system=config['system'])
 
         out = os.path.join(destdir, file)
 
