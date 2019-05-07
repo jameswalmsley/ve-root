@@ -57,6 +57,10 @@ cp $(RECIPE)/$(strip $(f)) $(BOOTRAMFS_OUT)/partitions$(\n)\
 endef
 
 
+$(foreach f,$(BLK_SFFILES),\
+$(debian-bootramfs): $(RECIPE)/$(strip $(f))$(\n)\
+)
+
 $(debian-bootramfs):
 	mkdir -p $(BOOTRAMFS_OUT)
 	rsync -avH --delete $(INITRAMFS_OUT)/* $(BOOTRAMFS_OUT)
