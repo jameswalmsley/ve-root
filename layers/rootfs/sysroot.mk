@@ -6,6 +6,7 @@ sysroot:=$(LSTAMP)/sysroot
 
 $(L) += $(sysroot)
 
+DEPENDS += rootfs
 
 include $(BUILD_LAYER)
 
@@ -21,6 +22,6 @@ $(sysroot):
 	mkdir -p $(SYSROOT)
 	$(foreach dir,$(SYSROOT_DIRS), \
 	mkdir -p $(SYSROOT)/$(dir) $(\n) \
-	rsync -av $(ROOTFS)/$(dir)/* $(SYSROOT)/$(dir)/ $(\n) \
+	rsync -av $(ROOTFS)/$(dir)/ $(SYSROOT)/$(dir)/ $(\n) \
 	)
 	$(stamp)
