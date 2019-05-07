@@ -20,6 +20,10 @@ DEPENDS += debian-minimise
 DEPENDS += debian-depmod
 DEPENDS += rpi-firmware
 
+ifeq ($(CONFIG_DISABLE_LOGIN),y)
+DEPENDS += debian-disable-login
+endif
+
 include $(BUILD_LAYER)
 
 $(rootfs):
