@@ -6,6 +6,7 @@ debian-configure:=$(LSTAMP)/configure
 $(L) += $(debian-configure)
 
 DEPENDS += debian-provision
+DEPENDS += debian-packages
 
 include $(BUILD_LAYER)
 
@@ -27,3 +28,9 @@ ifneq ($(wildcard $(TOP)/scripts/configure.sh),)
 endif
 	$(QEMU_DONE)
 	$(stamp)
+
+$(debian-configure): $(DEBIAN_OS_PATCH_CONFIG)
+
+ifneq ($(wildcard $(TOP)/scripts/configure.sh),)
+$(debian-configure): $(TOP)/scripts/configure.sh
+endif
