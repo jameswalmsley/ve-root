@@ -8,7 +8,7 @@ UBOOT_GIT_REF?=v2019.01
 LINUX_GIT_URL:=https://github.com/VitalElement/linux.git
 LINUX_GIT_REF:=ve-rpi-4.10.y
 
-SYSTEM_IMAGE_SIZE:=600M
+SYSTEM_IMAGE_SIZE:=700M
 
 #
 # Include all required layers.
@@ -27,6 +27,10 @@ LAYERS += debian/configure
 LAYERS += rpi-firmware
 LAYERS += debian/minimise
 LAYERS += rootfs/permissions
+
+ifeq ($(CONFIG_DISABLE_LOGIN),y)
+LAYERS += debian/disable-login
+endif
 
 #
 # Add virtual rootfs - sync layer!

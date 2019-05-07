@@ -61,6 +61,8 @@
 		"dtb_load":     "0x02600000",
 		"overlay_load": "0x02700000",
 		"initrd_load":  "0x03000000",
+		"kernel_image": "Image",
+		"initramfs": "bootramfs.cpio.gz",
 		"boot-config": "/data",
 		"overlays": [
 			"enable-audio.dtbo"
