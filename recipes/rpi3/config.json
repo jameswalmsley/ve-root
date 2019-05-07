@@ -35,14 +35,14 @@
 
 	"mount-points": {
 		"/": {
-			"blkdev": "/dev/mmcblk0p2"
+			"blkdev": "/dev/mmcblk0p3"
 		},
 		"/boot": {
 			"blkdev": "/dev/mmcblk0p1",
 			"mount_options": "ro"
 		},
 		"/config": {
-			"blkdev": "/dev/mmcblk0p3",
+			"blkdev": "/dev/mmcblk0p2",
 			"chown": "1000:1000",
 			"format": "first-flash",
 			"mount_options": "ro"
