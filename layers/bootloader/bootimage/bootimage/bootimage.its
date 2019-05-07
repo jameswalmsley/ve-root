@@ -5,7 +5,7 @@
         images {
                 linux_kernel@1 {
                         description = "Kernel";
-                        data = /incbin/("Image");
+                        data = /incbin/("{{ config['bootimage'].kernel_image }}");
                         type = "kernel";
                         arch = "arm64";
                         os = "linux";
@@ -31,7 +31,7 @@
 
                 initramfs@1 {
                         description = "Initial RAM Disk.";
-                        data = /incbin/("initramfs.cpio.gz");
+                        data = /incbin/("{{ config['bootimage'].initramfs }}");
                         type = "ramdisk";
                         arch = "arm64";
                         os = "linux";

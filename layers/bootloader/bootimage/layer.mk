@@ -26,7 +26,7 @@ $(bootloader-bootimage.fit):
 	@echo "Generating U-Boot bootimage"
 	mkdir -p $(BOOTIMAGE_OUT)
 	cp $(BOOTIMAGE_FILES) $(BOOTIMAGE_OUT)
-	cd $(BOOTIMAGE_OUT) && dtc -p 0x1000 -I dtb -O dtb dtree.dtb -o devicetree.dtb
+	cd $(BOOTIMAGE_OUT) && dtc -p 0x1000 -I dtb -O dtb $(notdir $(dtb-file)) -o devicetree.dtb
 	cd $(BOOTIMAGE_OUT) && fdtput -ts devicetree.dtb "/chosen" "bootargs" "$(shell cat $(bootloader-bootargs))"
 	cp $(bootloader-bootimage.its) $(BOOTIMAGE_OUT)
 	cd $(BOOTIMAGE_OUT) && $(MKIMAGE) -D "-I dts -O dtb -p 0x1000" -f bootimage.its $@
