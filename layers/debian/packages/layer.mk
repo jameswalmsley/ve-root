@@ -19,13 +19,16 @@ ifneq ($(wildcard $(RECIPE)/packages.list),)
 	cat $(RECIPE)/packages.list >> $(ROOTFS)/packages.list
 endif
 ifneq ($(wildcard $(RECIPE)/dev-packages.list),)
+	echo "" | >> $(ROOTFS)/packages.list
 	cat $(RECIPE)/dev-packages.list >> $(ROOTFS)/packages.list
 endif
 ifneq ($(TOP),$(RECIPE))
 ifneq ($(wildcard $(TOP)/packages.list),)
+	echo "" | >> $(ROOTFS)/packages.list
 	cat $(TOP)/packages.list >> $(ROOTFS)/packages.list
 endif
 ifneq ($(wildcard $(TOP)/dev-packages.list),)
+	echo "" | >> $(ROOTFS)/packages.list
 	cat $(TOP)/dev-packages.list >> $(ROOTFS)/packages.list
 endif
 endif
