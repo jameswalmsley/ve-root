@@ -24,14 +24,14 @@ endef
 info:
 	@echo "BASE:           $(BASE)"
 	@echo "RECIPE:         $(RECIPE)"
-	@echo "LAYERS:         $(LAYERS)"
 	@echo "TOP:            $(TOP)"
+	@echo "VARIANT:        $(VARIANT)"
+	@echo "SOURCE:         $(SOURCE)"
 	@echo "OUT:            $(OUT)"
 	@echo "BUILD:          $(BUILD)"
 	@echo "ROOTFS:         $(ROOTFS)"
 	@echo "ENABLE_DEV:     $(ENABLE_DEV)"
 	@$(foreach l,$(recipe),$(call show_layer,$l);)
-
 
 recipe: $(recipe)
 $(recipe): | $(source-checkout)

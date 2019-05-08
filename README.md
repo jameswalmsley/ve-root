@@ -43,6 +43,16 @@ Some recipes may rely on source-checkout to generate internal variables.
 
 ```
 
+### Variants
+Recipe configurations can define multiple variants.
+To define a variant simply define CONFIG_VARIANT in the config file:
+
+```
+CONFIG_VARIANT:=jetson-tx2
+```
+
+Defining a variant will ensure that all sources, and build outputs are placed
+orthogonally from other builds. Allowing easy switching between configurations.
 
 ## Layers
 

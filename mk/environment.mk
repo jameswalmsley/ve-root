@@ -16,9 +16,17 @@ else
 #
 
 R?=$(CONFIG_RECIPE)
-OUT:=$(shell pwd)/out/$(R)
+
+_VARIANT:=
+VARIANT:=
+ifneq ($(CONFIG_VARIANT),)
+VARIANT:=$(CONFIG_VARIANT)
+_VARIANT:=/$(CONFIG_VARIANT)
+endif
+
+OUT:=$(shell pwd)/out/$(R)$(_VARIANT)
 TOP:=$(BASE)/recipes/$(R)
-SOURCE:=$(BASE)/sources/$(R)
+SOURCE:=$(BASE)/sources/$(R)$(_VARIANT)
 BUILD:=$(OUT)/build
 STAMP:=$(OUT)/.stamp
 ROOTFS:=$(OUT)/rootfs
