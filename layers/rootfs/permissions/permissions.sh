@@ -16,6 +16,7 @@ do
         fi
 
         if [[ -z "$type" ]] ; then
+            echo $command $path
             $command $path || true
         else
             find $path $type | xargs $command || true

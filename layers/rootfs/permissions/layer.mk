@@ -35,3 +35,5 @@ $(rootfs-permissions): $(TOP)/permissions.list
 endif
 
 $(rootfs-permissions): $(BASE_rootfs-permissions)/permissions.sh
+
+$(rootfs-permissions): $(ROOTFS)
