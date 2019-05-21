@@ -74,3 +74,22 @@ docker:
 docker.build:
 	cd $(BASE)/docker/$(DOCKER_IMAGE) && BASE=$(BASE) docker-compose build
 
+.PHONY: chroot
+chroot:
+	chroot $(ROOTFS) bash
+
+.PHONY: git.pull
+git.pull:
+	@echo "pulled"
+
+.PHONY: git.fetch
+git.fetch:
+	@echo "fetched"
+
+.PHONY: git.unshallow
+git.unshallow:
+	@echo "unshallowed"
+
+.PHONY: git.status
+git.status:
+	@echo ""

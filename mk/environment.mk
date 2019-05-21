@@ -83,6 +83,8 @@ source-checkout += $(SRCDEST)
 
 $$($(L)): $(SRCDEST)
 
+$(L)_git-repos += $(SOURCE)/$(L)/$(strip $(1))
+
 endef
 
 define git_clone

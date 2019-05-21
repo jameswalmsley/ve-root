@@ -77,3 +77,53 @@ $(t): RECIPE:=$(RECIPE)$(\n)\
 endef
 
 $(eval $(target_properties))
+
+_git-status:=**** :: 
+
+define git_pull_layer
+.PHONY: $(L).git.pull
+$(L).git.pull:
+	@$(foreach g, $($(L)_git-repos),\
+	echo "$(_git-status)Pulling: $(g)";cd $(g) && git pull;\
+	)
+endef
+
+git.pull: | $(L).git.pull
+
+$(eval $(git_pull_layer))
+
+define git_fetch_layer
+.PHONY: $(L).git.fetch
+$(L).git.fetch:
+	@$(foreach g, $($(L)_git-repos),\
+	echo "$(_git-status)Fetching: $(g)"; cd $(g) && git fetch;\
+	)
+endef
+
+git.fetch: | $(L).git.fetch
+
+$(eval $(git_fetch_layer))
+
+define git_unshallow_layer
+.PHONY: $(L).git.unshallow
+$(L).git.unshallow:
+	@$(foreach g, $($(L)_git-repos),\
+	echo "$(_git-status)Unshallowing: $(g)"; cd $(g) && git fetch --unshallow; cd $(g) && git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"\
+	)
+endef
+
+git.unshallow: | $(L).git.unshallow
+
+$(eval $(git_unshallow_layer))
+
+define git_status_layer
+.PHONY: $(L).git.status
+$(L).git.status:
+	@$(foreach g, $($(L)_git-repos),\
+	echo "$(_git-status)Git Status: $(g)"; cd $(g) && git status;\
+	)
+endef
+
+git.status: | $(L).git.status
+
+$(eval $(git_status_layer))
