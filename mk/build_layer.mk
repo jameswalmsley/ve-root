@@ -71,7 +71,11 @@ $(foreach t, $($(L)) $($(T)),\
 $(t): builddir:=$(BUILD)/$(L)$(\n)\
 $(t): srcdir:=$(SOURCE)/$(L)$(\n)\
 $(t): basedir:=$(LBASE)$(\n)\
+ifeq ($(filter $(LAYER),$(ROOTFS_DEPENDS)),)$(\n)\
 $(t): RECIPE:=$(RECIPE)$(\n)\
+else$(\n)\
+$(t): RECIPE:=$(TOP_RECIPE)$(\n)\
+endif $(\n)\
 )
 
 endef
