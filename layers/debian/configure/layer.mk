@@ -31,6 +31,10 @@ endif
 
 $(debian-configure): $(DEBIAN_OS_PATCH_CONFIG)
 
+ifneq ($(wildcard $(RECIPE)/scripts/configure.sh),)
+$(debian-configure): $(RECIPE)/scripts/configure.sh
+endif
+
 ifneq ($(wildcard $(TOP)/scripts/configure.sh),)
 $(debian-configure): $(TOP)/scripts/configure.sh
 endif
