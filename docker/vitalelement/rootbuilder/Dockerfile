@@ -20,6 +20,7 @@ RUN apt-get -y install gawk
 RUN apt-get -y install p7zip-full
 RUN apt-get -y install dosfstools
 RUN apt-get -y install kpartx
+RUN apt-get -y install lbzip2
 
 WORKDIR /root/develop
 

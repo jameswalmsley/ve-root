@@ -16,6 +16,7 @@ services:
       - /tmp/ve-root/squid-cache:/var/cache/squid-deb-proxy
       - ./squid-deb-proxy.conf:/etc/squid-deb-proxy/squid-deb-proxy.conf
       - /tmp:/tmp
+      - ~/.ssh:/root/.ssh
     environment:
       - DISPLAY
       - KEY_PATH=/tmp/prod_keys
