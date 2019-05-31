@@ -143,3 +143,6 @@ endef
 git.status: | $(L).git.status
 
 $(eval $(git_status_layer))
+
+$(eval LAYERS_INCLUDED += $(LAYER))
+LAYER:=
