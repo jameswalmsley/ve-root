@@ -2,6 +2,10 @@ MAKEFILE_LIST:=$(filter-out $(lastword $(MAKEFILE_LIST)), $(MAKEFILE_LIST))
 LBASE:=$(shell readlink -f $(dir $(lastword $(MAKEFILE_LIST))))
 LFILE:=$(shell readlink -f $(lastword $(MAKEFILE_LIST)))
 
+ifeq ($(LAYER),)
+$(error ERROR: LAYER not defined in $(LFILE))
+endif
+
 $(eval L:=L_$(LAYER))
 $(eval T:=T_$(LAYER))
 
