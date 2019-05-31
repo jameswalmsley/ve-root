@@ -86,6 +86,10 @@ git.pull:
 git.fetch:
 	@echo "fetched"
 
+.PHONY: git.submodule.update
+git.submodule.update:
+	@echo "submodules updated"
+
 .PHONY: git.unshallow
 git.unshallow:
 	@echo "unshallowed"

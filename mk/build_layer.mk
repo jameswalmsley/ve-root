@@ -108,6 +108,18 @@ git.fetch: | $(L).git.fetch
 
 $(eval $(git_fetch_layer))
 
+define git_submodule_update
+.PHONY: $(L).git.submodule.update
+$(L).git.submodule.update:
+	@$(foreach g, $($(L)_git-repos),\
+	echo "$(_git-status)Submodule Update: $(g)"; cd $(g) && git submodule update --init --recursive;\
+	)
+endef
+
+git.submodule.update: | $(L).git.submodule.update
+
+$(eval $(git_submodule_update))
+
 define git_unshallow_layer
 .PHONY: $(L).git.unshallow
 $(L).git.unshallow:
