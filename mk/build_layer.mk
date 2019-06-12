@@ -61,6 +61,7 @@ $(L).info:
 	@echo "DEPENDS:       $(DEPENDS)"
 	@echo "RUNAFTER:      $(RUNAFTER)"
 	@echo "LSTAMP:        $(LSTAMP)"
+	@echo "RECIPE:        $(RECIPE)"
 	@$(foreach t,$($(L)) $($(T)),$(call show_target,$t);)
 endef
 
