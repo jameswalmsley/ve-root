@@ -1,13 +1,21 @@
 LAYER:=debian-packages
 include $(DEFINE_LAYER)
 
+debian-configure-apt:=$(LSTAMP)/configure-apt
 debian-install-packages:=$(LSTAMP)/install-packages
 
+$(L) += $(debian-configure-apt)
 $(L) += $(debian-install-packages)
 
-DEPENDS += debian-full-upgrade
+DEPENDS += debian-provision
 
 include $(BUILD_LAYER)
+
+$(debian-configure-apt):
+	python3 $(DEBIAN_PATCH)/generate.py $(BASE_debian-packages)/rootfs $(ROOTFS) $(DEBIAN_PATCH_CONFIG)
+	$(stamp)
+
+$(debian-configure-apt): $(shell find $(BASE_debian-packages)/rootfs -type f)
 
 $(debian-install-packages):
 	$(QEMU_START)
