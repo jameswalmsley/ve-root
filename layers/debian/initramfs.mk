@@ -19,7 +19,7 @@ $(debian-initramfs):
 	-umount $(ROOTFS)/mnt
 	mount --bind $(INITRAMFS_OUT) $(ROOTFS)/mnt
 	$(QEMU_START)
-	chroot $(ROOTFS) mkinitramfs -v -o /mnt/initramfs
+	chroot $(ROOTFS) mkinitramfs -v -o /mnt/initramfs v0.0.1
 	$(QEMU_DONE)
 	cd $(INITRAMFS_OUT) && zcat initramfs | cpio -idmv
 	$(stamp)
