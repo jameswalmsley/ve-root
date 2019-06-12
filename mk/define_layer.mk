@@ -25,8 +25,8 @@ $(eval recipe += $(L))
 .PHONY: $(L).clean
 
 define layer_invalidate
-.PHONY: $(L).invalidate
-$(L).invalidate:
+.PHONY: $(L).invalidate $(L).i
+$(L).invalidate $(L).i:
 	rm -rf $$($(L))
 
 $(L).clean: | $(L).invalidate
