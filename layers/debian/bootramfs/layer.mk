@@ -40,8 +40,8 @@ BOOTFILES += $(ROOTFS)/lib/aarch64-linux-gnu/libtinfo.so.5:lib
 
 JQUERY=python3 $(BASE_debian-bootramfs)/query.py
 
-BLK_DEVICES:=$(shell $(JQUERY) $(DEBIAN_OS_PATCH_CONFIG) json '" ".join([*config["block-devices"].keys()])')
-BLK_SFFILES:=$(shell $(JQUERY) $(DEBIAN_OS_PATCH_CONFIG) json '" ".join([f["sffile"] for k,f in config["block-devices"].items() if "sffile" in f])')
+BLK_DEVICES:=$(shell $(JQUERY) $(DEBIAN_PATCH_CONFIG) json '" ".join([*config["block-devices"].keys()])')
+BLK_SFFILES:=$(shell $(JQUERY) $(DEBIAN_PATCH_CONFIG) json '" ".join([f["sffile"] for k,f in config["block-devices"].items() if "sffile" in f])')
 
 
 define copy_bootfiles
@@ -74,16 +74,16 @@ $(debian-bootramfs): $(bootinit.sh)
 
 
 $(bootinit.sh) $(updateinit.sh):
-	python3 $(DEBIAN_PATCH)/generate.py $(BASE_debian-bootramfs)/ramdisk $(dir $(bootinit.sh)) $(DEBIAN_OS_PATCH_CONFIG)
+	python3 $(DEBIAN_PATCH)/generate.py $(BASE_debian-bootramfs)/ramdisk $(dir $(bootinit.sh)) $(DEBIAN_PATCH_CONFIG)
 
-$(bootinit.sh): $(DEBIAN_OS_PATCH_CONFIG)
+$(bootinit.sh): $(DEBIAN_PATCH_CONFIG)
 
 #
 # Synchronise the 
 #
 $(updateinit.sh): | $(bootinit.sh)
 
-$(bootinit.sh): $(DEBIAN_OS_PATCH_CONFIG)
+$(bootinit.sh): $(DEBIAN_PATCH_CONFIG)
 $(bootinit.sh): $(BASE_debian-bootramfs)/ramdisk/bootinit.sh
 $(updateinit.sh): $(BASE_debian-bootramfs)/ramdisk/updateinit.sh
 

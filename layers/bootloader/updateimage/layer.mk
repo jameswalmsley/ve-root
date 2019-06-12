@@ -37,4 +37,4 @@ $(bootloader-updateimage.fit): $(bootloader-updateimage.its)
 $(bootloader-updateimage.fit): $(bootloader-bootargs)
 
 $(bootloader-updateimage.its):
-	python3 $(DEBIAN_PATCH)/generate.py $(BASE_bootloader-updateimage)/updateimage $(dir $(bootloader-updateimage.its)) $(DEBIAN_OS_PATCH_CONFIG)
+	python3 $(DEBIAN_PATCH)/generate.py $(BASE_bootloader-updateimage)/updateimage $(dir $(bootloader-updateimage.its)) $(DEBIAN_PATCH_CONFIG)

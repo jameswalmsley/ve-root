@@ -11,7 +11,7 @@ DEPENDS += debian-packages
 include $(BUILD_LAYER)
 
 $(debian-configure):
-	python3 $(DEBIAN_PATCH)/generate.py $(BASE_debian-configure)/rootfs $(ROOTFS) $(DEBIAN_OS_PATCH_CONFIG)
+	python3 $(DEBIAN_PATCH)/generate.py $(BASE_debian-configure)/rootfs $(ROOTFS) $(DEBIAN_PATCH_CONFIG)
 	$(QEMU_START)
 	chmod +x $(ROOTFS)/users.sh
 	chroot $(ROOTFS) bash -c /users.sh
@@ -29,7 +29,7 @@ endif
 	$(QEMU_DONE)
 	$(stamp)
 
-$(debian-configure): $(DEBIAN_OS_PATCH_CONFIG)
+$(debian-configure): $(DEBIAN_PATCH_CONFIG)
 
 ifneq ($(wildcard $(RECIPE)/scripts/configure.sh),)
 $(debian-configure): $(RECIPE)/scripts/configure.sh
