@@ -30,6 +30,9 @@ $(L).invalidate $(L).i:
 	rm -rf $$($(L))
 
 $(L).clean: | $(L).invalidate
+$(L).clean: builddir:=$(BUILD_$(LAYER))
+$(L).clean: srcdir:=$(SRC_$(LAYER))
+$(L).clean: basedir:=$(BASE_$(LAYER))
 endef
 
 $(eval $(layer_invalidate))
