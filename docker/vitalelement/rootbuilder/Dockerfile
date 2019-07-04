@@ -21,6 +21,9 @@ RUN apt-get -y install p7zip-full
 RUN apt-get -y install dosfstools
 RUN apt-get -y install kpartx
 RUN apt-get -y install lbzip2
+RUN apt-get -y install fastboot
+RUN apt-get -y install libfdt-dev
+RUN apt-get -y install pkg-config
 
 WORKDIR /root/develop
 
