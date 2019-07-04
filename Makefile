@@ -94,6 +94,10 @@ git.submodule.update:
 git.unshallow:
 	@echo "unshallowed"
 
+.PHONY: git.rev-parse.head
+git.rev-parse.head:
+	@echo "Git rev-parse"
+
 .PHONY: git.status
 git.status:
 	@echo ""

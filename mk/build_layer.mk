@@ -145,5 +145,17 @@ git.status: | $(L).git.status
 
 $(eval $(git_status_layer))
 
+define git_rev-parse_head_layer
+.PHONY: $(L).git.rev-parse.head
+$(L).git.rev-parse.head:
+	@$(foreach g, $($(L)_git-repos),\
+	echo "$(_git-status)Git Rev-Parse: $(g)"; cd $(g) && git rev-parse HEAD;\
+	)
+endef
+
+git.rev-parse.head: | $(L).git.rev-parse.head
+
+$(eval $(git_rev-parse_head_layer))
+
 $(eval LAYERS_INCLUDED += $(LAYER))
 LAYER:=
