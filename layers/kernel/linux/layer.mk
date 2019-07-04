@@ -36,11 +36,6 @@ $(T) += dtbs
 $(call git_clone, linux, $(LINUX_GIT_URL), $(LINUX_GIT_REF))
 
 #
-# Specify layer dependencies
-#
-RUNAFTER += bootloader
-
-#
 # Hook layer into build system.
 #
 include $(BUILD_LAYER)
@@ -54,12 +49,12 @@ $(kernel):
 	cp $(LINUX_CONFIG) $(kernel-config)
 	cd $(KERNEL_SOURCE) && $(MAKE) O=$(KERNEL_OUT) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) olddefconfig
 	cd $(KERNEL_SOURCE) && $(MAKE) O=$(KERNEL_OUT) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) modules_prepare
-	cd $(KERNEL_SOURCE) && $(MAKE) O=$(KERNEL_OUT) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) Image
+	cd $(KERNEL_SOURCE) && $(MAKE) O=$(KERNEL_OUT) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) Image.gz
 	cd $(KERNEL_SOURCE) && $(MAKE) O=$(KERNEL_OUT) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) dtbs
 	cd $(KERNEL_SOURCE) && $(MAKE) O=$(KERNEL_OUT) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) modules
 	touch $@
 
-$(kernel): $(kernel-config)
+$(kernel): $(LINUX_CONFIG)
 
 KERNEL_CONFIG_TARGET:=$(LINUX_DEFCONFIG)
 
