@@ -46,6 +46,8 @@ endif
 	$(QEMU_DONE)
 	$(stamp)
 
+$(debian-install-packages): $(debian-configure-apt)
+
 $(debian-install-packages): $(BASE_debian-packages)/scripts/install-packages.sh
 $(debian-install-packages): | $(debian-full-upgrade)
 

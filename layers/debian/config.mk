@@ -10,3 +10,5 @@ DEBIAN_PACKAGES += apt-utils
 DEBIAN_PACKAGES += kmod
 DEBIAN_PACKAGES += pkg-config
 
+QEMU_START:=cp /usr/bin/qemu-aarch64-static $(ROOTFS)/usr/bin
+QEMU_DONE:=rm $(ROOTFS)/usr/bin/qemu-aarch64-static

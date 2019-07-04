@@ -4,6 +4,8 @@
 LAYER:=debian-debootstrap
 include $(DEFINE_LAYER)
 
+include $(BASE)/layers/debian/config.mk
+
 debian-debootstrap:=$(LSTAMP)/debootstrap
 
 $(L) += $(debian-debootstrap)
