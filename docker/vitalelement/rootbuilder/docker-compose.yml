@@ -19,7 +19,6 @@ services:
       - ~/.ssh:/root/.ssh
     environment:
       - DISPLAY
-      - KEY_PATH=/tmp/prod_keys
     hostname: ve-root
     entrypoint: /entrypoint.sh
     stdin_open: true
