@@ -3,7 +3,11 @@
 # L_kernel: $(L_kernel)
 $(eval $(L):$$($(L)))
 
+# Usually a layer depends on its source file.
+# This can be disabled by setting LAYER_NODEPEND_FILE:=y
+ifneq ($(LAYER_NODEPEND_FILE),y)
 $(eval $($(L)): $(LFILE))
+endif
 
 #
 #  Layer DEPENDS and RUNAFTER.
@@ -158,4 +162,6 @@ git.rev-parse.head: | $(L).git.rev-parse.head
 $(eval $(git_rev-parse_head_layer))
 
 $(eval LAYERS_INCLUDED += $(LAYER))
+
 LAYER:=
+LAYER_NODEPEND_FILE:=

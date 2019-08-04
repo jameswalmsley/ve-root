@@ -105,6 +105,18 @@ This is important to ensure a robust build where too much parralelism would caus
 
     In such a case, dependency is created with a dependency to the required layer.
 
+```
+NOTE:
+
+Layers usually depend on their own source files. If the source file changes then each target in that
+layer will be rebuilt.
+
+For e.g. key file generation this is undesirable (you don't want to overwrite existing keys).
+To disable this dependency simpley define the following before include $(BUILD_LAYER)
+
+LAYER_NODPEND_FILE:=y
+```
+
 ### Layer Serialisation
 
 By default every layer is serialised in the recipe in the order in-which it is included in the recipe.
