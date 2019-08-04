@@ -65,6 +65,7 @@ $(debian-bootramfs):
 	mkdir -p $(BOOTRAMFS_OUT)
 	rsync -avH --delete $(INITRAMFS_OUT)/* $(BOOTRAMFS_OUT)
 	cp $(bootinit.sh) $(BOOTRAMFS_OUT)/init
+	cp $(dir $(bootinit.sh))/bootconfig.sh $(BOOTRAMFS_OUT)/
 	$(call copy_bootfiles,$(BOOTRAMFS_OUT))
 	-mkdir $(BOOTRAMFS_OUT)/partitions
 	$(call copy_sffiles)
@@ -77,7 +78,6 @@ $(bootinit.sh) $(updateinit.sh):
 	python3 $(DEBIAN_PATCH)/generate.py $(BASE_debian-bootramfs)/ramdisk $(dir $(bootinit.sh)) $(DEBIAN_PATCH_CONFIG)
 
 $(bootinit.sh): $(DEBIAN_PATCH_CONFIG)
-
 #
 # Synchronise the 
 #

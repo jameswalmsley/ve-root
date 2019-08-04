@@ -1,5 +1,7 @@
 #!/bin/sh
 
+. ./bootconfig.sh 
+
 mkdir /proc
 mkdir /sys
 mkdir /mnt
@@ -115,4 +117,5 @@ chown -R {{ mount.chown }} /mnt/newroot{{k}}
 cd /mnt/newroot
 
 echo "INFO: Switching into new root."
+config_network
 exec switch_root . lib/systemd/systemd
