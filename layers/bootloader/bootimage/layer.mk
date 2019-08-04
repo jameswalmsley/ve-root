@@ -1,7 +1,14 @@
 LAYER:=bootloader-bootimage
 include $(DEFINE_LAYER)
 
+# Change the secure-boot target so that a change in configuration causes a re-build.
+ifneq ($(CONFIG_SECURE_BOOT),y)
 bootloader-bootimage.fit:=$(BUILD)/$(L)/bootimage.fit
+else
+bootloader-bootimage.fit:=$(BUILD)/$(L)/bootimage-signed.fit
+endif
+
+
 bootloader-bootimage.its:=$(BUILD)/$(L)/bootimage.its
 
 bootloader-bootargs?=$(RECIPE)/bootargs.txt
@@ -29,7 +36,11 @@ $(bootloader-bootimage.fit):
 	cd $(BOOTIMAGE_OUT) && dtc -p 0x1000 -I dtb -O dtb $(notdir $(dtb-file)) -o devicetree.dtb
 	cd $(BOOTIMAGE_OUT) && fdtput -ts devicetree.dtb "/chosen" "bootargs" "$(shell cat $(bootloader-bootargs))"
 	cp $(bootloader-bootimage.its) $(BOOTIMAGE_OUT)
+ifneq ($(CONFIG_SECURE_BOOT),y)
 	cd $(BOOTIMAGE_OUT) && $(MKIMAGE) -D "-I dts -O dtb -p 0x1000" -f bootimage.its $@
+else
+	cd $(BOOTIMAGE_OUT) && $(MKIMAGE) -D "-I dts -O dtb -p 0x1000" -f bootimage.its -k $(KEY_PATH_ABS) $@
+endif
 
 
 $(bootloader-bootimage.fit): $(bootloader-bootimage.its)

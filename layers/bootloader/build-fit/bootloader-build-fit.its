@@ -1,0 +1,33 @@
+/dts-v1/;
+/{
+        description = "VE-ROOT Boot Image";
+        #address-cells = <1>;
+        images {
+                linux_kernel@1 {
+                        description = "Kernel";
+                        data = /incbin/("Image");
+                        type = "kernel";
+                        arch = "arm64";
+                        os = "linux";
+                        compression = "none";
+                        load =  < 0x80008000 >;
+                        entry = < 0x80008000 >;
+                        hash@1 {
+                                algo = "sha256";
+                        };
+                };
+        };
+
+        configurations {
+                default = "config@1";
+                config@1{
+                        description = "VE-ROOT BootImage";
+                        kernel = "linux_kernel@1";
+                        signature@1{
+                                algo = "sha256,rsa2048";
+                                key-name-hint = "uboot_rsa_dev";
+                                sign-images = "kernel";
+                        };
+                };
+        };
+};
