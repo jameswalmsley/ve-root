@@ -14,11 +14,6 @@ $(debian-customise):
 ifneq ($(wildcard $(RECIPE)/rootfs),)
 	rsync -av --checksum --chown=root:root --chmod=D755,F644 $(RECIPE)/rootfs/ $(ROOTFS)/
 endif
-ifeq ($(ENABLE_DEV),y)
-ifneq ($(wildcard $(RECIPE)/dev-rootfs),)
-	rsync -av --checksum --chown=root:root --chmod=D755,F644 $(RECIPE)/dev-rootfs/ $(ROOTFS)/
-endif
-endif
 ifneq ($(RECIPE),$(TOP))
 ifneq ($(wildcard $(TOP)/rootfs),)
 	rsync -av --checksum --chown=root:root --chmod=D755,F644 $(TOP)/rootfs/ $(ROOTFS)/

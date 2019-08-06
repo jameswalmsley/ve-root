@@ -36,8 +36,6 @@ BUILD_RECIPE:=$(BASE)/mk/build_recipe.mk
 DEFINE_LAYER:=$(BASE)/mk/define_layer.mk
 BUILD_LAYER:=$(BASE)/mk/build_layer.mk
 
-ENABLE_DEV?=n
-
 define \n
 
 

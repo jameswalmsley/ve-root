@@ -30,7 +30,6 @@ info:
 	@echo "OUT:            $(OUT)"
 	@echo "BUILD:          $(BUILD)"
 	@echo "ROOTFS:         $(ROOTFS)"
-	@echo "ENABLE_DEV:     $(ENABLE_DEV)"
 	@$(foreach l,$(recipe),$(call show_layer,$l);)
 
 recipe: $(recipe)
@@ -68,7 +67,7 @@ docker.info:
 
 .PHONY: docker
 docker:
-	cd $(BASE)/docker/$(DOCKER_IMAGE) && BASE=$(BASE) docker-compose run -e ENABLE_DEV=y $(DOCKER_SERVICE) $(DOCKER_COMMAND)
+	cd $(BASE)/docker/$(DOCKER_IMAGE) && BASE=$(BASE) docker-compose run $(DOCKER_SERVICE) $(DOCKER_COMMAND)
 
 .PHONY: docker.build
 docker.build:
