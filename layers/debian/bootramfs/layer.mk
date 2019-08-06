@@ -3,8 +3,17 @@ include $(DEFINE_LAYER)
 
 bootinit.sh:=$(BUILD)/$(L)/ramdisk/bootinit.sh
 updateinit.sh:=$(BUILD)/$(L)/ramdisk/updateinit.sh
-debian-bootramfs:=$(BUILD)/$(L)/bootramfs.cpio.gz
-debian-updateramfs:=$(BUILD)/$(L)/updateramfs.cpio.gz
+
+ifeq ($(CONFIG_SECURE_BOOT),y)
+debian-bootramfs-suffix:=$(strip $(debian-bootramfs-suffix)).signed
+endif
+
+ifeq ($(CONFIG_ENCRYPTED_ROOTFS),y)
+debian-bootramfs-suffix:=$(strip $(debian-bootramfs-suffix)).encrypted
+endif
+
+debian-bootramfs:=$(BUILD)/$(L)/bootramfs$(debian-bootramfs-suffix).cpio.gz
+debian-updateramfs:=$(BUILD)/$(L)/updateramfs$(debian-bootramfs-suffix).cpio.gz
 
 $(L) += $(bootinit.sh)
 $(L) += $(debian-bootramfs)
@@ -15,8 +24,12 @@ include $(BUILD_LAYER)
 
 DEBIAN_PACKAGES += pv
 
-BOOTRAMFS_OUT:=$(BUILD)/$(L)/bootramfs
-UPDATERAMFS_OUT:=$(BUILD)/$(L)/updateramfs
+BOOTRAMFS_OUT:=$(BUILD)/$(L)/bootramfs$(debian-bootramfs-suffix)
+UPDATERAMFS_OUT:=$(BUILD)/$(L)/updateramfs$(debian-bootramfs-suffix)
+
+ifeq ($(CONFIG_ENCRYPTED_ROOTFS),y)
+BOOTFILES += $(RECIPE)/ramdisk/secureroot.sh:.
+endif
 
 BOOTFILES += $(ROOTFS)/usr/bin/pv:bin
 BOOTFILES += $(ROOTFS)/sbin/resize2fs:sbin
@@ -37,6 +50,26 @@ BOOTFILES += $(ROOTFS)/lib/aarch64-linux-gnu/libuuid.so.1.3.0:lib
 BOOTFILES += $(ROOTFS)/lib/aarch64-linux-gnu/libfdisk.so.1:lib
 BOOTFILES += $(ROOTFS)/lib/aarch64-linux-gnu/libsmartcols.so.1:lib
 BOOTFILES += $(ROOTFS)/lib/aarch64-linux-gnu/libtinfo.so.5:lib
+
+
+RLIB:=$(ROOTFS)/lib/aarch64-linux-gnu
+ifeq ($(CONFIG_ENCRYPTED_ROOTFS),y)
+BOOTFILES += $(ROOTFS)/sbin/cryptsetup:sbin
+BOOTFILES += $(RLIB)/libcryptsetup.so.12:lib
+BOOTFILES += $(ROOTFS)/lib/aarch64-linux-gnu/libpopt.so.0:lib
+BOOTFILES += $(ROOTFS)/lib/aarch64-linux-gnu/libuuid.so.1:lib
+BOOTFILES += $(RLIB)/libdevmapper.so.1.02.1:lib
+BOOTFILES += $(RLIB)/libgcrypt.so.20:lib
+BOOTFILES += $(RLIB)/libgcrypt.so.20:lib
+BOOTFILES += $(RLIB)/libargon2.so.0:lib
+BOOTFILES += $(RLIB)/libjson-c.so.3:lib
+BOOTFILES += $(RLIB)/libselinux.so.1:lib
+BOOTFILES += $(RLIB)/libudev.so.1:lib
+BOOTFILES += $(RLIB)/libgpg-error.so.0:lib
+BOOTFILES += $(RLIB)/libpcre.so.3:lib
+BOOTFILES += $(RLIB)/libdl.so.2:lib
+BOOTFILES += $(RLIB)/libm.so.6:lib
+endif
 
 JQUERY=python3 $(BASE_debian-bootramfs)/query.py
 
@@ -64,7 +97,11 @@ $(debian-bootramfs): $(RECIPE)/$(strip $(f))$(\n)\
 $(debian-bootramfs):
 	mkdir -p $(BOOTRAMFS_OUT)
 	rsync -avH --delete $(INITRAMFS_OUT)/* $(BOOTRAMFS_OUT)
+ifeq ($(CONFIG_ENCRYPTED_ROOTFS),y)
+	cp $(dir $(bootinit.sh))/securebootinit.sh $(BOOTRAMFS_OUT)/init
+else
 	cp $(bootinit.sh) $(BOOTRAMFS_OUT)/init
+endif
 	cp $(dir $(bootinit.sh))/bootconfig.sh $(BOOTRAMFS_OUT)/
 	$(call copy_bootfiles,$(BOOTRAMFS_OUT))
 	-mkdir $(BOOTRAMFS_OUT)/partitions
@@ -98,5 +135,3 @@ $(debian-updateramfs):
 
 $(debian-updateramfs): $(updateinit.sh)
 
-
-bootramfs:=$(debian-bootramfs)
