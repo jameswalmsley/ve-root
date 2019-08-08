@@ -24,7 +24,7 @@ fi
 
 if [ -e "/data/system.img" ]; then
 echo "INFO: Updating encrypted system image..."
-
+pv /data/system.img | dd of={{ config['mount-points']['/'].blkdev }} bs=1048576
 else
 
 if [ -e "/data/system.img.gz" ]; then
@@ -37,7 +37,13 @@ fi
 
 fi
 
+if [ -e "/data/updateimage.fit" ]; then
 mv /data/updateimage.fit /data/updateimage.fit.done
+fi
+
+if [ -e "/data/bootimage.fit" ]; then
+mv /data/bootimage.fit /data/bootimage.fit.done
+fi
 
 sync
 
