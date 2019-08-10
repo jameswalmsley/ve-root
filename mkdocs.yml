@@ -1,0 +1,9 @@
+site_name: VE-ROOT
+theme: readthedocs
+
+nav:
+- Home: 'index.md'
+#- Recipes:
+- Layers:
+  - 'L_bootloader - bootloader/u-boot': layers/bootloader/u-boot.mk
+  - 'L_kernel - kernel/linux': 'layers/kernel/linux.md'
