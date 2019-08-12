@@ -10,10 +10,10 @@ include $(BASE)/mk/environment.mk
 
 ifdef CONFIG_RECIPE
 
-.PHONY:recipe
+.PHONY: recipe
 all: recipe
 
-.PHONY:source-checkout
+.PHONY: source-checkout
 
 include $(BASE)/recipes/$(CONFIG_RECIPE)/recipe.mk
 
@@ -21,6 +21,7 @@ define show_layer
 	echo "LAYER +=        $(1)"
 endef
 
+.PHONY: info
 info:
 	@echo "BASE:           $(BASE)"
 	@echo "RECIPE:         $(RECIPE)"
@@ -44,11 +45,13 @@ $(foreach layer,$(recipe), \
 $(eval $$($(layer)): | source-checkout)\
 )
 
+.PHONY: clean
 clean:
 	$(foreach layer,$(recipe), \
 	$(MAKE) $(layer).clean $(\n)\
 	)
 
+.PHONY: mrproper
 mrproper:
 	rm -rf $(OUT)
 
