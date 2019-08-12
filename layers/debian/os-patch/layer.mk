@@ -8,6 +8,7 @@ debian-os-patch:=$(LSTAMP)/debian-os-patch
 $(L) += $(debian-os-patch)
 
 DEPENDS += debian-packages
+DEPENDS += debian-full-upgrade
 
 include $(BUILD_LAYER)
 
