@@ -42,6 +42,10 @@ $(L) += $(bootloader-build-fit)
 $(T) += bootloader-config
 
 
+ifdef ($(CONFIG_SECURE_BOOT),y)
+DEPENDS += uboot-security
+endif
+
 #
 # Specify source checkouts
 #

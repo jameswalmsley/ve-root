@@ -23,7 +23,6 @@ $(L) += $(bootloader-bootimage.its)
 
 DEPENDS += bootloader
 DEPENDS += kernel
-DEPENDS += bootloader
 DEPENDS += debian-bootramfs
 
 include $(BUILD_LAYER)

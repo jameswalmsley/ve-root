@@ -20,6 +20,8 @@ $(L) += $(debian-bootramfs)
 $(L) += $(updateinit.sh)
 $(L) += $(debian-updateramfs)
 
+DEPENDS += debian-initramfs
+
 include $(BUILD_LAYER)
 
 DEBIAN_PACKAGES += pv
