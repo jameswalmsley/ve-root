@@ -15,7 +15,8 @@ debian-fixup-libs:=$(LSTAMP)/debian-fixup-libs
 
 $(L) += $(debian-fixup-libs)
 
-DEPENDS += debian-provision
+DEPENDS += debian-packages
+DEPENDS += debian-full-upgrade
 
 include $(BUILD_LAYER)
 
