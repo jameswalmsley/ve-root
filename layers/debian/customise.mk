@@ -1,11 +1,18 @@
 LAYER:=debian-customise
 include $(DEFINE_LAYER)
 
-debian-customise:=$(LSTAMP)/customise
+debian-customise-suffix:=
+
+ifeq ($(CONFIG_RELEASE),y)
+debian-customise-suffix:=$(strip $(debian-customise-suffix)).release
+endif
+
+debian-customise:=$(LSTAMP)/customise$(debian-customise-suffix)
 
 $(L) += $(debian-customise)
 
 DEPENDS += debian-provision
+DEPENDS += debian-os-patch
 
 include $(BUILD_LAYER)
 
@@ -17,6 +24,16 @@ endif
 ifneq ($(RECIPE),$(TOP))
 ifneq ($(wildcard $(TOP)/rootfs),)
 	rsync -av --checksum --chown=root:root --chmod=D755,F644 $(TOP)/rootfs/ $(ROOTFS)/
+endif
+endif
+ifneq ($(CONFIG_RELEASE),y)
+ifneq ($(wildcard $(RECIPE)/dev-rootfs),)
+	rsync -av --checksum --chown=root:root --chmod-D755,F644 $(RECIPE)/dev-rootfs/ $(ROOTFS)/
+endif
+ifneq ($(RECIPE),$(TOP))
+ifneq ($(wildcard $(TOP)/dev-rootfs),)
+	rsync -av --checksum --chown=root:root --chmod=D755,F644 $(TOP)/dev-rootfs/ $(ROOTFS)/
+endif
 endif
 endif
 	$(stamp)
