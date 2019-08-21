@@ -93,7 +93,7 @@ define git_pull_layer
 .PHONY: $(L).git.pull
 $(L).git.pull:
 	@$(foreach g, $($(L)_git-repos),\
-	echo "$(_git-status)Pulling: $(g)";cd $(g) && git pull;\
+	BASE=$(BASE) bash $(BASE)/mk/git/fetch.sh $(g);\
 	)
 endef
 
@@ -101,11 +101,25 @@ git.pull: | $(L).git.pull
 
 $(eval $(git_pull_layer))
 
+define git_checkout_layer
+.PHONY: $(L).git.git_checkout
+$(L).git.checkout:
+	@$(foreach g, $($(L)_git-repos),\
+	BASE=$(BASE) bash $(BASE)/mk/git/checkout.sh $(g);\
+	)
+
+endef
+
+git.checkout: | $(L).git.git_checkout
+
+$(eval $(git_checkout_layer))
+
 define git_fetch_layer
 .PHONY: $(L).git.fetch
 $(L).git.fetch:
 	@$(foreach g, $($(L)_git-repos),\
-	echo "$(_git-status)Fetching: $(g)"; cd $(g) && git fetch;\
+	$(call git_repo_extract, $(g)) \
+	BASE=$(BASE) bash $(BASE)/mk/git/fetch.sh $(g);\
 	)
 endef
 
@@ -117,7 +131,7 @@ define git_submodule_update
 .PHONY: $(L).git.submodule.update
 $(L).git.submodule.update:
 	@$(foreach g, $($(L)_git-repos),\
-	echo "$(_git-status)Submodule Update: $(g)"; cd $(g) && git submodule update --init --recursive;\
+	BASE=$(BASE) bash $(BASE)/mk/git/submodule.sh $(g);\
 	)
 endef
 
@@ -129,7 +143,7 @@ define git_unshallow_layer
 .PHONY: $(L).git.unshallow
 $(L).git.unshallow:
 	@$(foreach g, $($(L)_git-repos),\
-	echo "$(_git-status)Unshallowing: $(g)"; cd $(g) && git fetch --unshallow; cd $(g) && git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"\
+	BASE=$(BASE) bash $(BASE)/mk/git/unshallow.sh $(g);\
 	)
 endef
 
@@ -141,7 +155,7 @@ define git_status_layer
 .PHONY: $(L).git.status
 $(L).git.status:
 	@$(foreach g, $($(L)_git-repos),\
-	echo "$(_git-status)Git Status: $(g)"; cd $(g) && git status;\
+	BASE=$(BASE) bash $(BASE)/mk/git/status.sh $(g);\
 	)
 endef
 
@@ -153,7 +167,7 @@ define git_rev-parse_head_layer
 .PHONY: $(L).git.rev-parse.head
 $(L).git.rev-parse.head:
 	@$(foreach g, $($(L)_git-repos),\
-	echo "$(_git-status)Git Rev-Parse: $(g)"; cd $(g) && git rev-parse HEAD;\
+	BASE=$(BASE) bash $(BASE)/mk/git/rev-parse.head.sh $(g);\
 	)
 endef
 

@@ -82,7 +82,7 @@ source-checkout += $(SRCDEST)
 
 $$($(L)): $(SRCDEST)
 
-$(L)_git-repos += $(SOURCE)/$(L)/$(strip $(1))
+$(L)_git-repos += $(SOURCE)/$(L)/$(strip $(1)):$(strip $(3))
 
 endef
 
