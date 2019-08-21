@@ -93,7 +93,7 @@ define git_pull_layer
 .PHONY: $(L).git.pull
 $(L).git.pull:
 	@$(foreach g, $($(L)_git-repos),\
-	BASE=$(BASE) bash $(BASE)/mk/git/fetch.sh $(g);\
+	BASE=$(BASE) bash $(BASE)/mk/git/pull.sh $(g);\
 	)
 endef
 
@@ -102,7 +102,7 @@ git.pull: | $(L).git.pull
 $(eval $(git_pull_layer))
 
 define git_checkout_layer
-.PHONY: $(L).git.git_checkout
+.PHONY: $(L).git.checkout
 $(L).git.checkout:
 	@$(foreach g, $($(L)_git-repos),\
 	BASE=$(BASE) bash $(BASE)/mk/git/checkout.sh $(g);\
@@ -110,7 +110,7 @@ $(L).git.checkout:
 
 endef
 
-git.checkout: | $(L).git.git_checkout
+git.checkout: | $(L).git.checkout
 
 $(eval $(git_checkout_layer))
 

@@ -2,6 +2,9 @@
 
 function="pull"
 
-. ${BASE}/mk/git/pull.sh
+. ${BASE}/mk/git/git.sh
 
 git pull
+
+
+true

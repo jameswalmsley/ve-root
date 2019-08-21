@@ -80,6 +80,10 @@ docker.build:
 chroot:
 	chroot $(ROOTFS) bash
 
+.PHONY: git.checkout
+git.checkout:
+	@echo "checked-out"
+
 .PHONY: git.pull
 git.pull:
 	@echo "pulled"
