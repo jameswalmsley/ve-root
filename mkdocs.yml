@@ -1,11 +1,30 @@
 site_name: VE-ROOT
 theme: readthedocs
-
 nav:
 - Home: 'index.md'
 - Config Templates:
   - 'Config File': 'config-files.md'
   - 'Templates': 'templates.md'
 - Layers:
-  - 'L_bootloader - bootloader/u-boot': layers/bootloader/u-boot.mk
-  - 'L_kernel - kernel/linux': 'layers/kernel/linux.md'
+  - 'L_bootloader (u-boot)': 'layers/bootloader/u-boot.md'
+  - 'L_kernel (linux)': 'layers/kernel/linux.md'
+  - 'L_debian-debootstrap': 'layers/debian/debootstrap.md'
+  - 'L_debian-provision': 'layers/debian/provision.md'
+  - 'L_debian-packages': 'layers/debian/packages.md'
+  - 'L_debian-full-upgrade': 'layers/debian/full-upgrade.md'
+  - 'L_debian-os-patch': 'layers/debian/os-patch.md'
+  - 'L_debian-customise': 'layers/debian/customise.md'
+  - 'L_debian-configure': 'layers/debian/configure.md'
+  - 'L_debian-fixup-libs': 'layers/debian/fixup-libs.md'
+  - 'L_kernel-modules': 'layers/kernel/modules.md'
+  - 'L_debian-depmod': 'layers/debian/depmod.md'
+  - 'L_rootfs-permissions': 'layers/rootfs/permissions.md'
+  - 'L_debian-minimise': 'layers/debian/minimise.md'
+  - 'L_rootfs-configure': 'layers/rootfs/configure.md'
+  - 'L_rootfs': 'layers/rootfs.md'
+  - 'L_debian-initramfs': 'layers/debian/initramfs.md'
+  - 'L_debian-bootramfs': 'layers/debian/bootramfs.md'
+  - 'L_bootloader-bootimage': 'layers/bootloader/bootimage.md'
+  - 'L_bootloader-updateimage': 'layers/bootloader/updateimage.md'
+  - 'L_rootfs-ext4-image': 'layers/rootfs/ext4-image.md'
+
