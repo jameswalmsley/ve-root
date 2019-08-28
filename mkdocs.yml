@@ -3,7 +3,9 @@ theme: readthedocs
 
 nav:
 - Home: 'index.md'
-#- Recipes:
+- Config Templates:
+  - 'Config File': 'config-files.md'
+  - 'Templates': 'templates.md'
 - Layers:
   - 'L_bootloader - bootloader/u-boot': layers/bootloader/u-boot.mk
   - 'L_kernel - kernel/linux': 'layers/kernel/linux.md'
