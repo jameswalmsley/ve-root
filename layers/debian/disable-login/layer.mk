@@ -24,7 +24,7 @@ $(debian-disable-login): $(disable-login.sh)
 
 
 $(disable-login.sh):
-	python3 $(DEBIAN_PATCH)/generate.py $(BASE_debian-disable-login)/scripts $(dir $(disable-login.sh)) $(DEBIAN_OS_PATCH_CONFIG)
+	python3 $(DEBIAN_PATCH)/generate.py $(BASE_debian-disable-login)/scripts $(dir $(disable-login.sh)) $(DEBIAN_PATCH_CONFIG)
 
 
 $(disable-login.sh): $(BASE_debian-disable-login)/scripts/disable-login.sh
