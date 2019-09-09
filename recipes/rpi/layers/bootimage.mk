@@ -16,7 +16,7 @@ include $(BUILD_LAYER)
 BOOT:=$(OUT)/boot
 
 RPI_FW:=$(SRC_bootimage)/rpi-firmware
-dtb-file:=$(RPI_FW)/boot/bcm2710-rpi-3-b-plus.dtb
+dtb-file:=$(RPI_FW)/boot/bcm2711-rpi-4-b.dtb
 
 $(bootimage):
 	@echo "Build /boot filesystem"
@@ -25,9 +25,13 @@ $(bootimage):
 	cp $(RPI_FW)/boot/bootcode.bin $(BOOT)
 	cp $(RPI_FW)/boot/start.elf $(BOOT)
 	cp $(RPI_FW)/boot/fixup.dat $(BOOT)
-	cp $(kernel) $(BOOT)
+ifeq ($(VARIANT),rpi4)
+	cp -rv $(RPI_FW)/boot/* $(BOOT)
+	#cp $(RPI_FW)/boot/start4* $(BOOT)
+endif
+	cp $(kernel) $(BOOT)/kernel8.img
 	cp $(dtb-file) $(BOOT)
-	cp $(RECIPE)/bootargs.txt $(BOOT)
+	cp $(RECIPE)/bootargs.txt $(BOOT)/cmdline.txt
 	cp $(bootloader-bootimage.fit) $(BOOT)
 	cp $(bootloader) $(BOOT)
 	cp $(RECIPE)/boot/config.txt $(BOOT)

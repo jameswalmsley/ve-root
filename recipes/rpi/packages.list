@@ -7,7 +7,6 @@ isc-dhcp-client
 ethtool
 openssh-server
 iputils-ping
-wpasupplicant
 kmod
 systemd
 vim

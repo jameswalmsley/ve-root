@@ -1,0 +1,67 @@
+{
+	"distro": {
+		"name": 	"ve-os",
+		"version": 	"v1.0",
+        "support":  "http://vitalelement.co.uk/"
+	},
+
+	"system": {
+		"hostname":	"raspberrypi",
+		"users": {
+			"pi": {
+				"password": "raspberry",
+				"groups": [
+					"sudo"
+				]
+			}
+		}
+	},
+
+	"aptitude": {
+		"sources": [
+			"deb http://ports.ubuntu.com/ubuntu-ports bionic main restricted",
+			"deb http://ports.ubuntu.com/ubuntu-ports bionic-updates main restricted",
+			"deb http://ports.ubuntu.com/ubuntu-ports bionic universe",
+			"deb http://ports.ubuntu.com/ubuntu-ports bionic-updates universe"
+		]
+	},
+
+	"block-devices": {
+		"/dev/mmcblk0": {
+			"sffile": "partitions/mmcblk0.sfdisk",
+			"expand": "/dev/mmcblk0p4"
+		}
+	},
+
+	"mount-points": {
+		"/": {
+			"blkdev": "/dev/mmcblk0p3"
+		},
+		"/boot": {
+			"blkdev": "/dev/mmcblk0p1",
+			"mount_options": "ro"
+		},
+		"/config": {
+			"blkdev": "/dev/mmcblk0p2",
+			"chown": "1000:1000",
+			"format": "first-flash",
+			"mount_options": "ro"
+		},
+		"/data": {
+			"blkdev": "/dev/mmcblk0p4",
+			"chown": "1000:1000",
+			"format": "first-flash,mount-error",
+			"mount_options": "rw"
+		}
+	},
+
+	"bootimage": {
+		"kernel_load":  "0x00008000",
+        "kernel_entry": "0x00008000",
+		"dtb_load":     "0x02600000",
+		"initrd_load":  "0x02700000",
+		"kernel_image": "Image",
+		"initramfs": 	"bootramfs.cpio.gz",
+		"boot-config": 	"/data"
+	}
+}
