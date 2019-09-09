@@ -28,7 +28,7 @@ endif
 endif
 ifneq ($(CONFIG_RELEASE),y)
 ifneq ($(wildcard $(RECIPE)/dev-rootfs),)
-	rsync -av --checksum --chown=root:root --chmod-D755,F644 $(RECIPE)/dev-rootfs/ $(ROOTFS)/
+	rsync -av --checksum --chown=root:root --chmod=D755,F644 $(RECIPE)/dev-rootfs/ $(ROOTFS)/
 endif
 ifneq ($(RECIPE),$(TOP))
 ifneq ($(wildcard $(TOP)/dev-rootfs),)
