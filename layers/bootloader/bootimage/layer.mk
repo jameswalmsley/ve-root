@@ -5,11 +5,11 @@ include $(DEFINE_LAYER)
 bootloader-bootimage-suffix:=
 
 
-ifneq ($(CONFIG_SECURE_BOOT),y)
+ifeq ($(CONFIG_SECURE_BOOT),y)
 bootloader-bootimage-suffix:=$(strip $(bootloader-bootimage-suffix)).signed
 endif
 
-ifneq ($(CONFIG_ENCRYPTED_ROOTFS),y)
+ifeq ($(CONFIG_ENCRYPTED_ROOTFS),y)
 bootloader-bootimage-suffix:=$(strip $(bootloader-bootimage-suffix)).encrypted
 endif
 
