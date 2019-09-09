@@ -1,3 +1,4 @@
-CONFIG_RECIPE:=rpi3
+CONFIG_RECIPE:=rpi
+CONFIG_VARIANT:=rpi3
 DOCKER_IMAGE:=vitalelement/rootbuilder
 
