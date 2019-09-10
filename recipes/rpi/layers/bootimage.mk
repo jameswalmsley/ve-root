@@ -34,7 +34,10 @@ endif
 	cp $(RECIPE)/bootargs.txt $(BOOT)/cmdline.txt
 	cp $(bootloader-bootimage.fit) $(BOOT)
 	cp $(bootloader) $(BOOT)
-	cp $(RECIPE)/boot/config.txt $(BOOT)
+	cp $(RECIPE)/boot/config.txt $(BOOT)/config.txt
+ifeq ($(CONFIG_USE_RPI_BOOTLOADER),y)
+	cp $(RECIPE)/boot/config-rpi-bootloader.txt $(BOOT)/config.txt
+endif
 	$(stamp)
 
 $(bootimage): $(RECIPE)/boot/config.txt
