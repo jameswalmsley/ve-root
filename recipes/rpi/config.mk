@@ -16,7 +16,7 @@ UBOOT_GIT_REF:=v2019.01-ve-rpi3
 
 
 ifeq ($(VARIANT),rpi4)
-DEBIAN_PATCH_FILE:=confif-rpi4.json
+DEBIAN_PATCH_FILE:=config-rpi4.json
 LINUX_GIT_URL:=https://github.com/raspberrypi/linux.git
 LINUX_GIT_REF:=rpi-4.19.y
 LINUX_DEFCONFIG:=bcm2711_defconfig
