@@ -1,0 +1,7 @@
+CONFIG_RECIPE:=rpi
+CONFIG_VARIANT:=rpi4
+
+CONFIG_USE_RPI_BOOTLOADER:=y
+
+DOCKER_IMAGE:=vitalelement/rootbuilder
+
