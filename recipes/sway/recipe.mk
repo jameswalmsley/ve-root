@@ -7,6 +7,8 @@ LAYERS += sway
 LAYERS += swaylock
 LAYERS += waybar
 LAYERS += mako
+LAYERS += xdg-desktop-portal-wlr
+
 
 include $(BUILD_RECIPE)
 
