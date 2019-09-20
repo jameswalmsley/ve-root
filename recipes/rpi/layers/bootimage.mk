@@ -16,7 +16,7 @@ include $(BUILD_LAYER)
 BOOT:=$(OUT)/boot
 
 RPI_FW:=$(SRC_bootimage)/rpi-firmware
-dtb-file:=$(RPI_FW)/boot/bcm2711-rpi-4-b.dtb
+#dtb-file?=$(RPI_FW)/boot/bcm2711-rpi-4-b.dtb
 
 $(bootimage):
 	@echo "Build /boot filesystem"

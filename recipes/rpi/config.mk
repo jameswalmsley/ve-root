@@ -7,13 +7,15 @@ BOOT_IMAGE_SIZE:=48M
 
 LINUX_GIT_URL:=https://github.com/VitalElement/linux.git
 LINUX_GIT_REF:=ve-rpi-4.10.y
-dtb-name:=broadcom/bcm2837-rpi-3-b-plus.dtb
 #
 # Default UBOOT URL.
 #
 UBOOT_GIT_URL:=https://github.com/VitalElement/u-boot.git
 UBOOT_GIT_REF:=v2019.01-ve-rpi3
 
+ifeq ($(VARIANT),rpi3)
+dtb-name:=broadcom/bcm2837-rpi-3-b.dtb
+endif
 
 ifeq ($(VARIANT),rpi4)
 DEBIAN_PATCH_FILE:=config-rpi4.json
