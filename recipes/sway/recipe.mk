@@ -12,7 +12,12 @@ LAYERS += wl-clipboard
 LAYERS += rofi
 LAYERS += swaybg
 LAYERS += kitty
-
+#LAYERS += zathura
+LAYERS += redshift
+LAYERS += kanshi
+LAYERS += grim
+LAYERS += slurp
+#LAYERS += imv
 
 include $(BUILD_RECIPE)
 
