@@ -18,6 +18,7 @@ LAYERS += kanshi
 LAYERS += grim
 LAYERS += slurp
 #LAYERS += imv
+LAYERS += swaylock-effects
 
 include $(BUILD_RECIPE)
 
