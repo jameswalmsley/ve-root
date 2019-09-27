@@ -19,6 +19,7 @@ LAYERS += grim
 LAYERS += slurp
 #LAYERS += imv
 LAYERS += swaylock-effects
+LAYERS += wob
 
 include $(BUILD_RECIPE)
 
