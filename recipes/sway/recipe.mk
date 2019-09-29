@@ -20,6 +20,9 @@ LAYERS += slurp
 #LAYERS += imv
 LAYERS += swaylock-effects
 LAYERS += wob
+LAYERS += wshowkeys
+LAYERS += termite
+
 
 include $(BUILD_RECIPE)
 
