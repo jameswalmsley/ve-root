@@ -23,6 +23,8 @@ LAYERS += wob
 LAYERS += wshowkeys
 LAYERS += termite
 LAYERS += light
+LAYERS += pamixer
+
 
 include $(BUILD_RECIPE)
 
