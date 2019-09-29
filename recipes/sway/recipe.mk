@@ -22,7 +22,7 @@ LAYERS += swaylock-effects
 LAYERS += wob
 LAYERS += wshowkeys
 LAYERS += termite
-
+LAYERS += light
 
 include $(BUILD_RECIPE)
 
