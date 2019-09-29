@@ -21,6 +21,7 @@ LAYERS += slurp
 LAYERS += swaylock-effects
 LAYERS += wob
 LAYERS += wshowkeys
+LAYERS += vte-ng
 LAYERS += termite
 LAYERS += light
 LAYERS += pamixer

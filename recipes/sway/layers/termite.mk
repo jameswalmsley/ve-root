@@ -9,6 +9,8 @@ $(L) += $(termite)
 
 $(call git_clone, $(bdir), https://github.com/thestinger/termite.git, master)
 
+DEPENDS += vte-ng
+
 DEB_PACKAGES += libpcre2-dev
 
 include $(BUILD_LAYER)
