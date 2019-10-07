@@ -2,6 +2,7 @@ include $(DEFINE_RECIPE)
 
 LAYERS += wayland
 LAYERS += wayland-protocols
+LAYERS += xwayland
 LAYERS += wlroots
 LAYERS += sway
 LAYERS += swaylock
