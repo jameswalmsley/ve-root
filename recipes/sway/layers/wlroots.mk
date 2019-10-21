@@ -11,8 +11,8 @@ include $(BUILD_LAYER)
 
 $(wlroots):
 	mkdir -p $(builddir)/wlroots
-	cd $(srcdir)/wlroots && meson $(builddir)/wlroots --buildtype=release
-	cd $(builddir)/wlroots && ninja -v
+	cd $(builddir)/wlroots && meson --buildtype=release $(srcdir)/wlroots $(builddir)/wlroots
+	cd $(builddir)/wlroots && ninja
 	cd $(builddir)/wlroots && sudo ninja install
 	$(stamp)
 

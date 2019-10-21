@@ -1,5 +1,8 @@
 include $(DEFINE_RECIPE)
 
+export CC=clang
+export CXX=clang++
+
 LAYERS += wayland
 LAYERS += wayland-protocols
 LAYERS += xwayland
