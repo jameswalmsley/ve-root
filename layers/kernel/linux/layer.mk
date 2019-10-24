@@ -15,7 +15,7 @@ LINUX_DEFCONFIG?=bcmrpi3_defconfig
 #
 kernel:=$(BUILD)/$(L)/linux/arch/$(ARCH)/boot/Image
 kernel-config:=$(KERNEL_OUT)/.config
-dtb-file:=$(dir $(kernel))dts/$(dtb-name)
+dtb-file?=$(dir $(kernel))dts/$(dtb-name)
 
 #
 # Hook layer targets
