@@ -14,7 +14,7 @@ UBOOT_GIT_URL:=https://github.com/VitalElement/u-boot.git
 UBOOT_GIT_REF:=v2019.01-ve-rpi3
 
 ifeq ($(VARIANT),rpi3)
-dtb-name:=broadcom/bcm2837-rpi-3-b.dtb
+dtb-name:=broadcom/bcm2710-rpi-3-b.dtb
 endif
 
 ifeq ($(VARIANT),rpi4)

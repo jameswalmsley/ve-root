@@ -18,11 +18,11 @@ then
     ln -s /lib/systemd/system/getty-static.service /lib/systemd/system/getty.target.wants/getty-static.service
 else
     echo "Disable getty@tty1.service"
-    systemctl disable getty@tty1.service
+    #systemctl disable getty@tty1.service
     echo "Disable additional TTYs"
-    rm /lib/systemd/system/getty.target.wants/getty-static.service
+    #rm /lib/systemd/system/getty.target.wants/getty-static.service
     echo "Disable serial console"
-    systemctl mask serial-getty@ttyS0
+    #systemctl mask serial-getty@ttyS0
 fi
 
 #
