@@ -27,8 +27,6 @@ mkdir /mnt/rw/upper
 mkdir /mnt/rw/work
 mkdir /mnt/newroot
 
-/bin/sh
-
 if [ ! -e "{{ config['mount-points']['/'].blkdev }}" ]; then
     sleep 1
 fi
