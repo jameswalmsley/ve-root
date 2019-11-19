@@ -1,6 +1,8 @@
 LAYER:=xwayland
 include $(DEFINE_LAYER)
 
+XWAYLAND_GIT_REF?=master
+
 bdir:=xwayland
 
 xwayland:=$(LSTAMP)/$(bdir)
@@ -24,7 +26,7 @@ DEB_PACKAGES += libgles2-mesa-dev libxcb-composite0-dev libxcursor-dev \
 
 $(L) += $(xwayland)
 
-$(call git_clone, $(bdir), https://gitlab.freedesktop.org/xorg/xserver, master)
+$(call git_clone, $(bdir), https://gitlab.freedesktop.org/xorg/xserver, $(XWAYLAND_GIT_REF))
 
 include $(BUILD_LAYER)
 

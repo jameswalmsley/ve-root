@@ -1,11 +1,13 @@
 LAYER:=wl-clipboard
 include $(DEFINE_LAYER)
 
+WL_CLIPBOARD_GIT_REF?=master
+
 wl-clipboard:=$(LSTAMP)/wl-clipboard
 
 $(L) += $(wl-clipboard)
 
-$(call git_clone, wl-clipboard, https://github.com/bugaevc/wl-clipboard.git, master)
+$(call git_clone, wl-clipboard, https://github.com/bugaevc/wl-clipboard.git, $(WL_CLIPBOARD_GIT_REF))
 
 include $(BUILD_LAYER)
 

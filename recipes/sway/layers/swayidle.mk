@@ -1,13 +1,15 @@
 LAYER:=swayidle
 include $(DEFINE_LAYER)
 
+SWAYIDLE_GIT_REF?=master
+
 bdir:=swayidle
 
 swayidle:=$(LSTAMP)/$(bdir)
 
 $(L) += $(swayidle)
 
-$(call git_clone, $(bdir), https://github.com/swaywm/swayidle.git, master)
+$(call git_clone, $(bdir), https://github.com/swaywm/swayidle.git, $(SWAYIDLE_GIT_REF))
 
 include $(BUILD_LAYER)
 

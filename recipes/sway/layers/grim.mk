@@ -1,6 +1,8 @@
 LAYER:=grim
 include $(DEFINE_LAYER)
 
+GRIM_GIT_REF?=master
+
 bdir:=grim
 
 grim:=$(LSTAMP)/$(bdir)
@@ -9,7 +11,7 @@ DEB_PACKAGES += libjpeg-dev
 
 $(L) += $(grim)
 
-$(call git_clone, $(bdir), https://github.com/emersion/grim.git, master)
+$(call git_clone, $(bdir), https://github.com/emersion/grim.git, $(GRIM_GIT_REF))
 
 include $(BUILD_LAYER)
 

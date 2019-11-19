@@ -1,13 +1,15 @@
 LAYER:=light
 include $(DEFINE_LAYER)
 
+LIGHT_GIT_REF?=master
+
 bdir:=$(LAYER)
 
 light:=$(LSTAMP)/$(bdir)
 
 $(L) += $(light)
 
-$(call git_clone, $(bdir), https://github.com/haikarainen/light.git ,master)
+$(call git_clone, $(bdir), https://github.com/haikarainen/light.git, $(LIGHT_GIT_REF))
 
 include $(BUILD_LAYER)
 

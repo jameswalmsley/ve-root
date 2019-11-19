@@ -1,13 +1,15 @@
 LAYER:=wshowkeys
 include $(DEFINE_LAYER)
 
+WSHOWKEYS_GIT_REF?=master
+
 bdir:=wshowkeys
 
 wshowkeys:=$(LSTAMP)/$(bdir)
 
 $(L) += $(wshowkeys)
 
-$(call git_clone, $(bdir), https://git.sr.ht/~sircmpwn/wshowkeys, master)
+$(call git_clone, $(bdir), https://git.sr.ht/~sircmpwn/wshowkeys, $(WSHOWKEYS_GIT_REF))
 
 include $(BUILD_LAYER)
 

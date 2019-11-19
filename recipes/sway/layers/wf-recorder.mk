@@ -1,6 +1,8 @@
 LAYER:=wf-recorder
 include $(DEFINE_LAYER)
 
+WF_RECORDER_GIT_REF?=master
+
 bdir:=wf-recorder
 
 wf-recorder:=$(LSTAMP)/$(bdir)
@@ -10,7 +12,7 @@ DEB_PACKAGES += libswscale-dev
 
 $(L) += $(wf-recorder)
 
-$(call git_clone, $(bdir), https://github.com/ammen99/wf-recorder.git, master)
+$(call git_clone, $(bdir), https://github.com/ammen99/wf-recorder.git, $(WF_RECORDER_GIT_REF))
 
 include $(BUILD_LAYER)
 

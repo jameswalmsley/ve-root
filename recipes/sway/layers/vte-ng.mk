@@ -1,6 +1,8 @@
 LAYER:=vte-ng
 include $(DEFINE_LAYER)
 
+VTE_NG_GIT_REF?=0.50.2-ng
+
 bdir:=$(LAYER)
 
 vte-ng:=$(LSTAMP)/$(bdir)
@@ -14,7 +16,7 @@ DEB_PACKAGES += gobject-introspection
 
 $(L) += $(vte-ng)
 
-$(call git_clone, $(bdir), https://github.com/thestinger/vte-ng.git, 0.50.2-ng)
+$(call git_clone, $(bdir), https://github.com/thestinger/vte-ng.git, $(VTE_NG_GIT_REF))
 
 include $(BUILD_LAYER)
 

@@ -1,6 +1,8 @@
 LAYER:=sway
 include $(DEFINE_LAYER)
 
+SWAY_GIT_REF?=master
+
 sway:=$(LSTAMP)/sway
 
 $(L) += $(sway)
@@ -12,7 +14,7 @@ DEB_PACKAGES += jq # Required for dmenu.sh integration.
 DEB_PACKAGES += playerctl # Required for binding audio player buttons.
 DEB_PACKAGES += qtwayland5
 
-$(call git_clone, sway, https://github.com/swaywm/sway.git, master)
+$(call git_clone, sway, https://github.com/swaywm/sway.git, $(SWAY_GIT_REF))
 
 include $(BUILD_LAYER)
 

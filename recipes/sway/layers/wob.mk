@@ -1,13 +1,15 @@
 LAYER:=wob
 include $(DEFINE_LAYER)
 
+WOB_GIT_REF?=master
+
 bdir:=wob
 
 wob:=$(LSTAMP)/$(bdir)
 
 $(L) += $(wob)
 
-$(call git_clone, $(bdir), https://github.com/francma/wob.git, master)
+$(call git_clone, $(bdir), https://github.com/francma/wob.git, $(WOB_GIT_REF))
 
 include $(BUILD_LAYER)
 

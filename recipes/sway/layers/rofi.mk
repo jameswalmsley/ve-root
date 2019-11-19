@@ -1,6 +1,8 @@
 LAYER:=rofi
 include $(DEFINE_LAYER)
 
+ROFI_GIT_REF?=master
+
 bdir:=rofi
 
 rofi:=$(LSTAMP)/$(bdir)
@@ -13,7 +15,7 @@ DEB_PACKAGES += bison
 
 $(L) += $(rofi)
 
-$(call git_clone, $(bdir), https://github.com/davatorium/rofi.git, master)
+$(call git_clone, $(bdir), https://github.com/davatorium/rofi.git, $(ROFI_GIT_REF))
 
 include $(BUILD_LAYER)
 

@@ -1,11 +1,13 @@
 LAYER:=swaylock-effects
 include $(DEFINE_LAYER)
 
+SWAYLOCK_EFFECTS_GIT_REF?=master
+
 swaylock-effects:=$(LSTAMP)/swaylock-effects
 
 $(L) += $(swaylock-effects)
 
-$(call git_clone, swaylock-effects, https://github.com/mortie/swaylock-effects.git, master)
+$(call git_clone, swaylock-effects, https://github.com/mortie/swaylock-effects.git, $(SWAYLOCK_EFFECTS_GIT_REF))
 
 include $(BUILD_LAYER)
 

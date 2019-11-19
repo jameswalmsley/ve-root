@@ -1,6 +1,8 @@
 LAYER:=termite
 include $(DEFINE_LAYER)
 
+TERMITE_GIT_REF?=master
+
 bdir:=$(LAYER)
 
 termite:=$(LSTAMP)/$(bdir)
@@ -9,7 +11,7 @@ DEB_PACKAGES += libgtk-3-dev
 
 $(L) += $(termite)
 
-$(call git_clone, $(bdir), https://github.com/thestinger/termite.git, master)
+$(call git_clone, $(bdir), https://github.com/thestinger/termite.git, $(TERMITE_GIT_REF))
 
 DEPENDS += vte-ng
 

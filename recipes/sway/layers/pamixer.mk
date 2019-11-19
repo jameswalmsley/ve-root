@@ -1,6 +1,8 @@
 LAYER:=pamixer
 include $(DEFINE_LAYER)
 
+PAMIXER_GIT_REF?=master
+
 bdir:=$(LAYER)
 
 pamixer:=$(LSTAMP)/$(bdir)
@@ -9,7 +11,7 @@ DEB_PACKAGES += libboost-program-options-dev
 
 $(L) += $(pamixer)
 
-$(call git_clone, $(bdir), https://github.com/cdemoulins/pamixer.git, master)
+$(call git_clone, $(bdir), https://github.com/cdemoulins/pamixer.git, $(PAMIXER_GIT_REF))
 
 include $(BUILD_LAYER)
 

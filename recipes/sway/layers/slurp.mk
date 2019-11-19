@@ -1,13 +1,15 @@
 LAYER:=slurp
 include $(DEFINE_LAYER)
 
+SLURP_GIT_REF?=master
+
 bdir:=slurp
 
 slurp:=$(LSTAMP)/$(bdir)
 
 $(L) += $(slurp)
 
-$(call git_clone, $(bdir), https://github.com/emersion/slurp.git, master)
+$(call git_clone, $(bdir), https://github.com/emersion/slurp.git, $(SLURP_GIT_REF))
 
 include $(BUILD_LAYER)
 

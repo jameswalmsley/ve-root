@@ -1,13 +1,15 @@
 LAYER:=swaybg
 include $(DEFINE_LAYER)
 
+SWAYBG_GIT_REF?=master
+
 bdir:=swaybg
 
 swaybg:=$(LSTAMP)/$(bdir)
 
 $(L) += $(swaybg)
 
-$(call git_clone, $(bdir), https://github.com/swaywm/swaybg.git, master)
+$(call git_clone, $(bdir), https://github.com/swaywm/swaybg.git, $(SWAYBG_GIT_REF))
 
 include $(BUILD_LAYER)
 
