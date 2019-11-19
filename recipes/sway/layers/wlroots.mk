@@ -18,4 +18,6 @@ $(wlroots):
 	cd $(builddir)/wlroots && sudo ninja install
 	$(stamp)
 
+$(L).clean:
+	rm -rf $(builddir)/wlroots
 

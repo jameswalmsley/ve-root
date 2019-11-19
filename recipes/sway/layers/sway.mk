@@ -16,3 +16,5 @@ $(sway):
 	cd $(builddir)/sway && sudo ninja install
 	$(stamp)
 
+$(L).clean:
+	rm -rf $(builddir)/sway
