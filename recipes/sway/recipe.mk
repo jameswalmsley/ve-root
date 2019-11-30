@@ -6,6 +6,7 @@ export CXX=clang++
 LAYERS += wayland
 LAYERS += wayland-protocols
 LAYERS += xwayland
+LAYERS += freerdp
 LAYERS += wlroots
 LAYERS += sway
 LAYERS += swaylock
