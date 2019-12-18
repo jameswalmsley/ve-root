@@ -1,7 +1,7 @@
 include $(DEFINE_RECIPE)
 
-export CC=clang
-export CXX=clang++
+#export CC=clang
+#export CXX=clang++
 
 LAYERS += wayland
 LAYERS += wayland-protocols
@@ -26,11 +26,11 @@ LAYERS += slurp
 LAYERS += swaylock-effects
 LAYERS += wob
 LAYERS += wshowkeys
-LAYERS += vte-ng
+#LAYERS += vte-ng
 LAYERS += termite
 LAYERS += light
 LAYERS += pamixer
-
+LAYERS += wf-recorder
 
 include $(BUILD_RECIPE)
 
