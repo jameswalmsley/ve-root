@@ -10,6 +10,7 @@ DEB_PACKAGES += intltool
 DEB_PACKAGES += libgnutls28-dev
 DEB_PACKAGES += gperf
 DEB_PACKAGES += libxml2-utils
+DEB_PACKAGES += gobject-introspection
 
 $(L) += $(vte-ng)
 

@@ -19,8 +19,6 @@ DEB_PACKAGES += libavformat-dev
 
 $(call git_clone, wlroots, https://github.com/swaywm/wlroots.git, master)
 
-DEPENDS += freerdp
-
 include $(BUILD_LAYER)
 
 $(wlroots):
