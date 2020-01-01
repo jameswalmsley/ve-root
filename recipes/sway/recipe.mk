@@ -3,6 +3,8 @@ include $(DEFINE_RECIPE)
 #export CC=clang
 #export CXX=clang++
 
+DEB_PACKAGES += python-packaging
+
 LAYERS += build-deps
 LAYERS += wayland
 LAYERS += wayland-protocols
