@@ -18,10 +18,8 @@ LAYERS += wl-clipboard
 LAYERS += rofi
 LAYERS += swaybg
 
-ifeq ($(shell $(BASE)/scripts/version-parse.py --gteq $(shell pkg-config --modversion girara-gtk3) 0.3.3),y)
 LAYERS += zathura
-endif
-#LAYERS += redshift
+LAYERS += redshift
 LAYERS += kanshi
 LAYERS += grim
 LAYERS += slurp
