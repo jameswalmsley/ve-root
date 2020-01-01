@@ -32,6 +32,7 @@ LAYERS += termite
 LAYERS += light
 LAYERS += pamixer
 LAYERS += wf-recorder
+LAYERS += avizo
 LAYERS += vim
 
 include $(BUILD_RECIPE)
