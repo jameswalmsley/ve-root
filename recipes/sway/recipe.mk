@@ -25,7 +25,7 @@ endif
 LAYERS += kanshi
 LAYERS += grim
 LAYERS += slurp
-#LAYERS += imv
+LAYERS += imv
 LAYERS += swaylock-effects
 LAYERS += wob
 LAYERS += wshowkeys
