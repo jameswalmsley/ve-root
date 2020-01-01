@@ -12,7 +12,10 @@ include $(BUILD_LAYER)
 $(swaylock):
 	mkdir -p $(builddir)/swaylock
 	cd $(srcdir)/swaylock && meson $(builddir)/swaylock --buildtype=release
-	cd $(builddir)/swaylock && ninja -v
+	cd $(builddir)/swaylock && ninja
 	cd $(builddir)/swaylock && sudo ninja install
 	$(stamp)
+
+$(L).clean:
+	rm -rf $(builddir)
 

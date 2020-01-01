@@ -12,7 +12,10 @@ include $(BUILD_LAYER)
 $(wl-clipboard):
 	mkdir -p $(builddir)/wl-clipboard
 	cd $(srcdir)/wl-clipboard && meson $(builddir)/wl-clipboard --buildtype=release
-	cd $(builddir)/wl-clipboard && ninja -v
+	cd $(builddir)/wl-clipboard && ninja
 	cd $(builddir)/wl-clipboard && sudo ninja install
 	$(stamp)
+
+$(L).clean:
+	rm -rf $(builddir)
 

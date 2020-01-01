@@ -12,7 +12,9 @@ include $(BUILD_LAYER)
 $(mako):
 	mkdir -p $(builddir)/mako
 	cd $(srcdir)/mako && meson $(builddir)/mako --buildtype=release
-	cd $(builddir)/mako && ninja -v
+	cd $(builddir)/mako && ninja
 	cd $(builddir)/mako && sudo ninja install
 	$(stamp)
 
+$(L).clean:
+	rm -rf $(builddir)

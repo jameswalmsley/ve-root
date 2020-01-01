@@ -12,7 +12,10 @@ include $(BUILD_LAYER)
 $(portal-wlr):
 	mkdir -p $(builddir)/portal-wlr
 	cd $(srcdir)/portal-wlr && meson $(builddir)/portal-wlr --buildtype=release
-	cd $(builddir)/portal-wlr && ninja -v
+	cd $(builddir)/portal-wlr && ninja
 	cd $(builddir)/portal-wlr && sudo ninja install
 	$(stamp)
+
+$(L).clean:
+	rm -rf $(builddir)
 

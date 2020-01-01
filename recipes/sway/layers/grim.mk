@@ -17,8 +17,10 @@ $(grim): bdir:=$(bdir)
 $(grim):
 	mkdir -p $(builddir)/$(bdir)
 	cd $(srcdir)/$(bdir) && meson $(builddir)/$(bdir) --buildtype=release
-	cd $(builddir)/$(bdir) && ninja -v
+	cd $(builddir)/$(bdir) && ninja
 	cd $(builddir)/$(bdir) && sudo ninja install
 	$(stamp)
 
+$(L).clean:
+	rm -rf $(builddir)
 

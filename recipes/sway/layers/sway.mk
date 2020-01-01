@@ -19,7 +19,7 @@ include $(BUILD_LAYER)
 $(sway):
 	mkdir -p $(builddir)/sway
 	-cd $(srcdir)/sway && meson $(builddir)/sway --buildtype=release
-	cd $(builddir)/sway && ninja -v
+	cd $(builddir)/sway && ninja
 	cd $(builddir)/sway && sudo ninja install
 	$(stamp)
 
