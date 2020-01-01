@@ -16,7 +16,7 @@ $(redshift): CC=gcc
 $(redshift): CXX=g++
 $(redshift):
 	mkdir -p $(builddir)/$(bdir)
-	cd $(builddir)/$(bdir) && $(srcdir)/$(bdir)/bootstrap
+	cd $(builddir)/$(bdir) && $(srcdir)/$(bdir)/bootstrap && $(srcdir)/$(bdir)/configure
 	cd $(builddir)/$(bdir) && $(MAKE) && sudo $(MAKE) install
 	$(stamp)
 
