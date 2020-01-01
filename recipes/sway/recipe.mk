@@ -17,7 +17,10 @@ LAYERS += xdg-desktop-portal-wlr
 LAYERS += wl-clipboard
 LAYERS += rofi
 LAYERS += swaybg
-#LAYERS += zathura
+
+ifeq ($(shell $(BASE)/scripts/version-parse.py --gteq $(shell pkg-config --modversion girara-gtk3) 0.3.3),y)
+LAYERS += zathura
+endif
 #LAYERS += redshift
 LAYERS += kanshi
 LAYERS += grim
