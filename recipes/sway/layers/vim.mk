@@ -6,6 +6,7 @@ bdir:=$(LAYER)
 vim:=$(LSTAMP)/$(bdir)
 
 DEB_PACKAGES += libx11-dev
+DEB_PACKAGES += libxt-dev
 DEB_PACKAGES += libncurses-dev
 DEB_PACKAGES += libpython-dev
 
@@ -20,8 +21,7 @@ $(vim):
 	-rm -rf $(builddir)
 	mkdir -p $(builddir)/$(bdir)
 	rsync -a $(srcdir)/vim $(builddir)
-	#cd $(builddir)/$(bdir) && ./configure --enable-gui=gtk2 --with-x --enable-gtk2-check --enable-pythoninterp --prefix=/usr
-	cd $(builddir)/$(bdir) && ./configure --with-x --enable-pythoninterp --prefix=/usr
+	cd $(builddir)/$(bdir) && ./configure --with-x --enable-gui=gtk2 --enable-pythoninterp --prefix=/usr
 	cd $(builddir)/$(bdir) && $(MAKE) && sudo $(MAKE) install
 	$(stamp)
 
