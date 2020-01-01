@@ -5,6 +5,12 @@ bdir:=rofi
 
 rofi:=$(LSTAMP)/$(bdir)
 
+DEB_PACKAGES += librsvg2-dev
+DEB_PACKAGES += libxkbcommon-x11-dev
+DEB_PACKAGES += libstartup-notification0-dev
+DEB_PACKAGES += flex
+DEB_PACKAGES += bison
+
 $(L) += $(rofi)
 
 $(call git_clone, $(bdir), https://github.com/davatorium/rofi.git, master)

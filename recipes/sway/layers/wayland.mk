@@ -3,6 +3,9 @@ include $(DEFINE_LAYER)
 
 wayland:=$(LSTAMP)/wayland
 
+DEB_PACKAGES += libffi-dev
+DEB_PACKAGES += libxml2-dev
+
 $(L) += $(wayland)
 
 $(call git_clone, wayland, https://github.com/wayland-project/wayland.git, master)

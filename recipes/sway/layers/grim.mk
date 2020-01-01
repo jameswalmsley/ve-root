@@ -5,6 +5,8 @@ bdir:=grim
 
 grim:=$(LSTAMP)/$(bdir)
 
+DEB_PACKAGES += libjpeg-dev
+
 $(L) += $(grim)
 
 $(call git_clone, $(bdir), https://github.com/emersion/grim.git, master)

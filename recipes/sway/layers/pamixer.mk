@@ -5,6 +5,8 @@ bdir:=$(LAYER)
 
 pamixer:=$(LSTAMP)/$(bdir)
 
+DEB_PACKAGES += libboost-program-options-dev
+
 $(L) += $(pamixer)
 
 $(call git_clone, $(bdir), https://github.com/cdemoulins/pamixer.git, master)

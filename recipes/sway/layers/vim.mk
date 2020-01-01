@@ -5,6 +5,10 @@ bdir:=$(LAYER)
 
 vim:=$(LSTAMP)/$(bdir)
 
+DEB_PACKAGES += libx11-dev
+DEB_PACKAGES += libncurses-dev
+DEB_PACKAGES += libpython-dev
+
 $(L) += $(vim)
 
 $(call git_clone, $(bdir), https://github.com/vim/vim.git, master)

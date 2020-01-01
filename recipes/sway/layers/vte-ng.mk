@@ -5,6 +5,12 @@ bdir:=$(LAYER)
 
 vte-ng:=$(LSTAMP)/$(bdir)
 
+DEB_PACKAGES += gtk-doc-tools
+DEB_PACKAGES += intltool
+DEB_PACKAGES += libgnutls28-dev
+DEB_PACKAGES += gperf
+DEB_PACKAGES += libxml2-utils
+
 $(L) += $(vte-ng)
 
 $(call git_clone, $(bdir), https://github.com/thestinger/vte-ng.git, 0.50.2-ng)

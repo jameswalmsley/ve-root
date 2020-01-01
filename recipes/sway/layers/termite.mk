@@ -5,13 +5,13 @@ bdir:=$(LAYER)
 
 termite:=$(LSTAMP)/$(bdir)
 
+DEB_PACKAGES += libgtk-3-dev
+
 $(L) += $(termite)
 
 $(call git_clone, $(bdir), https://github.com/thestinger/termite.git, master)
 
-#DEPENDS += vte-ng
-
-DEB_PACKAGES += libpcre2-dev
+DEPENDS += vte-ng
 
 include $(BUILD_LAYER)
 
