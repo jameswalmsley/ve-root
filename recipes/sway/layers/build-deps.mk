@@ -1,8 +1,10 @@
-LAYER:=build-deps
-include $(DEFINE_LAYER)
+#
+# Helper utils for installing deb packages.
+#
 
+deb-info:
+	@echo "$(DEB_PACKAGES)"
 
-
-include $(BUILD_LAYER)
-
+deb-install:
+	apt -y install $(DEB_PACKAGES)
 
