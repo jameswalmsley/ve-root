@@ -13,12 +13,13 @@ LAYERS += xwayland
 LAYERS += wlroots
 LAYERS += sway
 LAYERS += swaylock
+LAYERS += swayidle
+LAYERS += swaybg
 LAYERS += waybar
 LAYERS += mako
 LAYERS += xdg-desktop-portal-wlr
 LAYERS += wl-clipboard
 LAYERS += rofi
-LAYERS += swaybg
 
 LAYERS += zathura
 LAYERS += redshift
