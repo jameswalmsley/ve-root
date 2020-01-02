@@ -9,6 +9,7 @@ DEB_PACKAGES += libpulse-dev
 DEB_PACKAGES += libdbusmenu-gtk3-dev
 DEB_PACKAGES += libnl-3-dev
 DEB_PACKAGES += libnl-genl-3-dev
+DEB_PACKAGES += pavucontrol
 
 
 $(L) += $(waybar)
