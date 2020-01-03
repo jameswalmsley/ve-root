@@ -5,6 +5,7 @@ wayland:=$(LSTAMP)/wayland
 
 DEB_PACKAGES += libffi-dev
 DEB_PACKAGES += libxml2-dev
+DEB_PACKAGES += libtool
 
 $(L) += $(wayland)
 
