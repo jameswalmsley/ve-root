@@ -6,6 +6,7 @@ include $(DEFINE_RECIPE)
 DEB_PACKAGES += python-packaging
 
 LAYERS += build-deps
+LAYERS += scdoc
 LAYERS += wayland
 LAYERS += wayland-protocols
 LAYERS += xwayland
