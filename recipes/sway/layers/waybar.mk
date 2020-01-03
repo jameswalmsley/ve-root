@@ -12,7 +12,7 @@ DEB_PACKAGES += libdbusmenu-gtk3-dev
 DEB_PACKAGES += libnl-3-dev
 DEB_PACKAGES += libnl-genl-3-dev
 DEB_PACKAGES += pavucontrol
-
+DEB_PACKAGES += libinput-dev libsigc++-2.0-dev libfmt-dev clang-tidy libmpdclient-dev libwayland-dev libgtk-3-dev gobject-introspection libgirepository1.0-dev
 
 $(L) += $(waybar)
 
