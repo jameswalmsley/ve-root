@@ -36,6 +36,14 @@ BUILD_RECIPE:=$(BASE)/mk/build_recipe.mk
 DEFINE_LAYER:=$(BASE)/mk/define_layer.mk
 BUILD_LAYER:=$(BASE)/mk/build_layer.mk
 
+ifeq ($(UID),)
+USER_ID:=$(shell id -u)
+endif
+
+ifeq ($(GID),)
+GROUP_ID:=$(shell id -g)
+endif
+
 define \n
 
 
@@ -72,10 +80,12 @@ $(eval SRCDEST:=$(SOURCE)/$(L)/$(strip $(1))/.git/index)
 $(SRCDEST):
 	@echo "Cloning"
 ifeq ("$(wildcard $(SRCDEST))","")
-	git clone -n --single-branch --depth 1 -b $(strip $(3)) $(strip $(2)) $(SOURCE)/$(L)/$(strip $(1))
-	cd $(SOURCE)/$(L)/$(strip $(1)) && git checkout $(strip $(3))
+	git init $(SOURCE)/$(L)/$(strip $(1))
+	cd $(SOURCE)/$(L)/$(strip $(1)) && git remote add origin $(strip $(2))
+	cd $(SOURCE)/$(L)/$(strip $(1)) && git fetch --depth 1 origin $(strip $(3)) || git fetch origin
+	cd $(SOURCE)/$(L)/$(strip $(1)) && git checkout $(strip $(3)) || git checkout FETCH_HEAD
 	cd $(SOURCE)/$(L)/$(strip $(1)) && git submodule update --init --recursive
-	chown -R 1000:1000 $(SOURCE)/$(L)/$(strip $(1))
+	chown -R $(USER_ID):$(GROUP_ID) $(SOURCE)/$(L)/$(strip $(1))
 endif
 
 source-checkout += $(SRCDEST)
