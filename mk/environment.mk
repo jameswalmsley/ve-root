@@ -83,7 +83,7 @@ ifeq ("$(wildcard $(SRCDEST))","")
 	git init $(SOURCE)/$(L)/$(strip $(1))
 	cd $(SOURCE)/$(L)/$(strip $(1)) && git remote add origin $(strip $(2))
 	cd $(SOURCE)/$(L)/$(strip $(1)) && git fetch --depth 1 origin $(strip $(3)) || git fetch origin
-	cd $(SOURCE)/$(L)/$(strip $(1)) && git checkout $(strip $(3))
+	cd $(SOURCE)/$(L)/$(strip $(1)) && git checkout $(strip $(3)) || git checkout FETCH_HEAD
 	cd $(SOURCE)/$(L)/$(strip $(1)) && git submodule update --init --recursive
 	chown -R $(USER_ID):$(GROUP_ID) $(SOURCE)/$(L)/$(strip $(1))
 endif
