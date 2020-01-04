@@ -4,5 +4,7 @@ function="status"
 
 . ${BASE}/mk/git/git.sh
 
-git describe --always --tags
+describe=$(git describe --always --tags)
+
+echo ${layer} - ${repo_name} ${describe}
 
