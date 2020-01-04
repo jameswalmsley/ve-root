@@ -104,6 +104,10 @@ git.unshallow:
 git.rev-parse.head:
 	@echo "Git rev-parse"
 
+.PHONY: git.describe
+git.describe:
+	@echo "Git describe"
+
 .PHONY: git.status
 git.status:
 	@echo ""

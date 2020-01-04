@@ -87,7 +87,7 @@ endef
 
 $(eval $(target_properties))
 
-_git-status:=**** :: 
+_git-status:=**** ::
 
 define git_pull_layer
 .PHONY: $(L).git.pull
@@ -162,6 +162,19 @@ endef
 git.status: | $(L).git.status
 
 $(eval $(git_status_layer))
+
+define git_describe_layer
+.PHONY: $(L).git.describe
+$(L).git.describe:
+	@$(foreach g, $($(L)_git-repos),\
+	BASE=$(BASE) bash $(BASE)/mk/git/describe.sh $(g);\
+	)
+endef
+
+git.describe: | $(L).git.describe
+
+$(eval $(git_describe_layer))
+
 
 define git_rev-parse_head_layer
 .PHONY: $(L).git.rev-parse.head
