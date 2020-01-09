@@ -95,7 +95,7 @@ Run order can also be defined using:
 RUNAFTER += dependency-layer-name
 
 The main advantage of RUNAFTER is you can serialise the build of different layers, without requiring
-a rebuild of all subsequent layers. 
+a rebuild of all subsequent layers.
 
 This is important to ensure a robust build where too much parralelism would cause an out-of-memory issue.
 
@@ -137,3 +137,13 @@ At the top of the recipe.mk file.
 | bootloader | make L_bootloader | Builds any bootloader as specified by the recipe. |
 | kernel     | make L_kernel     | Build the recipes kernel layer.                   |
 | rootfs     | make L_rootfs     | Build the base rootfs.                            |
+
+# Host Dependencies
+
+The rootbuilder docker container requires the following packages to be installed on
+the host:
+
+```
+sudo apt install qemu-user-static binfmt-support qemu-system-arm
+```
+
