@@ -3,7 +3,7 @@ include $(DEFINE_LAYER)
 
 bootloader-updateimage-suffix:=
 
-ifneq ($(CONFIG_SECURE_BOOT),y)
+ifeq ($(CONFIG_SECURE_BOOT),y)
 bootloader-updateimage-suffix:=$(strip $(bootloader-updateimage-suffix)).signed
 endif
 

@@ -40,10 +40,10 @@ $(bootloader-bootimage.fit):
 	cd $(BOOTIMAGE_OUT) && dtc -p 0x1000 -I dtb -O dtb $(notdir $(dtb-file)) -o devicetree.dtb
 	cd $(BOOTIMAGE_OUT) && fdtput -ts devicetree.dtb "/chosen" "bootargs" "$(shell cat $(bootloader-bootargs))"
 	cp $(bootloader-bootimage.its) $(BOOTIMAGE_OUT)
-ifneq ($(CONFIG_SECURE_BOOT),y)
-	cd $(BOOTIMAGE_OUT) && $(MKIMAGE) -D "-I dts -O dtb -p 0x1000" -f bootimage.its $@
-else
+ifeq ($(CONFIG_SECURE_BOOT),y)
 	cd $(BOOTIMAGE_OUT) && $(MKIMAGE) -D "-I dts -O dtb -p 0x1000" -f bootimage.its -k $(KEY_PATH_ABS) $@
+else
+	cd $(BOOTIMAGE_OUT) && $(MKIMAGE) -D "-I dts -O dtb -p 0x1000" -f bootimage.its $@
 endif
 
 
