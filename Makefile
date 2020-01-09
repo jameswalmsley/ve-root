@@ -76,6 +76,10 @@ docker:
 docker.build:
 	cd $(BASE)/docker/$(DOCKER_IMAGE) && BASE=$(BASE) docker-compose build
 
+.PHONY: docker.build.force
+docker.build.force:
+	cd $(BASE)/docker/$(DOCKER_IMAGE) && BASE=$(BASE) docker-compose build --no-cache
+
 .PHONY: chroot
 chroot:
 	chroot $(ROOTFS) bash
