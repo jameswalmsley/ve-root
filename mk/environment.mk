@@ -76,23 +76,25 @@ endef
 #
 define git_clone_impl
 
+$(eval GIT_$(L)_$(strip $(1))?=$(strip $(3)))
 $(eval SRCDEST:=$(SOURCE)/$(L)/$(strip $(1))/.git/index)
 $(SRCDEST):
 	@echo "Cloning"
 ifeq ("$(wildcard $(SRCDEST))","")
 	git init $(SOURCE)/$(L)/$(strip $(1))
 	cd $(SOURCE)/$(L)/$(strip $(1)) && git remote add origin $(strip $(2))
-	cd $(SOURCE)/$(L)/$(strip $(1)) && git fetch --depth 1 origin $(strip $(3)) || git fetch origin
-	cd $(SOURCE)/$(L)/$(strip $(1)) && git checkout $(strip $(3)) || git checkout FETCH_HEAD
+	cd $(SOURCE)/$(L)/$(strip $(1)) && git fetch --depth 1 origin $(GIT_$(L)_$(strip $(1))) || git fetch origin
+	cd $(SOURCE)/$(L)/$(strip $(1)) && git checkout $(GIT_$(L)_$(strip $(1))) || git checkout FETCH_HEAD
 	cd $(SOURCE)/$(L)/$(strip $(1)) && git submodule update --init --recursive
 	chown -R $(USER_ID):$(GROUP_ID) $(SOURCE)/$(L)/$(strip $(1))
 endif
+
 
 source-checkout += $(SRCDEST)
 
 $$($(L)): $(SRCDEST)
 
-$(L)_git-repos += $(SOURCE)/$(L)/$(strip $(1)):$(strip $(3))
+$(L)_git-repos += $(SOURCE)/$(L)/$(strip $(1)):$(GIT_$(L)_$(strip $(1)))
 
 endef
 
@@ -110,7 +112,7 @@ $(SRCDEST):
 	@echo "Fetching $$@"
 	mkdir -p $(SOURCE)/$(L)/$(strip $(1))
 	wget -O $$@ $(2)
-	tar xvf $$@ -C $(SOURCE)/$(L)/$(strip $(1)) 
+	tar xvf $$@ -C $(SOURCE)/$(L)/$(strip $(1))
 
 
 source-checkout += $(SRCDEST)

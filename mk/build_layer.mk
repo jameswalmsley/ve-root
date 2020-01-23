@@ -175,6 +175,17 @@ git.describe: | $(L).git.describe
 
 $(eval $(git_describe_layer))
 
+define git_freeze
+.PHONY: $(L).git.freeze
+$(L).git.freeze:
+	@$(foreach g, $($(L)_git-repos),\
+	BASE=$(BASE) bash $(BASE)/mk/git/freeze.sh $(g);\
+	)
+endef
+
+git.freeze: | $(L).git.freeze
+
+$(eval $(git_freeze))
 
 define git_rev-parse_head_layer
 .PHONY: $(L).git.rev-parse.head

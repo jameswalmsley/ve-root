@@ -112,6 +112,9 @@ git.rev-parse.head:
 git.describe:
 	@echo "Git describe"
 
+.PHONY: git.freeze
+git.freeze:
+
 .PHONY: git.status
 git.status:
 	@echo ""
