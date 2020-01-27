@@ -5,6 +5,10 @@ CONFIGS:=$(notdir $(shell ls $(BASE)/configs/*_defconfig))
 configs:
 	@$(foreach config,$(CONFIGS), echo $(config);)
 
-%_defconfig:
-	cp $(BASE)/configs/$@ $(BASE)/.config
+define defconfig_target
+$(config):
+	cp $(BASE)/configs/$(config) $(BASE)/.config
+endef
+
+$(foreach config,$(CONFIGS),$(eval $(defconfig_target)))
 
