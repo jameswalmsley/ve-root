@@ -23,6 +23,7 @@ DEB_PACKAGES += xutils-dev libgl1-mesa-dev libmd-dev x11proto-xcmisc-dev x11prot
 DEB_PACKAGES += libepoxy-dev
 DEB_PACKAGES += libgles2-mesa-dev libxcb-composite0-dev libxcursor-dev \
 				  libcairo2-dev libgbm-dev libpam0g-dev
+DEB_PACKAGES += mesa-common-dev libxshmfence-dev
 
 $(L) += $(xwayland)
 
