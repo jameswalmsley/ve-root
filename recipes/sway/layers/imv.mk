@@ -7,6 +7,7 @@ imv:=$(LSTAMP)/$(bdir)
 
 DEB_PACKAGES += libfreeimage-dev
 DEB_PACKAGES += asciidoc-base
+DEB_PACKAGES += libcmocka-dev libjpeg-dev libtiff-dev
 
 $(L) += $(imv)
 
@@ -16,9 +17,9 @@ include $(BUILD_LAYER)
 
 $(imv): bdir:=$(bdir)
 $(imv):
-	mkdir -p $(builddir)/$(bdir)
-	rsync -av --delete $(srcdir)/$(bdir) $(builddir)
-	cd $(builddir)/$(bdir) && $(MAKE) && sudo $(MAKE) install
+	mkdir -p $(builddir)/imv
+	cd $(srcdir)/imv && meson $(builddir)/imv --buildtype=release
+	cd $(builddir)/imv && ninja && sudo ninja install
 	$(stamp)
 
 
