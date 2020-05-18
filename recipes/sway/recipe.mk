@@ -10,7 +10,6 @@ LAYERS += scdoc
 LAYERS += wayland
 LAYERS += wayland-protocols
 LAYERS += xwayland
-#LAYERS += freerdp
 LAYERS += wlroots
 LAYERS += sway
 LAYERS += swaylock
@@ -37,8 +36,6 @@ LAYERS += termite
 #LAYERS += pamixer
 LAYERS += wf-recorder
 LAYERS += avizo
-#LAYERS += vim
-LAYERS += nvim
 
 include $(BUILD_RECIPE)
 

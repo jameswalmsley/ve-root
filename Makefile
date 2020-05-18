@@ -6,6 +6,7 @@
 #  Author: James Walmsley <james@vitalelement.co.uk>
 #
 BASE:=$(shell readlink -f $(dir $(lastword $(MAKEFILE_LIST))))
+
 include $(BASE)/mk/environment.mk
 
 ifdef CONFIG_RECIPE
