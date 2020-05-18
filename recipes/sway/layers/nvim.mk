@@ -3,6 +3,9 @@ include $(DEFINE_LAYER)
 
 nvim:=$(LSTAMP)/nvim
 
+DEB_PACKAGES += lua-argparse
+DEB_PACKAGES += install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip
+
 $(call git_clone, neovim, https://github.com/neovim/neovim.git, master)
 
 $(L) += $(nvim)
@@ -15,8 +18,13 @@ $(nvim):
 	cd $(builddir)/.deps && cmake -GNinja -DCMAKE_BUILD_TYPE=Release $(srcdir)/neovim/third-party
 	cd $(builddir)/.deps && ninja
 	mkdir -p $(builddir)/build
-	cd $(builddir)/build && cmake -GNinja -DCMAKE_BUILD_TYPE=Release $(srcdir)/neovim -DUSE_BUNDLED=ON
+	cd $(builddir)/build && cmake -GNinja -DCMAKE_BUILD_TYPE=Release $(srcdir)/neovim
 	cd $(builddir)/build && ninja
 	cd $(builddir)/build && sudo ninja install
 	$(stamp)
+
+
+$(nvim).clean:
+	rm -rf $(builddir)
+
 
