@@ -92,7 +92,7 @@ endif
 
 source-checkout += $(SRCDEST)
 
-$$($(L)): $(SRCDEST)
+$(eval $$($(L)): $(SRCDEST))
 
 $(L)_git-repos += $(SOURCE)/$(L)/$(strip $(1)):$(GIT_$(L)_$(strip $(1)))
 
