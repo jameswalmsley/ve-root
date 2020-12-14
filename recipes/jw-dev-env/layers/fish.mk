@@ -3,7 +3,7 @@ include $(DEFINE_LAYER)
 
 fish:=$(LSTAMP)/fish
 
-$(call git_clone, fish, https://github.com/fish-shell/fish-shell.git, master)
+$(call git_clone, fish, https://github.com/fish-shell/fish-shell.git, 3.1.2)
 
 $(L) += $(fish)
 

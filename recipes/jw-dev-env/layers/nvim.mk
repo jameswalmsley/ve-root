@@ -26,6 +26,8 @@ $(vim-plug): $(nvim)
 $(vim-plug):
 	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	nvim -E -c PlugInstall -c q -c q
+	nvim -E -c CocCommand clangd.install
+	$(stamp)
 
 $(nvim).clean:
 	rm -rf $(builddir)
