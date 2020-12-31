@@ -1,0 +1,11 @@
+[Unit]
+Description=Network copy backend for tmux based clipboard
+
+[Socket]
+ListenStream=19989
+Accept=yes
+
+[Install]
+WantedBy=sockets.target
+
+

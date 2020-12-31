@@ -15,6 +15,7 @@ LAYERS += sway
 LAYERS += greetd
 LAYERS += gtkgreet
 LAYERS += sway-systemd
+LAYERS += remote-clip
 LAYERS += swaylock
 LAYERS += swayidle
 LAYERS += swaybg

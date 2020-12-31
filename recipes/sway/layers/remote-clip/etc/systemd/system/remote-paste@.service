@@ -1,0 +1,10 @@
+[Unit]
+Description=Copy backend service piping input to clipboard tool.
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/wl-paste -p -n
+StandardInput=socket
+StandardOutput=socket
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+
