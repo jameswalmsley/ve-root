@@ -14,6 +14,7 @@ LAYERS += wlroots
 LAYERS += sway
 LAYERS += greetd
 LAYERS += gtkgreet
+LAYERS += sway-systemd
 LAYERS += swaylock
 LAYERS += swayidle
 LAYERS += swaybg

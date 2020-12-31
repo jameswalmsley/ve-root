@@ -1,0 +1,14 @@
+# `-l` activates layer-shell mode. Notice that `swaymsg exit` will run after gtkgreet.
+exec "gtkgreet -s /usr/share/themes/Adwaita-dark/gtk-3.0/gtk.css -l; swaymsg exit"
+
+bindsym Mod4+shift+e exec swaynag \
+-t warning \
+-m 'What do you want to do?' \
+-b 'Poweroff' 'systemctl poweroff' \
+-b 'Reboot' 'systemctl reboot'
+
+xwayland disable
+
+include /etc/sway/config.d/*
+
+
