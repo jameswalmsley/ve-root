@@ -14,7 +14,7 @@ $(fish):
 	mkdir -p $(builddir)/fish
 	cd $(builddir)/fish && cmake -GNinja -DCMAKE_BUILD_TYPE=Release $(srcdir)/fish
 	cd $(builddir)/fish && ninja
-	cd $(builddir)/fish && sudo ninja install
+	cd $(builddir)/fish && ninja install
 	$(stamp)
 
 

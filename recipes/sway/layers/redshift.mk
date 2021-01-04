@@ -9,7 +9,7 @@ redshift:=$(LSTAMP)/$(bdir)
 
 $(L) += $(redshift)
 
-$(call git_clone, $(bdir), https://github.com/minus7/redshift.git, $(REDSHIFT_GIT_REF))
+$(call git_clone, $(bdir), https://gitlab.com/chinstrap/gammastep.git, $(REDSHIFT_GIT_REF))
 
 include $(BUILD_LAYER)
 

@@ -11,7 +11,7 @@ DEB_PACKAGES += gperf libluajit-5.1-dev libunibilium-dev libmsgpack-dev libtermk
 $(call git_clone, neovim, https://github.com/neovim/neovim.git, master)
 
 $(L) += $(nvim)
-$(L) += $(vim-plug)
+#$(L) += $(vim-plug)
 
 include $(BUILD_LAYER)
 
@@ -19,7 +19,7 @@ $(nvim):
 	-rm -rf $(builddir)
 	cp -r $(srcdir)/* $(builddir)
 	cd $(builddir) && CMAKE_BUILD_TYPE=Release $(MAKE)
-	cd $(builddir) && sudo $(MAKE) install
+	cd $(builddir) && $(MAKE) install
 	$(stamp)
 
 $(vim-plug): $(nvim)
