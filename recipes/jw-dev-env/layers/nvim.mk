@@ -18,7 +18,7 @@ include $(BUILD_LAYER)
 $(nvim):
 	-rm -rf $(builddir)
 	cp -r $(srcdir)/* $(builddir)
-	cd $(builddir) && CMAKE_BUILD_TYPE=Release $(MAKE)
+	cd $(builddir) && DESTDIR= CMAKE_BUILD_TYPE=Release $(MAKE)
 	cd $(builddir) && $(MAKE) install
 	$(stamp)
 

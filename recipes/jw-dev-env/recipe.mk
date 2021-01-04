@@ -4,8 +4,8 @@ export DESTDIR:=$(ROOTFS)
 
 LAYERS += build-deps
 LAYERS += fish
-LAYERS += nvim
 LAYERS += tmux
+LAYERS += nvim
 
 include $(BUILD_RECIPE)
 
