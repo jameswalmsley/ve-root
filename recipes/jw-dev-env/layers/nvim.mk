@@ -17,9 +17,10 @@ include $(BUILD_LAYER)
 
 $(nvim):
 	-rm -rf $(builddir)
-	cp -r $(srcdir)/* $(builddir)
-	cd $(builddir) && DESTDIR= CMAKE_BUILD_TYPE=Release $(MAKE)
-	cd $(builddir) && $(MAKE) install
+	mkdir -p $(builddir)
+	cp -r $(srcdir)/neovim $(builddir)
+	cd $(builddir)/neovim && DESTDIR= CMAKE_BUILD_TYPE=Release $(MAKE)
+	cd $(builddir)/neovim && $(MAKE) install
 	$(stamp)
 
 $(vim-plug): $(nvim)
