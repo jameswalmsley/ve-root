@@ -3,6 +3,8 @@ include $(DEFINE_LAYER)
 
 XDG_DESKTOP_PORTAL_WLR_GIT_REF?=master
 
+DEB_PACKAGES += libiniparser-dev
+
 portal-wlr:=$(LSTAMP)/portal-wlr
 
 $(L) += $(portal-wlr)

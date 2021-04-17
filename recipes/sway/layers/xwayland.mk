@@ -27,7 +27,7 @@ DEB_PACKAGES += mesa-common-dev libxshmfence-dev
 
 $(L) += $(xwayland)
 
-$(call git_clone, $(bdir), https://gitlab.freedesktop.org/xorg/xserver, $(XWAYLAND_GIT_REF))
+$(call git_clone, $(bdir), https://github.com/freedesktop/xorg-xserver, $(XWAYLAND_GIT_REF))
 
 include $(BUILD_LAYER)
 

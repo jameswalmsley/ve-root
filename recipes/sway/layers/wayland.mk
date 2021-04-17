@@ -17,8 +17,8 @@ include $(BUILD_LAYER)
 
 $(wayland):
 	mkdir -p $(builddir)/wayland
-	cd $(builddir)/wayland && $(srcdir)/wayland/autogen.sh --disable-documentation
-	cd $(builddir)/wayland && make
-	cd $(builddir)/wayland && sudo make install
+	-cd $(srcdir)/wayland && meson $(builddir)/wayland --buildtype=release -Ddocumentation=false
+	cd $(builddir)/wayland && ninja
+	cd $(builddir)/wayland && sudo ninja install
 	$(stamp)
 
