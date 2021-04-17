@@ -1,4 +1,8 @@
-# `-l` activates layer-shell mode. Notice that `swaymsg exit` will run after gtkgreet.
+# `-l` activates layer-shell mode. Notice that `swaymsg exit` will run after gtkgreet
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
 exec "gtkgreet -s /usr/share/themes/Adwaita-dark/gtk-3.0/gtk.css -l; swaymsg exit"
 
 bindsym Mod4+shift+e exec swaynag \
@@ -10,5 +14,4 @@ bindsym Mod4+shift+e exec swaynag \
 xwayland disable
 
 include /etc/sway/config.d/*
-
 
