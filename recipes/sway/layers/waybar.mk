@@ -23,10 +23,9 @@ include $(BUILD_LAYER)
 $(waybar):
 	mkdir -p $(builddir)/waybar
 	cd $(srcdir)/waybar && meson $(builddir)/waybar --buildtype=release
-	cd $(builddir)/waybar && ninja
+	cd $(builddir)/waybar && ninja -j $(shell nproc)
 	cd $(builddir)/waybar && sudo ninja install
 	$(stamp)
 
 $(L).clean:
 	rm -rf $(builddir)
-

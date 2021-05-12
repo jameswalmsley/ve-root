@@ -21,6 +21,7 @@ LAYERS += swayidle
 LAYERS += swaybg
 LAYERS += waybar
 LAYERS += mako
+LAYERS += pipewire
 LAYERS += xdg-desktop-portal-wlr
 LAYERS += wl-clipboard
 LAYERS += rofi
@@ -42,4 +43,3 @@ LAYERS += wf-recorder
 LAYERS += avizo
 
 include $(BUILD_RECIPE)
-

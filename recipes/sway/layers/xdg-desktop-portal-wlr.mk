@@ -13,6 +13,7 @@ $(call git_clone, portal-wlr, https://github.com/emersion/xdg-desktop-portal-wlr
 
 include $(BUILD_LAYER)
 
+$(portal-wlr): export C_INCLUDE_PATH=/usr/include/iniparser
 $(portal-wlr):
 	mkdir -p $(builddir)/portal-wlr
 	cd $(srcdir)/portal-wlr && meson $(builddir)/portal-wlr --buildtype=release
@@ -22,4 +23,3 @@ $(portal-wlr):
 
 $(L).clean:
 	rm -rf $(builddir)
-
