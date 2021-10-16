@@ -9,7 +9,7 @@ $(L) += $(glibc-headers)
 
 DEPENDS += kernel-headers
 
-$(call git_clone, glibc, https://github.com/bminor/glibc.git, glibc-2.27)
+$(call git_clone, glibc, https://github.com/bminor/glibc.git, release/2.27/master)
 
 include $(BUILD_LAYER)
 

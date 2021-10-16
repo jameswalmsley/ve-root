@@ -27,7 +27,7 @@ $(call git_clone, zlib, https://github.com/madler/zlib.git, v1.2.8)
 $(call get_archive, libgmp, https://gmplib.org/download/gmp/gmp-$(VER_GMP).tar.bz2)
 $(call get_archive, libmpfr, https://www.mpfr.org/mpfr-$(VER_MPFR)/mpfr-$(VER_MPFR).tar.bz2)
 $(call get_archive, libmpc, https://ftp.gnu.org/gnu/mpc/mpc-$(VER_MPC).tar.gz)
-$(call get_archive, libisl, http://isl.gforge.inria.fr/isl-$(VER_ISL).tar.bz2)
+$(call git_clone,   libisl, https://github.com/Meinersbur/isl.git, isl-$(VER_ISL))
 $(call get_archive, libexpat, https://github.com/libexpat/libexpat/releases/download/R_2_1_1/expat-$(VER_EXPAT).tar.bz2)
 $(call get_archive, libelf, https://fossies.org/linux/misc/old/libelf-0.8.13.tar.gz)
 $(call get_archive, libiconv, https://ftp.gnu.org/pub/gnu/libiconv/libiconv-$(VER_LIBICONV).tar.gz)
@@ -90,7 +90,8 @@ $(libmpc): $(libmpfr)
 $(libisl):
 	rm -rf $(builddir)/$(TC_HOST)/libisl
 	mkdir -p $(builddir)/$(TC_HOST)/libisl
-	cd $(builddir)/$(TC_HOST)/libisl && $(srcdir)/libisl/isl-$(VER_ISL)/configure \
+	cd $(srcdir)/libisl && ./autogen.sh
+	cd $(builddir)/$(TC_HOST)/libisl && $(srcdir)/libisl/configure \
 	--host=$(TC_HOST) \
 	--build=$(TC_BUILD) \
 	--prefix=$(hostlibs)/usr \
