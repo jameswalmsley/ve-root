@@ -17,7 +17,7 @@ include $(BUILD_LAYER)
 
 $(wayland):
 	mkdir -p $(builddir)/wayland
-	-cd $(srcdir)/wayland && meson $(builddir)/wayland --buildtype=release -Ddocumentation=false
+	cd $(builddir)/wayland && meson --buildtype=release -Ddocumentation=false $(srcdir)/wayland $(builddir)/wayland
 	cd $(builddir)/wayland && ninja
 	cd $(builddir)/wayland && sudo ninja install
 	$(stamp)

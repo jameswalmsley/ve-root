@@ -1,7 +1,8 @@
 LAYER:=redshift
 include $(DEFINE_LAYER)
 
-REDSHIFT_GIT_REF?=wayland
+REDSHIFT_GIT_REF?=master
+DEB_PACKAGES += intltool
 
 bdir:=$(LAYER)
 

@@ -24,7 +24,7 @@ include $(BUILD_LAYER)
 
 $(wlroots):
 	mkdir -p $(builddir)/wlroots
-	cd $(builddir)/wlroots && meson --buildtype=release $(srcdir)/wlroots $(builddir)/wlroots
+	cd $(builddir)/wlroots && meson --buildtype=release -Dxwayland=enabled $(srcdir)/wlroots $(builddir)/wlroots
 	cd $(builddir)/wlroots && ninja
 	cd $(builddir)/wlroots && sudo ninja install
 	$(stamp)

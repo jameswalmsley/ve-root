@@ -12,8 +12,8 @@ $(call git_clone, wayland-protocols, https://github.com/wayland-project/wayland-
 include $(BUILD_LAYER)
 
 $(wayland-protocols):
-	cd $(srcdir)/wayland-protocols && ./autogen.sh
-	cd $(srcdir)/wayland-protocols && sudo make install
+	cd $(srcdir)/wayland-protocols && meson $(builddir)
+	cd $(builddir) && ninja && sudo ninja install
 	$(stamp)
 
 

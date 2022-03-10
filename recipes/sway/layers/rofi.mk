@@ -9,6 +9,10 @@ rofi:=$(LSTAMP)/$(bdir)
 
 DEB_PACKAGES += librsvg2-dev
 DEB_PACKAGES += libxkbcommon-x11-dev
+DEB_PACKAGES += libxcb-util-dev
+DEB_PACKAGES += libxcb-ewmh-dev
+DEB_PACKAGES += libxcb-xrm-dev
+DEB_PACKAGES += libxcb-xinerama0-dev
 DEB_PACKAGES += libstartup-notification0-dev
 DEB_PACKAGES += flex
 DEB_PACKAGES += bison

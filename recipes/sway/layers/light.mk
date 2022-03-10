@@ -16,9 +16,9 @@ include $(BUILD_LAYER)
 $(light): bdir:=$(bdir)
 $(light):
 	mkdir -p $(builddir)/$(bdir)
-	cp -r $(srcdir)/$(bdir) $(builddir)/
-	cd $(builddir)/$(bdir) && ./autogen.sh
-	cd $(builddir)/$(bdir) && ./configure
-	cd $(builddir)/$(bdir) && $(MAKE) && sudo $(MAKE) install
+	cd $(srcdir)/$(bdir) && git reset --hard && ./autogen.sh
+	cd $(builddir)/$(bdir) && $(srcdir)/$(bdir)/configure
+	cd $(builddir)/$(bdir) && $(MAKE) && $(MAKE) DESTDIR=$(builddir)/out install
+	sudo cp -r $(builddir)/out/* /
 	$(stamp)
 

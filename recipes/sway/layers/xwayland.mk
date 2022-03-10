@@ -34,8 +34,8 @@ include $(BUILD_LAYER)
 $(xwayland): bdir:=$(bdir)
 $(xwayland):
 	mkdir -p $(builddir)/$(bdir)
-	cd $(srcdir)/$(bdir) && meson $(builddir)/$(bdir) --buildtype=release  -Dxwin=false -Dxorg=false -Dxquartz=false -Dxvfb=false -Dxnest=false
-	cd $(builddir)/$(bdir) && ninja
+	cd $(srcdir)/$(bdir) && meson $(builddir)/$(bdir) --buildtype=release  -Dipv6=true -Dxvfb=false -Dxdmcp=false -Dxcsecurity=true -Ddri3=true -Dglamor=true
+	cd $(builddir)/$(bdir) && ninja -j $(shell nproc)
 	cd $(builddir)/$(bdir) && sudo ninja install
 	$(stamp)
 
