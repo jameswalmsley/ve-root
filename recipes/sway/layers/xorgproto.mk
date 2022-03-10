@@ -1,20 +1,20 @@
-LAYER:=inputproto
+LAYER:=xorgproto
 include $(DEFINE_LAYER)
 
-inputproto_GIT_REF?=master
+xorgproto_GIT_REF?=master
 
 bdir:=$(LAYER)
 
-inputproto:=$(LSTAMP)/$(bdir)
+xorgproto:=$(LSTAMP)/$(bdir)
 
-$(L) += $(inputproto)
+$(L) += $(xorgproto)
 
-$(call git_clone, $(bdir), https://github.com/freedesktop/xorg-xorgproto.git, $(inputproto_GIT_REF))
+$(call git_clone, $(bdir), https://github.com/freedesktop/xorg-xorgproto.git, $(xorgproto_GIT_REF))
 
 include $(BUILD_LAYER)
 
-$(inputproto): bdir:=$(bdir)
-$(inputproto):
+$(xorgproto): bdir:=$(bdir)
+$(xorgproto):
 	mkdir -p $(builddir)/$(bdir)
 	cd $(builddir)/$(bdir) && $(srcdir)/$(bdir)/autogen.sh
 	cd $(builddir)/$(bdir) && make && sudo make install

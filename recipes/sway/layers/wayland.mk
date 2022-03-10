@@ -1,12 +1,13 @@
 LAYER:=wayland
 include $(DEFINE_LAYER)
 
-WAYLAND_GIT_REF?=master
+WAYLAND_GIT_REF?=main
 
 wayland:=$(LSTAMP)/wayland
 
 DEB_PACKAGES += libffi-dev
 DEB_PACKAGES += libxml2-dev
+DEB_PACKAGES += xmlto
 DEB_PACKAGES += libtool
 
 $(L) += $(wayland)

@@ -1,7 +1,7 @@
 LAYER:=wayland-protocols
 include $(DEFINE_LAYER)
 
-WAYLAND_PROTOCOLS_GIT_REF?=master
+WAYLAND_PROTOCOLS_GIT_REF?=main
 
 wayland-protocols:=$(LSTAMP)/wayland-protocols
 

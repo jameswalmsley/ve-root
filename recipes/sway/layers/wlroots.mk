@@ -18,7 +18,7 @@ DEB_PACKAGES += libavutil-dev
 DEB_PACKAGES += libavcodec-dev
 DEB_PACKAGES += libavformat-dev
 
-$(call git_clone, wlroots, https://github.com/swaywm/wlroots.git, $(WLROOTS_GIT_REF))
+$(call git_clone, wlroots, https://gitlab.freedesktop.org/wlroots/wlroots.git, $(WLROOTS_GIT_REF))
 
 include $(BUILD_LAYER)
 
