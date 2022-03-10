@@ -16,9 +16,9 @@ include $(BUILD_LAYER)
 $(kanshi): bdir:=$(bdir)
 $(kanshi):
 	mkdir -p $(builddir)/$(bdir)
-	cd $(srcdir)/$(bdir) && meson $(builddir)/$(bdir) --buildtype=release
+	cd $(srcdir)/$(bdir) && meson $(builddir)/$(bdir)
 	cd $(builddir)/$(bdir) && ninja
-	cd $(builddir)/$(bdir) && sudo ninja install
+	cd $(builddir)/$(bdir) && DESTDIR=$(SYSROOT) ninja install
 	$(stamp)
 
 $(L).clean:

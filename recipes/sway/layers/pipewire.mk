@@ -33,9 +33,10 @@ include $(BUILD_LAYER)
 
 $(pipewire):
 	mkdir -p $(builddir)/pipewire
-	cd $(builddir)/pipewire && meson --buildtype=release $(srcdir)/pipewire $(builddir)/pipewire
+	cd $(builddir)/pipewire && meson $(srcdir)/pipewire $(builddir)/pipewire $(MESON_OPTIONS)
 	cd $(builddir)/pipewire && ninja
-	cd $(builddir)/pipewire && sudo ninja install
+	cd $(builddir)/pipewire && DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/pipewire && $(SUDO) ninja install && rm -rf $(builddir)/pipewire/meson-logs/install-log.txt
 	$(stamp)
 
 $(L).clean:

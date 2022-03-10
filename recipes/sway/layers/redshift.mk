@@ -20,6 +20,6 @@ $(redshift): CXX=g++
 $(redshift):
 	mkdir -p $(builddir)/$(bdir)
 	cd $(builddir)/$(bdir) && $(srcdir)/$(bdir)/bootstrap && $(srcdir)/$(bdir)/configure
-	cd $(builddir)/$(bdir) && $(MAKE) && sudo $(MAKE) install
+	cd $(builddir)/$(bdir) && $(MAKE) && DESTDIR=$(SYSROOT) $(MAKE) install
 	$(stamp)
 

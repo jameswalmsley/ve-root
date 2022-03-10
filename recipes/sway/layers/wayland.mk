@@ -6,9 +6,6 @@ WAYLAND_GIT_REF?=main
 wayland:=$(LSTAMP)/wayland
 
 DEB_PACKAGES += libffi-dev
-DEB_PACKAGES += libxml2-dev
-DEB_PACKAGES += xmlto
-DEB_PACKAGES += libtool
 
 $(L) += $(wayland)
 
@@ -18,8 +15,9 @@ include $(BUILD_LAYER)
 
 $(wayland):
 	mkdir -p $(builddir)/wayland
-	cd $(builddir)/wayland && meson --buildtype=release -Ddocumentation=false $(srcdir)/wayland $(builddir)/wayland
+	cd $(builddir)/wayland && meson $(MESON_OPTIONS) -Ddocumentation=false -Ddtd_validation=false -Dtests=false $(srcdir)/wayland $(builddir)/wayland
 	cd $(builddir)/wayland && ninja
-	cd $(builddir)/wayland && sudo ninja install
+	cd $(builddir)/wayland && DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/wayland && $(SUDO) ninja install && rm -rf $(builddir)/wayland/meson-logs/install-log.txt
 	$(stamp)
 

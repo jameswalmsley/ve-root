@@ -18,8 +18,8 @@ include $(BUILD_LAYER)
 $(pamixer): bdir:=$(bdir)
 $(pamixer):
 	mkdir -p $(builddir)/$(bdir)
-	cd $(builddir)/pamixer && meson --buildtype=release $(srcdir)/pamixer $(builddir)/pamixer
+	cd $(builddir)/pamixer && meson $(srcdir)/pamixer $(builddir)/pamixer $(MESON_OPTIONS)
 	cd $(builddir)/pamixer && ninja
-	cd $(builddir)/pamixer && sudo ninja install
+	cd $(builddir)/pamixer && DESTDIR=$(SYSROOT) ninja install
 	$(stamp)
 

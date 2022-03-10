@@ -1,0 +1,21 @@
+name: Build Sway on Ubuntu 20.04
+on: [push]
+jobs:
+  build_sway:
+    runs-on: ubuntu-latest
+    container: jameswalmsley/swaybuilder-ubuntu:20.04
+    steps:
+      - run: "echo Checking out ${{ github.ref }}"
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Build Sway
+        run: |
+          apt-get -y update
+          DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential make
+          DEBIAN_FRONTEND=noninteractive apt-get -y install git python3-pip cmake pkg-config
+          make sway_defconfig
+          make pip-install
+          make deb-install
+          make source-checkout -j$(nproc)
+          make SUDO= -j$(nproc)
+      - run: echo "🍏 This job's status is ${{ job.status }}."

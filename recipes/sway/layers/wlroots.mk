@@ -7,16 +7,14 @@ wlroots:=$(LSTAMP)/wlroots
 
 $(L) += $(wlroots)
 
+DEPENDS += libseat
+
 DEB_PACKAGES += libinput-dev
 DEB_PACKAGES += libxkbcommon-dev
 DEB_PACKAGES += libxcb-xinput-dev
-DEB_PACKAGES += libsystemd-dev
-DEB_PACKAGES += libcap-dev
-#DEB_PACKAGES += libxcberrors-dev
+DEB_PACKAGES += libxcb-res0-dev
 DEB_PACKAGES += libxcb-icccm4-dev
-DEB_PACKAGES += libavutil-dev
-DEB_PACKAGES += libavcodec-dev
-DEB_PACKAGES += libavformat-dev
+DEB_PACKAGES += libsystemd-dev
 
 $(call git_clone, wlroots, https://gitlab.freedesktop.org/wlroots/wlroots.git, $(WLROOTS_GIT_REF))
 
@@ -24,9 +22,10 @@ include $(BUILD_LAYER)
 
 $(wlroots):
 	mkdir -p $(builddir)/wlroots
-	cd $(builddir)/wlroots && meson --buildtype=release -Dxwayland=enabled $(srcdir)/wlroots $(builddir)/wlroots
+	cd $(builddir)/wlroots && meson $(MESON_OPTIONS) -Dxwayland=enabled $(srcdir)/wlroots $(builddir)/wlroots
 	cd $(builddir)/wlroots && ninja
-	cd $(builddir)/wlroots && sudo ninja install
+	cd $(builddir)/wlroots && DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/wlroots && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:

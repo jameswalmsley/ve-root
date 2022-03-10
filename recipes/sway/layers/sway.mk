@@ -5,12 +5,13 @@ SWAY_GIT_REF?=master
 
 sway:=$(LSTAMP)/sway
 
-$(L) += $(sway)
-
 DEB_PACKAGES += libjson-c-dev
 DEB_PACKAGES += libpango1.0-dev
 DEB_PACKAGES += libgdk-pixbuf2.0-dev
-DEB_PACKAGES += qtwayland5
+
+$(L) += $(sway)
+
+DEPENDS += wlroots
 
 $(call git_clone, sway, https://github.com/swaywm/sway.git, $(SWAY_GIT_REF))
 
@@ -18,9 +19,10 @@ include $(BUILD_LAYER)
 
 $(sway):
 	mkdir -p $(builddir)/sway
-	-cd $(srcdir)/sway && meson $(builddir)/sway --buildtype=release
+	-cd $(srcdir)/sway && meson $(builddir)/sway $(MESON_OPTIONS)
 	cd $(builddir)/sway && ninja
-	cd $(builddir)/sway && sudo ninja install
+	cd $(builddir)/sway && DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/sway && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:

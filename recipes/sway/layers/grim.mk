@@ -18,9 +18,9 @@ include $(BUILD_LAYER)
 $(grim): bdir:=$(bdir)
 $(grim):
 	mkdir -p $(builddir)/$(bdir)
-	cd $(srcdir)/$(bdir) && meson $(builddir)/$(bdir) --buildtype=release
+	cd $(srcdir)/$(bdir) && meson $(builddir)/$(bdir) $(MESON_OPTIONS)
 	cd $(builddir)/$(bdir) && ninja
-	cd $(builddir)/$(bdir) && sudo ninja install
+	cd $(builddir)/$(bdir) && DESTDIR=$(SYSROOT) ninja install
 	$(stamp)
 
 $(L).clean:

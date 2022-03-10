@@ -125,10 +125,24 @@ define get_archive
 	$(eval $(get_archive_impl))
 endef
 
+define print_dep_er
+	echo $(1)
+endef
+
+.PHONY: dependency_error
 dependency_error:
-	@echo "Layer dependency not found for layer: $(error_info)"
+	@echo "Layer dependency not found for layer -- layer:requires "
+	@$(foreach err, $(error_info), $(call print_dep_er,$(err);))
+	@false
 
 rundep_error:
-	@echo "Layer runtime order not found for layer: $(error_info)"
+	@echo "Layer runtime order not found for layer: $(error_info)" || false
+
+
+define meson_build
+
+
+endef
 
 endif
+

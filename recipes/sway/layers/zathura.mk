@@ -9,19 +9,36 @@ include $(DEFINE_LAYER)
 bdir:=zathura
 
 zathura:=$(LSTAMP)/$(bdir)
+zathura-plugin-mupdf:=$(LSTAMP)/zathura-plugin-mupdf
 
 $(L) += $(zathura)
+$(L) += $(zathura-plugin-mupdf)
+
+DEB_PACKAGES += mupdf
 
 $(call git_clone, $(bdir), https://git.pwmt.org/pwmt/zathura.git, master)
+$(call git_clone, zathura-plugin-mupdf, https://git.pwmt.org/pwmt/zathura-pdf-mupdf.git, master)
 
 include $(BUILD_LAYER)
 
 $(zathura): bdir:=$(bdir)
 $(zathura):
 	mkdir -p $(builddir)/$(bdir)
-	cd $(srcdir)/$(bdir) && meson $(builddir)/$(bdir) --buildtype=release
+	cd $(srcdir)/$(bdir) && meson $(builddir)/$(bdir) $(MESON_OPTIONS)
 	cd $(builddir)/$(bdir) && ninja -v
-	cd $(builddir)/$(bdir) && sudo ninja install
+	cd $(builddir)/$(bdir) && DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/zathura && $(SUDO) ninja install && rm -rf $(builddir)/zathura/meson-logs/install-log.txt
 	$(stamp)
+
+$(zathura-plugin-mupdf):
+	mkdir -p $(builddir)/zathura-plugin-mupdf
+	cd $(srcdir)/zathura-plugin-mupdf && meson $(builddir)/zathura-plugin-mupdf $(MESON_OPTIONS)
+	cd $(builddir)/zathura-plugin-mupdf && ninja -v
+	cd $(builddir)/zathura-plugin-mupdf && DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/zathura-plugin-mupdf && $(SUDO) ninja install
+	$(stamp)
+
+$(zathura-plugin-mupdf): $(zathura)
+
 
 endif

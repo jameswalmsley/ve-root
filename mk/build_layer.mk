@@ -12,19 +12,12 @@ endif
 #
 #  Layer DEPENDS and RUNAFTER.
 #
-define check_deps
-$(eval check:=$(1))
-ifeq ($(check),"")
-$(eval error_info += $(2))
-all: | dependency_error
-endif
-endef
 
 
 $(foreach dep, $(DEPENDS), \
 $(eval $$($(L)): $$(L_$(dep))) \
-$(eval $(call check_deps,"$$(L_$(dep))",$(L)::$(dep))) \
 )
+
 #
 # Serialise each layer added.
 #

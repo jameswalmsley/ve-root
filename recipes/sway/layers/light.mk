@@ -18,7 +18,6 @@ $(light):
 	mkdir -p $(builddir)/$(bdir)
 	cd $(srcdir)/$(bdir) && git reset --hard && ./autogen.sh
 	cd $(builddir)/$(bdir) && $(srcdir)/$(bdir)/configure
-	cd $(builddir)/$(bdir) && $(MAKE) && $(MAKE) DESTDIR=$(builddir)/out install
-	sudo cp -r $(builddir)/out/* /
+	cd $(builddir)/$(bdir) && $(MAKE) && $(MAKE) DESTDIR=$(SYSROOT) install
 	$(stamp)
 

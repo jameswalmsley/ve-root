@@ -13,9 +13,9 @@ include $(BUILD_LAYER)
 
 $(avizo):
 	mkdir -p $(builddir)/avizo
-	-cd $(srcdir)/avizo && meson $(builddir)/avizo --buildtype=release
+	-cd $(srcdir)/avizo && meson $(builddir)/avizo $(MESON_OPTIONS)
 	cd $(builddir)/avizo && ninja
-	cd $(builddir)/avizo && sudo ninja install
+	cd $(builddir)/avizo && DESTDIR=$(SYSROOT) ninja install
 	$(stamp)
 
 $(L).clean:
