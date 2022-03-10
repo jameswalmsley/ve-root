@@ -1,7 +1,7 @@
 LAYER:=waybar
 include $(DEFINE_LAYER)
 
-WAYBAR_GIT_REF?=master
+WAYBAR_GIT_REF?=0.9.7
 
 waybar:=$(LSTAMP)/waybar
 
