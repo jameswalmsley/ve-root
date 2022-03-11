@@ -22,7 +22,7 @@ include $(BUILD_LAYER)
 
 $(wlroots):
 	mkdir -p $(builddir)/wlroots
-	cd $(builddir)/wlroots && meson $(MESON_OPTIONS) -Dxwayland=enabled $(srcdir)/wlroots $(builddir)/wlroots
+	cd $(builddir)/wlroots && meson $(MESON_OPTIONS) -Dexamples=false -Dxwayland=enabled $(srcdir)/wlroots $(builddir)/wlroots
 	cd $(builddir)/wlroots && ninja
 	cd $(builddir)/wlroots && DESTDIR=$(SYSROOT) ninja install
 	cd $(builddir)/wlroots && $(SUDO) ninja install

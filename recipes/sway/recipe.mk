@@ -9,6 +9,8 @@ SUDO?=sudo
 #export CC=clang
 #export CXX=clang++
 
+DISTRO=$(shell cat /etc/os-release | grep ^ID= | cut -d= -f2)
+
 DEB_PACKAGES:=pkg-config cmake autoconf git
 PIP_PACKAGES:=meson ninja
 
@@ -51,7 +53,11 @@ LAYERS += wf-recorder
 LAYERS += mupdf
 LAYERS += zathura
 LAYERS += redshift
-LAYERS += imv
+
+ifneq ($(DISTRO),arch)
+	LAYERS += imv
+endif
+
 LAYERS += light
 LAYERS += cxxopts
 LAYERS += pamixer

@@ -19,3 +19,6 @@ $(wayland-protocols):
 	cd $(builddir) && ninja && $(SUDO) ninja install && rm -rf $(builddir)/wayland/meson-logs/install-log.txt
 	$(stamp)
 
+$(L).clean:
+	rm -rf $(builddir)
+
