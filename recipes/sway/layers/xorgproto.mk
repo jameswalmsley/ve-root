@@ -1,7 +1,7 @@
 LAYER:=xorgproto
 include $(DEFINE_LAYER)
 
-xorgproto_GIT_REF?=master
+xorgproto_GIT_REF?=xorgproto-2021.5
 
 bdir:=$(LAYER)
 

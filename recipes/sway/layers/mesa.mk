@@ -1,7 +1,7 @@
 LAYER:=mesa
 include $(DEFINE_LAYER)
 
-mesa_GIT_REF?=main
+mesa_GIT_REF?=mesa-22.0.0
 
 mesa:=$(LSTAMP)/mesa
 

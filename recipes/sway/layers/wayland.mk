@@ -1,7 +1,7 @@
 LAYER:=wayland
 include $(DEFINE_LAYER)
 
-WAYLAND_GIT_REF?=main
+WAYLAND_GIT_REF?=1.20.0
 
 wayland:=$(LSTAMP)/wayland
 

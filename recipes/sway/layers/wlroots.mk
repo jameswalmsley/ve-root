@@ -1,7 +1,7 @@
 LAYER:=wlroots
 include $(DEFINE_LAYER)
 
-WLROOTS_GIT_REF?=master
+WLROOTS_GIT_REF?=0.15.1
 
 wlroots:=$(LSTAMP)/wlroots
 

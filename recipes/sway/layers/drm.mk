@@ -1,7 +1,7 @@
 LAYER:=drm
 include $(DEFINE_LAYER)
 
-drm_GIT_REF?=main
+drm_GIT_REF?=libdrm-2.4.109
 
 drm:=$(LSTAMP)/drm
 
