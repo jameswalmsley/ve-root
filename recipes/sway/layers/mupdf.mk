@@ -9,7 +9,7 @@ $(L) += $(mupdf)
 
 DEB_PACKAGES += unzip
 
-$(call git_clone, mupdf, git://git.ghostscript.com/mupdf.git, $(mupdf_GIT_REF))
+$(call git_clone, mupdf, https://github.com/artifexsoftware/mupdf, $(mupdf_GIT_REF))
 
 include $(BUILD_LAYER)
 
