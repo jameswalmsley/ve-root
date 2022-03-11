@@ -1,7 +1,7 @@
 LAYER:=sway
 include $(DEFINE_LAYER)
 
-SWAY_GIT_REF?=1.7
+SWAY_GIT_REF?=1.6.1
 
 sway:=$(LSTAMP)/sway
 
