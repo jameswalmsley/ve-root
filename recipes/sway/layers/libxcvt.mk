@@ -1,7 +1,7 @@
 LAYER:=libxcvt
 include $(DEFINE_LAYER)
 
-libxcvt_GIT_REF?=main
+libxcvt_GIT_REF?=master
 
 libxcvt:=$(LSTAMP)/libxcvt
 
