@@ -19,7 +19,8 @@ $(redshift): CC=gcc
 $(redshift): CXX=g++
 $(redshift):
 	mkdir -p $(builddir)/$(bdir)
-	cd $(builddir)/$(bdir) && $(srcdir)/$(bdir)/bootstrap && $(srcdir)/$(bdir)/configure
+	cd $(srcdir)/redshift && ./bootstrap
+	cd $(builddir)/$(bdir) && $(srcdir)/$(bdir)/configure
 	cd $(builddir)/$(bdir) && $(MAKE) && DESTDIR=$(SYSROOT) $(MAKE) install
 	$(stamp)
 
