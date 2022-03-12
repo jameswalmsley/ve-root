@@ -9,7 +9,9 @@ wshowkeys:=$(LSTAMP)/$(bdir)
 
 $(L) += $(wshowkeys)
 
-$(call git_clone, $(bdir), https://git.sr.ht/~sircmpwn/wshowkeys, $(WSHOWKEYS_GIT_REF))
+DEB_PACKAGES += libinput-dev
+
+$(call git_clone, $(bdir), https://github.com/ammgws/wshowkeys, $(WSHOWKEYS_GIT_REF))
 
 include $(BUILD_LAYER)
 
