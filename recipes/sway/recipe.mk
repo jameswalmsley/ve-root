@@ -11,6 +11,11 @@ SUDO?=sudo
 
 DISTRO=$(shell cat /etc/os-release | grep ^ID= | cut -d= -f2)
 
+ifeq ($(DISTRO),arch)
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+WAYBAR_GIT_REF=master
+endif
+
 DEB_PACKAGES:=pkg-config cmake autoconf git
 PIP_PACKAGES:=meson ninja
 
@@ -32,7 +37,7 @@ LAYERS += sway
 #LAYERS += gtkgreet
 # #LAYERS += sway-systemd
 # #LAYERS += remote-clip
-#LAYERS += swaylock-effects
+LAYERS += swaylock-effects
 LAYERS += swaylock
 LAYERS += swayidle
 LAYERS += swaybg
@@ -47,7 +52,7 @@ LAYERS += pipewire
 LAYERS += xdg-desktop-portal-wlr
 
 LAYERS += waybar
-#LAYERS += wshowkeys
+LAYERS += wshowkeys
 LAYERS += wf-recorder
 
 LAYERS += mupdf

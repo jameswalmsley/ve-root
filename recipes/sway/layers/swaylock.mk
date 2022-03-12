@@ -1,7 +1,7 @@
 LAYER:=swaylock
 include $(DEFINE_LAYER)
 
-SWAYLOCK_GIT_REF?=master
+SWAYLOCK_GIT_REF?=1.6
 
 swaylock:=$(LSTAMP)/swaylock
 

@@ -19,7 +19,7 @@ $(wshowkeys):
 	cd $(srcdir)/$(bdir) && meson $(builddir)/$(bdir) $(MESON_OPTIONS)
 	cd $(builddir)/$(bdir) && ninja
 	cd $(builddir)/$(bdir) && DESTDIR=$(SYSROOT) ninja install
-	sudo chmod a+s /usr/local/bin/wshowkeys
+	chmod a+s $(SYSROOT)/usr/local/bin/wshowkeys
 	$(stamp)
 
 $(L).clean:
