@@ -5,19 +5,21 @@ MESON_OPTIONS:=
 
 MESON_OPTIONS += --buildtype=release
 SUDO?=sudo
-
-#export CC=clang
-#export CXX=clang++
+CLANG:=clang
+CLANG++:=clang++
 
 DISTRO:=$(shell cat /etc/os-release | grep ^ID= | cut -d= -f2)
 DISTRO_FULL:=$(DISTRO)
 
 ifeq ($(DISTRO),ubuntu)
 DISTRO_FULL:=$(DISTRO)-$(shell cat /etc/os-release | grep ^VERSION_ID= | cut -d= -f2)
+CLANG:=clang-12
+CLANG++:=clang++-12
 endif
 
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/local/lib/x86-_64-linux-gnu/pkgconfig
+
 ifeq ($(DISTRO),arch)
-export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 WAYBAR_GIT_REF=master
 endif
 
@@ -42,8 +44,8 @@ LAYERS += sway
 #LAYERS += gtkgreet
 # LAYERS += sway-systemd
 # #LAYERS += remote-clip
+# LAYERS += swaylock
 LAYERS += swaylock-effects
-LAYERS += swaylock
 LAYERS += swayidle
 LAYERS += swaybg
 LAYERS += kanshi

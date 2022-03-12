@@ -28,7 +28,7 @@ include $(BUILD_LAYER)
 
 $(waybar):
 	mkdir -p $(builddir)/waybar
-	cd $(srcdir)/waybar && CXX=clang++ meson $(builddir)/waybar $(MESON_OPTIONS) -Ddbusmenu-gtk=enabled
+	cd $(srcdir)/waybar && CXX=$(CLANG++) meson $(builddir)/waybar $(MESON_OPTIONS) -Ddbusmenu-gtk=enabled
 	cd $(builddir)/waybar && ninja
 	cd $(builddir)/waybar && DESTDIR=$(SYSROOT) ninja install
 	$(stamp)
