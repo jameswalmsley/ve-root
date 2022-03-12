@@ -19,3 +19,25 @@ jobs:
           make source-checkout -j$(nproc)
           make SUDO= -j$(nproc)
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - uses: actions/upload-artifact@v3
+        with:
+          name: sway-ubuntu
+          path: out/sway/*.tar.gz
+
+  release_sway:
+    needs: build_sway
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: sway-ubuntu
+
+      - run: ls -R
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/sway')
+        with:
+          files: |
+            *.tar.gz
+        continue-on-error: true
