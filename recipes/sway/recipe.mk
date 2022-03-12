@@ -9,7 +9,12 @@ SUDO?=sudo
 #export CC=clang
 #export CXX=clang++
 
-DISTRO=$(shell cat /etc/os-release | grep ^ID= | cut -d= -f2)
+DISTRO:=$(shell cat /etc/os-release | grep ^ID= | cut -d= -f2)
+DISTRO_FULL:=$(DISTRO)
+
+ifeq ($(DISTRO),ubuntu)
+DISTRO_FULL:=$(DISTRO)-$(shell cat /etc/os-release | grep ^VERSION_ID= | cut -d= -f2)
+endif
 
 ifeq ($(DISTRO),arch)
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
@@ -33,9 +38,9 @@ LAYERS += xwayland
 LAYERS += libseat
 LAYERS += wlroots
 LAYERS += sway
-#LAYERS += greetd
+# LAYERS += greetd
 #LAYERS += gtkgreet
-# #LAYERS += sway-systemd
+# LAYERS += sway-systemd
 # #LAYERS += remote-clip
 LAYERS += swaylock-effects
 LAYERS += swaylock
@@ -67,5 +72,7 @@ LAYERS += light
 LAYERS += cxxopts
 LAYERS += pamixer
 LAYERS += avizo
+
+LAYERS += package
 
 include $(BUILD_RECIPE)
