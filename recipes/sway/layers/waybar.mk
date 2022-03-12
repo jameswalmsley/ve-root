@@ -20,6 +20,9 @@ DEB_PACKAGES += libgtk-3-dev
 DEB_PACKAGES += gobject-introspection
 DEB_PACKAGES += libgirepository1.0-dev
 
+DEB_RUN_PACKAGES += libjsoncpp1
+DEB_RUN_PACKAGES += libmpdclient2
+
 $(L) += $(waybar)
 
 $(call git_clone, waybar, https://github.com/Alexays/Waybar.git, $(WAYBAR_GIT_REF))

@@ -10,6 +10,14 @@ deb-info:
 deb-install:
 	DEBIAN_FRONTEND=noninteractive apt-get -y install $(DEB_PACKAGES)
 
+.PHONY: deb-run-info
+deb-run-info:
+	@echo "$(DEB_RUN_PACKAGES)"
+
+.PHONY: deb-run-install
+deb-run-install:
+	DEBIAN_FRONTEND=noninteractive apt-get -y install $(DEB_RUN_PACKAGES)
+
 .PHONY: pip-info
 pip-info:
 	@echo "$(PIP_PACKAGES)"

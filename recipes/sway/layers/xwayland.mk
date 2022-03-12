@@ -29,6 +29,13 @@ DEB_PACKAGES += xutils-dev libgl1-mesa-dev libmd-dev x11proto-xcmisc-dev x11prot
 DEB_PACKAGES += libgles2-mesa-dev libxcb-composite0-dev libxcursor-dev \
 				  libcairo2-dev libgbm-dev libpam0g-dev
 
+DEB_PACKAGES += libx11-xcb-dev
+DEB_PACKAGES += libxcb-glx0-dev
+DEB_PACKAGES += libxcb-dri2-0-dev
+DEB_PACKAGES += libxxf86vm-dev
+
+DEB_RUN_PACKAGES += libmd0
+
 $(L) += $(xwayland)
 
 DEPENDS += xorgproto

@@ -5,6 +5,8 @@ XDG_DESKTOP_PORTAL_WLR_GIT_REF?=master
 
 DEB_PACKAGES += libiniparser-dev
 
+DEB_RUN_PACKAGES += libinih1
+
 portal-wlr:=$(LSTAMP)/portal-wlr
 
 $(L) += $(portal-wlr)
