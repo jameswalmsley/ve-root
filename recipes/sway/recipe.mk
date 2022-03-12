@@ -56,6 +56,10 @@ LAYERS += slurp
 LAYERS += wl-clipboard
 
 LAYERS += pipewire
+LAYERS += geoclue
+LAYERS += libfuse
+LAYERS += libportal
+LAYERS += xdg-desktop-portal
 LAYERS += xdg-desktop-portal-wlr
 
 LAYERS += waybar
