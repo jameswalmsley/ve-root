@@ -77,6 +77,7 @@ LAYERS += pipewire
 LAYERS-$(CONFIG_LIBGEOCLUE) += geoclue
 LAYERS-$(CONFIG_LIBFUSE) += libfuse
 LAYERS-$(CONFIG_GLIB) += glib
+LAYERS += gtk-layer-shell
 LAYERS += libportal
 LAYERS += xdg-desktop-portal
 LAYERS += libinih

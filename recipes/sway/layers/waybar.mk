@@ -27,6 +27,7 @@ $(L) += $(waybar)
 
 DEPENDS += glib
 DEPENDS += sway
+DEPENDS += gtk-layer-shell
 
 $(call git_clone, waybar, https://github.com/Alexays/Waybar.git, $(WAYBAR_GIT_REF))
 
