@@ -21,7 +21,7 @@ $(sway):
 	mkdir -p $(builddir)/sway
 	-cd $(srcdir)/sway && meson $(builddir)/sway $(MESON_OPTIONS)
 	cd $(builddir)/sway && ninja
-	cd $(builddir)/sway && DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/sway && $(SUDO) DESTDIR=$(SYSROOT) ninja install
 	cd $(builddir)/sway && $(SUDO) ninja install
 	$(stamp)
 

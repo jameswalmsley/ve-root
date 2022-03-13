@@ -20,6 +20,6 @@ $(pamixer):
 	mkdir -p $(builddir)/$(bdir)
 	cd $(builddir)/pamixer && meson $(srcdir)/pamixer $(builddir)/pamixer $(MESON_OPTIONS)
 	cd $(builddir)/pamixer && ninja
-	cd $(builddir)/pamixer && DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/pamixer && $(SUDO) DESTDIR=$(SYSROOT) ninja install
 	$(stamp)
 

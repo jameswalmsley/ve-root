@@ -15,7 +15,7 @@ $(avizo):
 	mkdir -p $(builddir)/avizo
 	-cd $(srcdir)/avizo && meson $(builddir)/avizo $(MESON_OPTIONS)
 	cd $(builddir)/avizo && ninja
-	cd $(builddir)/avizo && DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/avizo && $(SUDO) DESTDIR=$(SYSROOT) ninja install
 	$(stamp)
 
 $(L).clean:

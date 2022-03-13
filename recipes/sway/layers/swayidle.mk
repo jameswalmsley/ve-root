@@ -18,7 +18,7 @@ $(swayidle):
 	mkdir -p $(builddir)/$(bdir)
 	cd $(srcdir)/$(bdir) && meson $(builddir)/$(bdir) $(MESON_OPTIONS)
 	cd $(builddir)/$(bdir) && ninja
-	cd $(builddir)/$(bdir) && DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/$(bdir) && $(SUDO) DESTDIR=$(SYSROOT) ninja install
 	$(stamp)
 
 $(L).clean:

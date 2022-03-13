@@ -21,21 +21,21 @@ $(vulkan):
 	mkdir -p $(builddir)/vulkan-headers
 	cd $(builddir)/vulkan-headers && cmake -GNinja -DCMAKE_BUILD_TYPE=Release $(srcdir)/vulkan-headers
 	cd $(builddir)/vulkan-headers && ninja
-	cd $(builddir)/vulkan-headers && DESTDIR=$(SYSROOT) ninja install
-	cd $(builddir)/vulkan-headers && $(SUDO) ninja install && rm $(builddir)/vulkan-headers/install_manifest.txt
+	cd $(builddir)/vulkan-headers && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/vulkan-headers && $(SUDO) ninja install
 	mkdir -p $(builddir)/vulkan-loader
 	cd $(builddir)/vulkan-loader && cmake -GNinja -DBUILD_WSI_XCB_SUPPORT=OFF -DBUILD_WSI_XLIB_SUPPORT=OFF -DCMAKE_BUILD_TYPE=Release $(srcdir)/vulkan-loader
 	cd $(builddir)/vulkan-loader && ninja
-	cd $(builddir)/vulkan-loader && DESTDIR=$(SYSROOT) ninja install
-	cd $(builddir)/vulkan-loader && $(SUDO) ninja install && rm $(builddir)/vulkan-loader/install_manifest.txt
+	cd $(builddir)/vulkan-loader && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/vulkan-loader && $(SUDO) ninja install
 	$(stamp)
 
 $(glslang):
 	mkdir -p $(builddir)/glslang
 	cd $(builddir)/glslang && cmake -GNinja -DBUILD_WSI_XCB_SUPPORT=OFF -DBUILD_WSI_XLIB_SUPPORT=OFF -DCMAKE_BUILD_TYPE=Release $(srcdir)/glslang
 	cd $(builddir)/glslang && ninja
-	cd $(builddir)/glslang && DESTDIR=$(SYSROOT) ninja install
-	cd $(builddir)/glslang && $(SUDO) ninja install && rm $(builddir)/glslang/install_manifest.txt
+	cd $(builddir)/glslang && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/glslang && $(SUDO) ninja install
 	$(stamp)
 
 $(glslang): | $(vulkan)

@@ -98,8 +98,8 @@ $(mesa):
 	@echo $(MESA_FLAGS)
 	cd $(builddir)/mesa && CFLAGS="$(MESA_CFLAGS)" CXXFLAGS="$(MESA_CXXFLAGS)" meson $(MESON_OPTIONS) $(srcdir)/mesa $(builddir)/mesa $(MESA_OPTIONS)
 	cd $(builddir)/mesa && ninja
-	cd $(builddir)/mesa && DESTDIR=$(SYSROOT) ninja install
-	cd $(builddir)/mesa && $(SUDO) ninja install && rm -rf $(builddir)/drm/meson-logs/install-log.txt
+	cd $(builddir)/mesa && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/mesa && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:

@@ -15,8 +15,8 @@ $(libinput):
 	mkdir -p $(builddir)/libinput
 	cd $(builddir)/libinput && meson $(MESON_OPTIONS) $(srcdir)/libinput $(builddir)/libinput
 	cd $(builddir)/libinput && ninja
-	cd $(builddir)/libinput && DESTDIR=$(SYSROOT) ninja install
-	cd $(builddir)/libinput && $(SUDO) ninja install && rm -rf $(builddir)/libinput/meson-logs/install-log.txt
+	cd $(builddir)/libinput && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/libinput && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:

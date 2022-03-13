@@ -21,6 +21,7 @@ $(redshift):
 	mkdir -p $(builddir)/$(bdir)
 	cd $(srcdir)/redshift && ./bootstrap
 	cd $(builddir)/$(bdir) && $(srcdir)/$(bdir)/configure
-	cd $(builddir)/$(bdir) && $(MAKE) && DESTDIR=$(SYSROOT) $(MAKE) install
+	cd $(builddir)/$(bdir) && $(MAKE)
+	cd $(builddir)/redshift && $(SUDO) DESTDIR=$(SYSROOT) $(MAKE) install
 	$(stamp)
 

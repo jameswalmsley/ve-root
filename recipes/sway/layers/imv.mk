@@ -19,7 +19,8 @@ $(imv): bdir:=$(bdir)
 $(imv):
 	mkdir -p $(builddir)/imv
 	cd $(srcdir)/imv && meson $(builddir)/imv $(MESON_OPTIONS)
-	cd $(builddir)/imv && ninja && DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/imv && ninja
+	cd $(builddir)/imv && $(SUDO) DESTDIR=$(SYSROOT) ninja install
 	$(stamp)
 
 

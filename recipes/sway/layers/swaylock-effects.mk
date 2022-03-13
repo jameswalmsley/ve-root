@@ -17,7 +17,7 @@ $(swaylock-effects):
 	mkdir -p $(builddir)/swaylock-effects
 	cd $(srcdir)/swaylock-effects && CC=$(CLANG) meson $(builddir)/swaylock-effects $(MESON_OPTIONS)
 	cd $(builddir)/swaylock-effects && ninja
-	cd $(builddir)/swaylock-effects && DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/swaylock-effects && $(SUDO) DESTDIR=$(SYSROOT) ninja install
 	$(stamp)
 
 $(L).clean:

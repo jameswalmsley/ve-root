@@ -17,8 +17,8 @@ $(drm):
 	mkdir -p $(builddir)/drm
 	cd $(builddir)/drm && meson $(MESON_OPTIONS) $(srcdir)/drm $(builddir)/drm -Dinstall-test-programs=false
 	cd $(builddir)/drm && ninja
-	cd $(builddir)/drm && DESTDIR=$(SYSROOT) ninja install
-	cd $(builddir)/drm && $(SUDO) ninja install && rm -rf $(builddir)/drm/meson-logs/install-log.txt
+	cd $(builddir)/drm && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/drm && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:

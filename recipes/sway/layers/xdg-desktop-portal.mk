@@ -20,7 +20,7 @@ $(xdg-desktop-portal):
 	mkdir -p $(builddir)/xdg-desktop-portal
 	cd $(builddir)/xdg-desktop-portal && $(srcdir)/xdg-desktop-portal/autogen.sh
 	cd $(builddir)/xdg-desktop-portal && $(MAKE)
-	cd $(builddir)/xdg-desktop-portal && $(MAKE) DESTDIR=$(SYSROOT) install
+	cd $(builddir)/xdg-desktop-portal && $(SUDO) $(MAKE) DESTDIR=$(SYSROOT) install
 	cd $(builddir)/xdg-desktop-portal && $(SUDO) $(MAKE) install
 	$(stamp)
 
