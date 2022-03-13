@@ -15,7 +15,7 @@ endif
 
 
 $(foreach dep, $(DEPENDS), \
-$(eval $$($(L)): $$(L_$(dep))) \
+$(eval DEPENDS_$(L)+=$(dep)) \
 )
 
 #
@@ -25,7 +25,7 @@ $(eval $$($(L)): $$(L_$(dep))) \
 ifneq ($(ENABLE_PARALLEL_LAYERS),y)
 
 define serialise_layers
-RUNAFTER += $(patsubst L_%,%,$(lastword $(filter-out $(lastword $(recipe)),$(recipe))))
+#RUNAFTER += $(patsubst L_%,%,$(lastword $(filter-out $(lastword $(recipe)),$(recipe))))
 endef
 
 $(eval $(serialise_layers))

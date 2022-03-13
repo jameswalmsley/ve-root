@@ -26,8 +26,24 @@ LAYERS:=$(TOP_RECIPE_LAYERS)
 endif
 
 
+
 $(foreach layer,$(LAYERS), \
 $(eval $(call select_layer,$(layer))) \
+)
+
+
+define eval_layer_deps
+$(foreach dep,$(2), \
+$(eval $$(L_$(1)): $$(L_$(dep))) \
+)
+endef
+
+define eval_layer_depends
+$(call eval_layer_deps,$(1),$(DEPENDS_L_$(1)))
+endef
+
+$(foreach layer,$(LAYERS), \
+$(eval $(call eval_layer_depends,$(layer))) \
 )
 
 LAYERS:=
