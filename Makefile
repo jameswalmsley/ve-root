@@ -71,7 +71,7 @@ docker.info:
 
 .PHONY: docker
 docker:
-	cd $(BASE)/docker/$(DOCKER_IMAGE) && BASE=$(BASE) docker-compose run $(DOCKER_SERVICE) $(DOCKER_COMMAND)
+	cd $(BASE)/docker/$(DOCKER_IMAGE) && BASE=$(BASE) docker-compose run --rm $(DOCKER_SERVICE) $(DOCKER_COMMAND)
 
 .PHONY: docker.build
 docker.build:
