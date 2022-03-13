@@ -23,7 +23,6 @@ CLANG++:=clang++-12
 ifeq ($(DISTRO_VER),18.04)
 	export CC=gcc-10
 	export CXX=g++-10
-	WAYBAR_GIT_REF:=0.8.0
 	CONFIG_LIBALSA:=y
 	CONFIG_LIBFUSE:=y
 	CONFIG_LIBGEOCLUE:=y

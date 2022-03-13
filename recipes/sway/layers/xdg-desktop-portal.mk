@@ -10,6 +10,7 @@ $(L) += $(xdg-desktop-portal)
 DEB_PACKAGES += libtool
 DEB_PACKAGES += libsystemd-dev
 DEB_PACKAGES += libjson-glib-dev
+DEB_PACKAGES += libgeoclue-2-dev
 
 DEPENDS += pipewire
 DEPENDS += geoclue
