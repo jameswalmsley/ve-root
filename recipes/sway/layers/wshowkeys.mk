@@ -1,7 +1,7 @@
 LAYER:=wshowkeys
 include $(DEFINE_LAYER)
 
-WSHOWKEYS_GIT_REF?=master
+WSHOWKEYS_GIT_REF?=main
 
 bdir:=wshowkeys
 
