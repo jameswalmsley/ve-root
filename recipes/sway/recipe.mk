@@ -22,7 +22,8 @@ CLANG:=clang-12
 CLANG++:=clang++-12
 
 ifeq ($(DISTRO_VER),18.04)
-	PIPEWIRE_ENABLED:=n
+	#PIPEWIRE_ENABLED:=n
+	WAYBAR_GIT_REF=0.8.0
 endif
 
 endif
@@ -53,9 +54,9 @@ LAYERS += libseat
 LAYERS += wlroots
 LAYERS += json-c
 LAYERS += sway
-# LAYERS += greetd
-#LAYERS += gtkgreet
-# LAYERS += sway-systemd
+LAYERS += greetd
+LAYERS += gtkgreet
+LAYERS += sway-systemd
 # #LAYERS += remote-clip
 # LAYERS += swaylock
 LAYERS += swaylock-effects
@@ -69,11 +70,13 @@ LAYERS += slurp
 LAYERS += wl-clipboard
 
 ifeq ($(PIPEWIRE_ENABLED),y)
+LAYERS += libalsa
 LAYERS += pipewire
 LAYERS += geoclue
 LAYERS += libfuse
 LAYERS += libportal
 LAYERS += xdg-desktop-portal
+LAYERS += libinih
 LAYERS += xdg-desktop-portal-wlr
 endif
 

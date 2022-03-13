@@ -22,3 +22,6 @@ $(greetd):
 	-sudo mkdir /etc/greetd
 	$(stamp)
 
+$(L).clean:
+	rm -rf $(builddir)
+

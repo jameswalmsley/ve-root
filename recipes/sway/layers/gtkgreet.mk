@@ -12,8 +12,12 @@ $(call git_clone, gtkgreet, https://git.sr.ht/~kennylevinsen/gtkgreet, $(GTKGREE
 include $(BUILD_LAYER)
 
 $(gtkgreet):
-	cd $(srcdir)/gtkgreet && meson $(builddir)
-	cd $(builddir) && ninja
-	cd $(builddir) && sudo ninja install
+	mkdir -p $(builddir)/gtkgreet
+	cd $(builddir)/gtkgreet && meson $(MESON_OPTIONS) $(srcdir)/gtkgreet
+	cd $(builddir)/gtkgreet && ninja
+	cd $(builddir)/gtkgreet && $(SUDO) ninja install
 	$(stamp)
+
+$(L).clean:
+	rm -rf $(builddir)/gtkgreet
 

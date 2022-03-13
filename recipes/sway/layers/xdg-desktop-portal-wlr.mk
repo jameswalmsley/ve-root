@@ -13,6 +13,8 @@ $(L) += $(portal-wlr)
 
 $(call git_clone, portal-wlr, https://github.com/emersion/xdg-desktop-portal-wlr.git, $(XDG_DESKTOP_PORTAL_WLR_GIT_REF))
 
+DEPENDS += libinih
+
 include $(BUILD_LAYER)
 
 $(portal-wlr): export C_INCLUDE_PATH=/usr/include/iniparser
