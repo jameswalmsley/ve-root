@@ -13,6 +13,8 @@ $(L) += $(pamixer)
 
 $(call git_clone, $(bdir), https://github.com/cdemoulins/pamixer.git, $(PAMIXER_GIT_REF))
 
+DEPENDS += cxxopts
+
 include $(BUILD_LAYER)
 
 $(pamixer): bdir:=$(bdir)

@@ -73,6 +73,7 @@ LAYERS-$(CONFIG_LIBALSA) += libalsa
 LAYERS += pipewire
 LAYERS-$(CONFIG_LIBGEOCLUE) += geoclue
 LAYERS-$(CONFIG_LIBFUSE) += libfuse
+LAYERS-$(CONFIG_GLIB) += glib
 LAYERS += libportal
 LAYERS += xdg-desktop-portal
 LAYERS += libinih
