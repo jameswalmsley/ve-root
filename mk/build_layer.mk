@@ -136,6 +136,7 @@ define git_unshallow_layer
 .PHONY: $(L).git.unshallow
 $(L).git.unshallow:
 	@$(foreach g, $($(L)_git-repos),\
+	echo "unshallow: $(L)"; \
 	BASE=$(BASE) bash $(BASE)/mk/git/unshallow.sh $(g);\
 	)
 endef
