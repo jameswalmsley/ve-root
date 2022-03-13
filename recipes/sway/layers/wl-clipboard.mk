@@ -9,6 +9,8 @@ $(L) += $(wl-clipboard)
 
 $(call git_clone, wl-clipboard, https://github.com/bugaevc/wl-clipboard.git, $(WL_CLIPBOARD_GIT_REF))
 
+DEPENDS += sway
+
 include $(BUILD_LAYER)
 
 $(wl-clipboard):

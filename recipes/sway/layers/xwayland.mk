@@ -41,6 +41,10 @@ $(L) += $(xwayland)
 DEPENDS += xorgproto
 DEPENDS += libxcvt
 DEPENDS += drm
+DEPENDS += mesa
+DEPENDS += wayland
+DEPENDS += wayland-protocols
+DEPENDS += libepoxy
 
 $(call git_clone, $(bdir), https://github.com/freedesktop/xorg-xserver, $(XWAYLAND_GIT_REF))
 

@@ -9,6 +9,9 @@ $(L) += $(mako)
 
 $(call git_clone, mako, https://github.com/emersion/mako.git, $(MAKO_GIT_REF))
 
+DEPENDS += sway
+
+
 include $(BUILD_LAYER)
 
 $(mako):

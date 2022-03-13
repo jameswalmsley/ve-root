@@ -13,6 +13,8 @@ DEB_PACKAGES += libinput-dev
 
 $(call git_clone, $(bdir), https://github.com/ammgws/wshowkeys, $(WSHOWKEYS_GIT_REF))
 
+DEPENDS += sway
+
 include $(BUILD_LAYER)
 
 $(wshowkeys): bdir:=$(bdir)

@@ -11,6 +11,8 @@ DEB_PACKAGES += libxkbcommon-x11-dev
 
 $(L) += $(imv)
 
+DEPENDS += sway
+
 $(call git_clone, $(bdir), https://git.sr.ht/~exec64/imv, master)
 
 include $(BUILD_LAYER)

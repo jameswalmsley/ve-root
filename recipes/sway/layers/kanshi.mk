@@ -9,6 +9,8 @@ kanshi:=$(LSTAMP)/$(bdir)
 
 $(L) += $(kanshi)
 
+DEPENDS += sway
+
 $(call git_clone, $(bdir), https://github.com/emersion/kanshi.git, $(KANSHI_GIT_REF))
 
 include $(BUILD_LAYER)

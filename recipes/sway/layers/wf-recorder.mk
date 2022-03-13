@@ -12,6 +12,8 @@ DEB_PACKAGES += libswscale-dev
 
 $(L) += $(wf-recorder)
 
+DEPENDS += sway
+
 $(call git_clone, $(bdir), https://github.com/ammen99/wf-recorder.git, $(WF_RECORDER_GIT_REF))
 
 include $(BUILD_LAYER)

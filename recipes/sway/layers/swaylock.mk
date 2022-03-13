@@ -9,6 +9,8 @@ $(L) += $(swaylock)
 
 $(call git_clone, swaylock, https://github.com/swaywm/swaylock.git, $(SWAYLOCK_GIT_REF))
 
+DEPENDS += sway
+
 include $(BUILD_LAYER)
 
 $(swaylock):

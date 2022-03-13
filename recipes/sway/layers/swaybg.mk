@@ -11,6 +11,8 @@ $(L) += $(swaybg)
 
 $(call git_clone, $(bdir), https://github.com/swaywm/swaybg.git, $(SWAYBG_GIT_REF))
 
+DEPENDS += sway
+
 include $(BUILD_LAYER)
 
 $(swaybg): bdir:=$(bdir)

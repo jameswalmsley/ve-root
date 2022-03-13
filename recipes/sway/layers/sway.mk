@@ -12,6 +12,7 @@ DEB_PACKAGES += libgdk-pixbuf2.0-dev
 $(L) += $(sway)
 
 DEPENDS += wlroots
+DEPENDS += json-c
 
 $(call git_clone, sway, https://github.com/jameswalmsley/sway.git, $(SWAY_GIT_REF))
 

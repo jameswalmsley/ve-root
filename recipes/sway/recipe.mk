@@ -7,6 +7,7 @@ MESON_OPTIONS += --buildtype=release
 SUDO?=sudo
 CLANG:=clang
 CLANG++:=clang++
+MAKE:=make -j$(shell nproc)
 
 DISTRO:=$(shell cat /etc/os-release | grep ^ID= | cut -d= -f2)
 DISTRO_FULL:=$(DISTRO)
@@ -20,6 +21,8 @@ CLANG:=clang-12
 CLANG++:=clang++-12
 
 ifeq ($(DISTRO_VER),18.04)
+	export CC=gcc-10
+	export CXX=g++-10
 	WAYBAR_GIT_REF:=0.8.0
 	CONFIG_LIBALSA:=y
 	CONFIG_LIBFUSE:=y
@@ -41,7 +44,7 @@ PIP_PACKAGES:=meson ninja
 
 LAYERS += build-deps
 LAYERS += scdoc
-LAYERS += drm
+LAYERS += libdrm
 LAYERS += wayland
 LAYERS += wayland-protocols
 LAYERS += vulkan
@@ -56,6 +59,7 @@ LAYERS += libseat
 LAYERS += wlroots
 LAYERS += json-c
 LAYERS += sway
+
 # LAYERS += greetd
 # LAYERS += gtkgreet
 # LAYERS += sway-systemd

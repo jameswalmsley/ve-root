@@ -25,6 +25,9 @@ DEB_RUN_PACKAGES += libmpdclient2
 
 $(L) += $(waybar)
 
+DEPENDS += glib
+DEPENDS += sway
+
 $(call git_clone, waybar, https://github.com/Alexays/Waybar.git, $(WAYBAR_GIT_REF))
 
 include $(BUILD_LAYER)

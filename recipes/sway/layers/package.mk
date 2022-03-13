@@ -7,7 +7,7 @@ $(L) += $(package)
 
 DEB_PACKAGES += pigz
 
-DEPENDS += $(LAYERS)
+DEPENDS += $(filter-out package, $(LAYERS))
 
 include $(BUILD_LAYER)
 

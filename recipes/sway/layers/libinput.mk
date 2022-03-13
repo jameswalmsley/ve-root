@@ -7,7 +7,11 @@ libinput:=$(LSTAMP)/libinput
 
 $(L) += $(libinput)
 
+DEB_PACKAGES += check
+
 $(call git_clone, libinput, https://github.com/wayland-project/libinput.git, $(libinput_GIT_REF))
+
+DEPENDS += wayland
 
 include $(BUILD_LAYER)
 

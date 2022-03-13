@@ -8,8 +8,11 @@ swaylock-effects:=$(LSTAMP)/swaylock-effects
 $(L) += $(swaylock-effects)
 
 DEB_PACKAGES += clang-12
+DEB_PACKAGES += libomp-dev
 
 $(call git_clone, swaylock-effects, https://github.com/mortie/swaylock-effects.git, $(SWAYLOCK_EFFECTS_GIT_REF))
+
+DEPENDS += sway
 
 include $(BUILD_LAYER)
 

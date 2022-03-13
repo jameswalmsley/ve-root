@@ -9,6 +9,9 @@ $(L) += $(gtkgreet)
 
 $(call git_clone, gtkgreet, https://git.sr.ht/~kennylevinsen/gtkgreet, $(GTKGREET_GIT_REF))
 
+DEPENDS += sway
+DEPENDS += glib
+
 include $(BUILD_LAYER)
 
 $(gtkgreet):

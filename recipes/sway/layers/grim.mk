@@ -11,6 +11,8 @@ DEB_PACKAGES += libjpeg-dev
 
 $(L) += $(grim)
 
+DEPENDS += sway
+
 $(call git_clone, $(bdir), https://github.com/emersion/grim.git, $(GRIM_GIT_REF))
 
 include $(BUILD_LAYER)

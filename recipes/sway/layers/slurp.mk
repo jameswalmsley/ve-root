@@ -11,6 +11,8 @@ $(L) += $(slurp)
 
 $(call git_clone, $(bdir), https://github.com/emersion/slurp.git, $(SLURP_GIT_REF))
 
+DEPENDS += sway
+
 include $(BUILD_LAYER)
 
 $(slurp): bdir:=$(bdir)

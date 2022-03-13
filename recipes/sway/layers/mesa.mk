@@ -31,7 +31,7 @@ DEB_PACKAGES += libclang-12-dev
 
 PIP_PACKAGES += mako
 
-DEPENDS += drm
+DEPENDS += libdrm
 DEPENDS += vulkan
 DEPENDS += wayland
 DEPENDS += wayland-protocols

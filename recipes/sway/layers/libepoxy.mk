@@ -9,6 +9,9 @@ $(L) += $(libepoxy)
 
 $(call git_clone, libepoxy, https://github.com/anholt/libepoxy.git, $(libepoxy_GIT_REF))
 
+DEPENDS += glib
+DEPENDS += wayland-protocols
+
 include $(BUILD_LAYER)
 
 $(libepoxy):

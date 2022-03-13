@@ -26,15 +26,15 @@ $(zathura):
 	mkdir -p $(builddir)/$(bdir)
 	cd $(srcdir)/$(bdir) && meson $(builddir)/$(bdir) $(MESON_OPTIONS)
 	cd $(builddir)/$(bdir) && ninja
-	cd $(builddir)/$(bdir) && DESTDIR=$(SYSROOT) ninja install
-	cd $(builddir)/zathura && $(SUDO) ninja install && rm -rf $(builddir)/zathura/meson-logs/install-log.txt
+	cd $(builddir)/$(bdir) && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/zathura && $(SUDO) ninja install
 	$(stamp)
 
 $(zathura-plugin-mupdf):
 	mkdir -p $(builddir)/zathura-plugin-mupdf
 	cd $(srcdir)/zathura-plugin-mupdf && meson $(builddir)/zathura-plugin-mupdf $(MESON_OPTIONS)
 	cd $(builddir)/zathura-plugin-mupdf && ninja
-	cd $(builddir)/zathura-plugin-mupdf && DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/zathura-plugin-mupdf && $(SUDO) DESTDIR=$(SYSROOT) ninja install
 	cd $(builddir)/zathura-plugin-mupdf && $(SUDO) ninja install
 	$(stamp)
 

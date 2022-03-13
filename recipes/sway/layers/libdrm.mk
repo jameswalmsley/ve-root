@@ -1,26 +1,27 @@
 LAYER:=libdrm
 include $(DEFINE_LAYER)
 
-libdrm_GIT_REF?=master
+libdrm_GIT_REF?=libdrm-2.4.109
 
-bdir:=$(LAYER)
-
-libdrm:=$(LSTAMP)/$(bdir)
+libdrm:=$(LSTAMP)/libdrm
 
 $(L) += $(libdrm)
 
-$(call git_clone, $(bdir), https://github.com/freedesktop/mesa-drm.git, $(libdrm_GIT_REF))
+DEB_PACKAGES += libpciaccess-dev
+
+$(call git_clone, libdrm, https://github.com/freedesktop/mesa-drm.git, $(libdrm_GIT_REF))
 
 include $(BUILD_LAYER)
 
-$(libdrm): bdir:=$(bdir)
 $(libdrm):
-	mkdir -p $(builddir)/$(bdir)
-	cd $(srcdir)/$(bdir) && meson $(builddir)/$(bdir) --buildtype=release
-	cd $(builddir)/$(bdir) && ninja
-	cd $(builddir)/$(bdir) && sudo ninja install
+$(libdrm):
+	mkdir -p $(builddir)/libdrm
+	cd $(srcdir)/libdrm && meson $(MESON_OPTIONS) $(srcdir)/libdrm $(builddir)/libdrm -Dinstall-test-programs=false
+	cd $(builddir)/libdrm && ninja
+	cd $(builddir)/libdrm && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/libdrm && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:
-	rm -rf $(builddir)
+	rm -rf $(builddir)/libdrm
 

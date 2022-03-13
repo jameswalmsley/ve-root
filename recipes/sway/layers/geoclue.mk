@@ -16,6 +16,8 @@ DEB_PACKAGES += libnotify-dev
 
 $(call git_clone, geoclue, https://gitlab.freedesktop.org/geoclue/geoclue.git, $(geoclue_GIT_REF))
 
+DEPENDS += glib
+
 include $(BUILD_LAYER)
 
 $(geoclue):
