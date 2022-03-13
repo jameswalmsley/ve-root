@@ -1,7 +1,7 @@
 LAYER:=libseat
 include $(DEFINE_LAYER)
 
-libseat_GIT_REF?=master
+libseat_GIT_REF?=0.6.3
 
 libseat:=$(LSTAMP)/libseat
 
