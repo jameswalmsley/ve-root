@@ -28,6 +28,10 @@ DEB_RUN_PACKAGES += liblilv-0-0
 
 $(call git_clone, pipewire, https://gitlab.freedesktop.org/pipewire/pipewire.git, $(PIPEWIRE_GIT_REF))
 
+ifeq ($(CONFIG_LIBALSA),y)
+DEPENDS += libalsa
+endif
+
 include $(BUILD_LAYER)
 
 $(pipewire):

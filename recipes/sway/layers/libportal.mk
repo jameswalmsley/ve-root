@@ -9,6 +9,14 @@ $(L) += $(libportal)
 
 $(call git_clone, libportal, https://github.com/flatpak/libportal.git, $(libportal_GIT_REF))
 
+ifeq ($(CONFIG_GLIB),y)
+DEPENDS += glib
+endif
+
+ifeq ($(CONFIG_LIBGEOCLUE),y)
+DEPENDS += libgeoclue
+endif
+
 include $(BUILD_LAYER)
 
 $(libportal):

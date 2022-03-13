@@ -11,6 +11,8 @@ DEB_PACKAGES += libtool
 DEB_PACKAGES += libsystemd-dev
 
 DEPENDS += pipewire
+DEPENDS += geoclue
+DEPENDS += libfuse
 
 $(call git_clone, xdg-desktop-portal, https://github.com/flatpak/xdg-desktop-portal.git, $(xdg-desktop-portal_GIT_REF))
 

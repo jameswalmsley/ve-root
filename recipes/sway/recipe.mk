@@ -11,8 +11,6 @@ CLANG++:=clang++
 DISTRO:=$(shell cat /etc/os-release | grep ^ID= | cut -d= -f2)
 DISTRO_FULL:=$(DISTRO)
 
-PIPEWIRE_ENABLED:=y
-
 ifeq ($(DISTRO),ubuntu)
 DISTRO_VER:=$(shell cat /etc/os-release | grep ^VERSION_ID= | cut -d= -f2)
 DISTRO_VER:=$(shell echo $(DISTRO_VER))
@@ -22,8 +20,12 @@ CLANG:=clang-12
 CLANG++:=clang++-12
 
 ifeq ($(DISTRO_VER),18.04)
-	#PIPEWIRE_ENABLED:=n
-	WAYBAR_GIT_REF=0.8.0
+	WAYBAR_GIT_REF:=0.8.0
+	CONFIG_LIBALSA:=y
+	CONFIG_LIBFUSE:=y
+	CONFIG_LIBGEOCLUE:=y
+	CONFIG_GLIB:=y
+	export CFLAGS:=-Wno-error=deprecated-declarations
 endif
 
 endif
@@ -38,6 +40,7 @@ DEB_PACKAGES:=pkg-config cmake autoconf git
 PIP_PACKAGES:=meson ninja
 
 LAYERS += build-deps
+LAYERS += scdoc
 LAYERS += drm
 LAYERS += wayland
 LAYERS += wayland-protocols
@@ -49,16 +52,13 @@ LAYERS += libepoxy
 LAYERS += libinput
 LAYERS += xwayland
 
-# LAYERS += scdoc
 LAYERS += libseat
 LAYERS += wlroots
 LAYERS += json-c
 LAYERS += sway
-LAYERS += greetd
-LAYERS += gtkgreet
-LAYERS += sway-systemd
-# #LAYERS += remote-clip
-# LAYERS += swaylock
+# LAYERS += greetd
+# LAYERS += gtkgreet
+# LAYERS += sway-systemd
 LAYERS += swaylock-effects
 LAYERS += swayidle
 LAYERS += swaybg
@@ -69,16 +69,14 @@ LAYERS += grim
 LAYERS += slurp
 LAYERS += wl-clipboard
 
-ifeq ($(PIPEWIRE_ENABLED),y)
-LAYERS += libalsa
+LAYERS-$(CONFIG_LIBALSA) += libalsa
 LAYERS += pipewire
-LAYERS += geoclue
-LAYERS += libfuse
+LAYERS-$(CONFIG_LIBGEOCLUE) += geoclue
+LAYERS-$(CONFIG_LIBFUSE) += libfuse
 LAYERS += libportal
 LAYERS += xdg-desktop-portal
 LAYERS += libinih
 LAYERS += xdg-desktop-portal-wlr
-endif
 
 LAYERS += waybar
 LAYERS += wshowkeys
@@ -98,5 +96,7 @@ LAYERS += pamixer
 LAYERS += avizo
 
 LAYERS += package
+
+LAYERS += $(LAYERS-y)
 
 include $(BUILD_RECIPE)
