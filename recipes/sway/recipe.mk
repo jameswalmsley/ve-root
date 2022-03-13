@@ -11,10 +11,20 @@ CLANG++:=clang++
 DISTRO:=$(shell cat /etc/os-release | grep ^ID= | cut -d= -f2)
 DISTRO_FULL:=$(DISTRO)
 
+PIPEWIRE_ENABLED:=y
+
 ifeq ($(DISTRO),ubuntu)
-DISTRO_FULL:=$(DISTRO)-$(shell cat /etc/os-release | grep ^VERSION_ID= | cut -d= -f2)
+DISTRO_VER:=$(shell cat /etc/os-release | grep ^VERSION_ID= | cut -d= -f2)
+DISTRO_VER:=$(shell echo $(DISTRO_VER))
+DISTRO_FULL:=$(DISTRO)
+
 CLANG:=clang-12
 CLANG++:=clang++-12
+
+ifeq ($(DISTRO_VER),18.04)
+	PIPEWIRE_ENABLED:=n
+endif
+
 endif
 
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/local/lib/x86-_64-linux-gnu/pkgconfig
@@ -34,11 +44,14 @@ LAYERS += vulkan
 LAYERS += mesa
 LAYERS += xorgproto
 LAYERS += libxcvt
+LAYERS += libepoxy
+LAYERS += libinput
 LAYERS += xwayland
 
 # LAYERS += scdoc
 LAYERS += libseat
 LAYERS += wlroots
+LAYERS += json-c
 LAYERS += sway
 # LAYERS += greetd
 #LAYERS += gtkgreet
@@ -55,12 +68,14 @@ LAYERS += grim
 LAYERS += slurp
 LAYERS += wl-clipboard
 
+ifeq ($(PIPEWIRE_ENABLED),y)
 LAYERS += pipewire
 LAYERS += geoclue
 LAYERS += libfuse
 LAYERS += libportal
 LAYERS += xdg-desktop-portal
 LAYERS += xdg-desktop-portal-wlr
+endif
 
 LAYERS += waybar
 LAYERS += wshowkeys

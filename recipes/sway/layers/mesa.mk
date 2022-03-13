@@ -25,7 +25,6 @@ DEB_PACKAGES += libxshmfence-dev
 DEB_PACKAGES += libxxf86vm-dev
 DEB_PACKAGES += libxrandr-dev
 DEB_PACKAGES += libvdpau-dev
-DEB_PACKAGES += glslang-tools
 DEB_PACKAGES += libclc-dev
 DEB_PACKAGES += libsensors4-dev
 DEB_PACKAGES += libclang-12-dev
