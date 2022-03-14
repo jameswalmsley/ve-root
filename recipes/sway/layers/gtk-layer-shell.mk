@@ -10,6 +10,8 @@ $(L) += $(gtk-layer-shell)
 $(call git_clone, gtk-layer-shell, https://github.com/wmww/gtk-layer-shell.git, $(gtk-layer-shell_GIT_REF))
 
 DEPENDS += glib
+DEPENDS += wayland
+DEPENDS += wayland-protocols
 
 include $(BUILD_LAYER)
 
