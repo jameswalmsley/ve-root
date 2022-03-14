@@ -2,7 +2,7 @@ name: Build Sway for Ubuntu
 on: [push]
 jobs:
   build_20_04:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, ubuntu-latest]
     container: jameswalmsley/swaybuilder-ubuntu:20.04
     steps:
       - run: "echo Checking out ${{ github.ref }}"
@@ -27,7 +27,7 @@ jobs:
           path: out/sway/*.tar.gz
 
   build_18_04:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, ubuntu-latest]
     container: jameswalmsley/swaybuilder-ubuntu:18.04
     steps:
       - run: "echo Checking out ${{ github.ref }}"
