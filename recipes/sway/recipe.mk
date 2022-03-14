@@ -1,6 +1,6 @@
 include $(DEFINE_RECIPE)
 
-SYSROOT:=$(OUT)/sysroot
+SYSROOT?=$(OUT)/sysroot
 MESON_OPTIONS:=
 
 MESON_OPTIONS += --buildtype=release
@@ -15,7 +15,7 @@ DISTRO_FULL:=$(DISTRO)
 ifeq ($(DISTRO),ubuntu)
 DISTRO_VER:=$(shell cat /etc/os-release | grep ^VERSION_ID= | cut -d= -f2)
 DISTRO_VER:=$(shell echo $(DISTRO_VER))
-DISTRO_FULL:=$(DISTRO)
+DISTRO_FULL:=$(DISTRO)-$(DISTRO_VER)
 
 CLANG:=clang-12
 CLANG++:=clang++-12
@@ -101,7 +101,7 @@ LAYERS += cxxopts
 LAYERS += pamixer
 LAYERS += avizo
 
-LAYERS += package
+LAYERS-$(CONFIG_PACKAGE) += package
 
 LAYERS += $(LAYERS-y)
 
