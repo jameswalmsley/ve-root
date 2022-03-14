@@ -8,7 +8,7 @@ swaylock-effects:=$(LSTAMP)/swaylock-effects
 $(L) += $(swaylock-effects)
 
 DEB_PACKAGES += clang-12
-DEB_PACKAGES += libomp-dev
+DEB_PACKAGES += libomp-12-dev
 
 $(call git_clone, swaylock-effects, https://github.com/mortie/swaylock-effects.git, $(SWAYLOCK_EFFECTS_GIT_REF))
 
@@ -18,7 +18,7 @@ include $(BUILD_LAYER)
 
 $(swaylock-effects):
 	mkdir -p $(builddir)/swaylock-effects
-	cd $(srcdir)/swaylock-effects && CC=$(CLANG) meson $(builddir)/swaylock-effects $(MESON_OPTIONS)
+	cd $(srcdir)/swaylock-effects && CC=$(CLANG) CXX=$(CLANG++) meson $(builddir)/swaylock-effects $(MESON_OPTIONS)
 	cd $(builddir)/swaylock-effects && ninja
 	cd $(builddir)/swaylock-effects && $(SUDO) DESTDIR=$(SYSROOT) ninja install
 	$(stamp)
