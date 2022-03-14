@@ -20,11 +20,12 @@ DISTRO_FULL:=$(DISTRO)
 CLANG:=clang-12
 CLANG++:=clang++-12
 
+CONFIG_LIBFUSE:=y
+
 ifeq ($(DISTRO_VER),18.04)
 	export CC=gcc-10
 	export CXX=g++-10
 	CONFIG_LIBALSA:=y
-	CONFIG_LIBFUSE:=y
 	CONFIG_LIBGEOCLUE:=y
 	CONFIG_GLIB:=y
 	export CFLAGS:=-Wno-error=deprecated-declarations
