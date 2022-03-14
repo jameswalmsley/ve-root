@@ -1,4 +1,4 @@
-[![Build Sway on Ubuntu 20.04](https://github.com/jameswalmsley/ve-root/actions/workflows/sway-ubuntu-20.04.yml/badge.svg)](https://github.com/jameswalmsley/ve-root/actions/workflows/sway-ubuntu-20.04.yml)
+[![Build Sway on Ubuntu 20.04](https://github.com/jameswalmsley/ve-root/actions/workflows/sway-ubuntu.yml/badge.svg)](https://github.com/jameswalmsley/ve-root/actions/workflows/sway-ubuntu.yml)
 
 ```
 ve-root - An embedded rootfs build tool.
