@@ -11,6 +11,7 @@ $(call git_clone, avizo, https://github.com/misterdanb/avizo.git, 1.0)
 
 DEPENDS += glib
 DEPENDS += sway
+DEPENDS += xdg-layer-shell
 
 include $(BUILD_LAYER)
 
