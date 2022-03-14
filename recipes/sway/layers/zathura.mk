@@ -19,6 +19,8 @@ DEB_PACKAGES += mupdf
 $(call git_clone, $(bdir), https://git.pwmt.org/pwmt/zathura.git, master)
 $(call git_clone, zathura-plugin-mupdf, https://git.pwmt.org/pwmt/zathura-pdf-mupdf.git, master)
 
+DEPENDS += mupdf
+
 include $(BUILD_LAYER)
 
 $(zathura): bdir:=$(bdir)
