@@ -1,7 +1,7 @@
 LAYER:=sway
 include $(DEFINE_LAYER)
 
-SWAY_GIT_REF?=1.6.1-ve-root
+SWAY_GIT_REF?=1.7-ve-root
 
 sway:=$(LSTAMP)/sway
 
@@ -14,7 +14,12 @@ $(L) += $(sway)
 DEPENDS += wlroots
 DEPENDS += json-c
 
+ifeq ($(CONFIG_SWAY_ROLLING),y)
+$(call git_clone, sway, https://github.com/swaywm/sway.git, master)
+else
 $(call git_clone, sway, https://github.com/jameswalmsley/sway.git, $(SWAY_GIT_REF))
+endif
+
 
 include $(BUILD_LAYER)
 

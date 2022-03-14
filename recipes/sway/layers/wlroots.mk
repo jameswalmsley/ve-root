@@ -1,7 +1,11 @@
 LAYER:=wlroots
 include $(DEFINE_LAYER)
 
-WLROOTS_GIT_REF?=0.14.1
+WLROOTS_GIT_REF?=0.15.1
+
+ifeq ($(CONFIG_SWAY_ROLLING),y)
+WLROOTS_GIT_REF:=master
+endif
 
 wlroots:=$(LSTAMP)/wlroots
 

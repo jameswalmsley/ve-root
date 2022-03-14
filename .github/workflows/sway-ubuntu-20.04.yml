@@ -15,7 +15,7 @@ jobs:
           apt-get -y update
           DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential make
           DEBIAN_FRONTEND=noninteractive apt-get -y install git python3-pip cmake pkg-config
-          make sway_release_defconfig
+          make sway_defconfig
           make pip-install
           make deb-install
           make source-checkout -j$(nproc)
