@@ -69,6 +69,7 @@ LAYERS += mako
 LAYERS += grim
 LAYERS += slurp
 LAYERS += wl-clipboard
+LAYERS += swappy
 
 LAYERS-$(CONFIG_LIBALSA) += libalsa
 LAYERS += pipewire

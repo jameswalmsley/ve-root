@@ -13,6 +13,8 @@ $(call git_clone, $(bdir), https://github.com/emersion/slurp.git, $(SLURP_GIT_RE
 
 DEPENDS += sway
 
+DEB_RUN_PACKAGES += jq
+
 include $(BUILD_LAYER)
 
 $(slurp): bdir:=$(bdir)
