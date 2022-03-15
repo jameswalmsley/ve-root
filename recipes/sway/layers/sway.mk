@@ -20,7 +20,6 @@ else
 $(call git_clone, sway, https://github.com/jameswalmsley/sway.git, $(SWAY_GIT_REF))
 endif
 
-
 include $(BUILD_LAYER)
 
 $(sway):

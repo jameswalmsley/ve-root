@@ -60,9 +60,6 @@ LAYERS += wlroots
 LAYERS += json-c
 LAYERS += sway
 
-# LAYERS += greetd
-# LAYERS += gtkgreet
-# LAYERS += sway-systemd
 LAYERS += swaylock-effects
 LAYERS += swayidle
 LAYERS += swaybg
@@ -90,7 +87,7 @@ LAYERS += wf-recorder
 
 LAYERS += mupdf
 LAYERS += zathura
-LAYERS += redshift
+LAYERS += wlsunset
 
 ifneq ($(DISTRO),arch)
 	LAYERS += imv
