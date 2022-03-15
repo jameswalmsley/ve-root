@@ -99,6 +99,8 @@ LAYERS += cxxopts
 LAYERS += pamixer
 LAYERS += avizo
 
+LAYERS += sway-scripts
+
 LAYERS-$(CONFIG_PACKAGE) += package
 
 LAYERS += $(LAYERS-y)

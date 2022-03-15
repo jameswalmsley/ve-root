@@ -1,0 +1,12 @@
+#!/bin/bash
+
+systemctl --user enable pipewire
+systemctl --user enable pipewire.socket
+systemctl --user enable pipewire-media-session
+
+systemctl --user start pipewire
+systemctl --user start pipewire.socket
+systemctl --user start pipewire-media-session
+systemctl --user start xdg-desktop-portal
+systemctl --user start xdg-desktop-portal-wlr
+
