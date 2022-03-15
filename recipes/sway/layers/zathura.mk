@@ -6,29 +6,35 @@ ifeq ($(shell $(BASE)/scripts/version-parse.py --gteq $(shell pkg-config --modve
 
 include $(DEFINE_LAYER)
 
-bdir:=zathura
-
-zathura:=$(LSTAMP)/$(bdir)
+zathura:=$(LSTAMP)/zathura
 zathura-plugin-mupdf:=$(LSTAMP)/zathura-plugin-mupdf
+zathura-plugin-poppler:=$(LSTAMP)/zathura-plugin-poppler
 
 $(L) += $(zathura)
+
 $(L) += $(zathura-plugin-mupdf)
 
-DEB_PACKAGES += mupdf
+ifeq ($(CONFIG_ZATHURA_POPPLER),y)
+$(L) += $(zathura-plugin-poppler)
+endif
 
-$(call git_clone, $(bdir), https://git.pwmt.org/pwmt/zathura.git, master)
+DEB_PACKAGES += mupdf
+DEB_PACKAGES += libpoppler-glib-dev
+
+$(call git_clone, zathura, https://git.pwmt.org/pwmt/zathura.git, master)
 $(call git_clone, zathura-plugin-mupdf, https://git.pwmt.org/pwmt/zathura-pdf-mupdf.git, master)
+$(call git_clone, zathura-plugin-poppler, https://github.com/pwmt/zathura-pdf-poppler.git, master)
 
 DEPENDS += mupdf
 
 include $(BUILD_LAYER)
 
-$(zathura): bdir:=$(bdir)
+$(zathura): bdir:=zathura
 $(zathura):
-	mkdir -p $(builddir)/$(bdir)
-	cd $(srcdir)/$(bdir) && meson $(builddir)/$(bdir) $(MESON_OPTIONS)
-	cd $(builddir)/$(bdir) && ninja
-	cd $(builddir)/$(bdir) && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	mkdir -p $(builddir)/zathura
+	cd $(srcdir)/zathura && meson $(builddir)/zathura $(MESON_OPTIONS)
+	cd $(builddir)/zathura && ninja
+	cd $(builddir)/zathura && $(SUDO) DESTDIR=$(SYSROOT) ninja install
 	cd $(builddir)/zathura && $(SUDO) ninja install
 	$(stamp)
 
@@ -40,7 +46,19 @@ $(zathura-plugin-mupdf):
 	cd $(builddir)/zathura-plugin-mupdf && $(SUDO) ninja install
 	$(stamp)
 
+$(zathura-plugin-poppler):
+	mkdir -p $(builddir)/zathura-plugin-poppler
+	cd $(srcdir)/zathura-plugin-poppler && meson $(builddir)/zathura-plugin-poppler $(MESON_OPTIONS)
+	cd $(builddir)/zathura-plugin-poppler && ninja
+	cd $(builddir)/zathura-plugin-poppler && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/zathura-plugin-poppler && $(SUDO) ninja install
+	$(stamp)
+
 $(zathura-plugin-mupdf): $(zathura)
+$(zathura-plugin-poppler): $(zathura)
+
+$(L).clean:
+	rm -rf $(builddir)
 
 
 endif
