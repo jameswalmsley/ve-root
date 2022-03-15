@@ -63,5 +63,5 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/sway')
         with:
           files: |
-            **.tar.gz
+            */*.tar.gz
         continue-on-error: true
