@@ -3,10 +3,34 @@
 systemctl --user enable pipewire
 systemctl --user enable pipewire.socket
 systemctl --user enable pipewire-media-session
+systemctl --user enable xdg-desktop-portal 2> /dev/null
+systemctl --user enable xdg-desktop-portal-wlr 2> /dev/null
 
-systemctl --user start pipewire
-systemctl --user start pipewire.socket
+systemctl --user stop pipewire 2> /dev/null
+systemctl --user stop pipewire-media-session
+systemctl --user stop xdg-desktop-portal
+systemctl --user stop xdg-desktop-portal-wlr
+
 systemctl --user start pipewire-media-session
-systemctl --user start xdg-desktop-portal
-systemctl --user start xdg-desktop-portal-wlr
+
+SWAY_CONFIG=~/.config/sway/config.d/sway-enable-screenshare.config
+echo "Installing enable-sway-screenshare config to sway::"
+echo " -> ${SWAY_CONFIG}"
+mkdir -p $(dirname ${SWAY_CONFIG})
+echo "exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK" > ${SWAY_CONFIG}
+echo "exec hash dbus-update-activation-environment 2>/dev/null && \\" >> ${SWAY_CONFIG}
+echo "     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway" >> ${SWAY_CONFIG}
+
+echo
+echo "Ensure that your .config/sway/config includes: ~/.config/sway/config.d/*"
+echo "include ~/.config/sway/config.d/*"
+echo
+echo "Or.."
+echo
+
+echo "Add the following to your .config/sway/config file:"
+
+echo "----------------------------"
+cat ${SWAY_CONFIG}
+echo "----------------------------"
 
