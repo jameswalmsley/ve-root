@@ -7,7 +7,7 @@ $(L) += $(avizo)
 
 DEB_PACKAGES += valac
 
-$(call git_clone, avizo, https://github.com/misterdanb/avizo.git, 1.0)
+$(call git_clone, avizo, https://github.com/misterdanb/avizo.git, 1.2)
 
 DEPENDS += glib
 DEPENDS += sway
