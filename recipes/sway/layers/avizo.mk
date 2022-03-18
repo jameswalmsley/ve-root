@@ -1,13 +1,15 @@
 LAYER:=avizo
 include $(DEFINE_LAYER)
 
-avizo:=$(LSTAMP)/avizo
+avizo_GIT_REF?=1.2
+
+aizo:=$(LSTAMP)/avizo
 
 $(L) += $(avizo)
 
 DEB_PACKAGES += valac
 
-$(call git_clone, avizo, https://github.com/misterdanb/avizo.git, 1.2)
+$(call git_clone, avizo, https://github.com/misterdanb/avizo.git, $(avizo_GIT_REF))
 
 DEPENDS += glib
 DEPENDS += sway
