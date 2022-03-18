@@ -28,6 +28,7 @@ ifeq ($(DISTRO_VER),18.04)
 	CONFIG_LIBALSA:=y
 	CONFIG_LIBGEOCLUE:=y
 	CONFIG_GLIB:=y
+	avizo_GIT_REF:=1.0
 	export CFLAGS:=-Wno-error=deprecated-declarations
 endif
 
