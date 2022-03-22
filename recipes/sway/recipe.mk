@@ -63,6 +63,7 @@ LAYERS += json-c
 LAYERS += sway
 
 LAYERS += libva
+LAYERS += ffmpeg
 
 LAYERS += swaylock-effects
 LAYERS += swayidle

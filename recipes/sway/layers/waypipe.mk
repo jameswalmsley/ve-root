@@ -11,12 +11,10 @@ $(call git_clone, waypipe, https://gitlab.freedesktop.org/mstoeckl/waypipe.git, 
 
 DEB_PACKAGES += liblz4-dev
 DEB_PACKAGES += libzstd-dev
-DEB_PACKAGES += libavcodec-dev
-DEB_PACKAGES += libavutil-dev
-DEB_PACKAGES += libswscale-dev
 
 DEPENDS += sway
 DEPENDS += libva
+DEPENDS += ffmpeg
 
 include $(BUILD_LAYER)
 
