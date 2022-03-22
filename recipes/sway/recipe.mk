@@ -55,6 +55,7 @@ LAYERS += libxcvt
 LAYERS += libepoxy
 LAYERS += libinput
 LAYERS += xwayland
+LAYERS += libxkbcommon
 
 LAYERS += libseat
 LAYERS += wlroots

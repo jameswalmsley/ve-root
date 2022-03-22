@@ -20,6 +20,7 @@ $(libva):
 	mkdir -p $(builddir)/libva
 	cd $(srcdir)/libva && meson $(MESON_OPTIONS) $(srcdir)/libva $(builddir)/libva
 	cd $(builddir)/libva && ninja
+	cd $(builddir)/libva && $(SUDO) ninja install
 	cd $(builddir)/libva && $(SUDO) DESTDIR=$(SYSROOT) ninja install
 	$(stamp)
 

@@ -24,6 +24,7 @@ $(call git_clone, wlroots, https://gitlab.freedesktop.org/wlroots/wlroots.git, $
 
 DEPENDS += xwayland
 DEPENDS += libinput
+DEPENDS += libxkbcommon
 
 include $(BUILD_LAYER)
 

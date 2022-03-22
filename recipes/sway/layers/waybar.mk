@@ -1,7 +1,7 @@
 LAYER:=waybar
 include $(DEFINE_LAYER)
 
-WAYBAR_GIT_REF?=0.9.7
+WAYBAR_GIT_REF?=0.9.12
 
 waybar:=$(LSTAMP)/waybar
 
@@ -28,6 +28,7 @@ $(L) += $(waybar)
 DEPENDS += glib
 DEPENDS += sway
 DEPENDS += gtk-layer-shell
+DEPENDS += libxkbcommon
 
 $(call git_clone, waybar, https://github.com/Alexays/Waybar.git, $(WAYBAR_GIT_REF))
 
