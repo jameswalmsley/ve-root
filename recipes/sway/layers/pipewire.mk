@@ -32,6 +32,8 @@ ifeq ($(CONFIG_LIBALSA),y)
 DEPENDS += libalsa
 endif
 
+DEPENDS += ffmpeg
+
 include $(BUILD_LAYER)
 
 $(pipewire):
