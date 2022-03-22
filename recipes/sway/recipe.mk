@@ -71,6 +71,7 @@ LAYERS += grim
 LAYERS += slurp
 LAYERS += wl-clipboard
 LAYERS += swappy
+LAYERS += waypipe
 
 LAYERS-$(CONFIG_LIBALSA) += libalsa
 LAYERS += pipewire
