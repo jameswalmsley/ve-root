@@ -1,0 +1,3 @@
+#!/bin/bash
+swaymsg -t get_outputs | jq --unbuffered '.[] | .make + " " + .name + " " + (.rect.width|tostring) + "x" + (.rect.height|tostring)'
+
