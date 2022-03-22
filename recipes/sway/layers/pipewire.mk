@@ -1,7 +1,7 @@
 LAYER:=pipewire
 include $(DEFINE_LAYER)
 
-PIPEWIRE_GIT_REF?=master
+PIPEWIRE_GIT_REF?=0.3.48
 
 pipewire:=$(LSTAMP)/pipewire
 
