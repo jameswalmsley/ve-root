@@ -3,7 +3,7 @@ include $(DEFINE_LAYER)
 
 avizo_GIT_REF?=1.2
 
-aizo:=$(LSTAMP)/avizo
+avizo:=$(LSTAMP)/avizo
 
 $(L) += $(avizo)
 
