@@ -61,6 +61,8 @@ LAYERS += wlroots
 LAYERS += json-c
 LAYERS += sway
 
+LAYERS += libva
+
 LAYERS += swaylock-effects
 LAYERS += swayidle
 LAYERS += swaybg

@@ -14,13 +14,12 @@ DEB_PACKAGES += libzstd-dev
 DEB_PACKAGES += libavcodec-dev
 DEB_PACKAGES += libavutil-dev
 DEB_PACKAGES += libswscale-dev
-DEB_PACKAGES += libva-dev
 
 DEPENDS += sway
+DEPENDS += libva
 
 include $(BUILD_LAYER)
 
-$(waypipe):
 $(waypipe):
 	mkdir -p $(builddir)/waypipe
 	cd $(srcdir)/waypipe && meson $(MESON_OPTIONS) $(srcdir)/waypipe $(builddir)/waypipe
