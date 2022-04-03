@@ -2,7 +2,7 @@
 
 function="status"
 
-. ${BASE}/mk/git/git.sh
+. ${VEBASE}/mk/git/git.sh
 
 git status
 

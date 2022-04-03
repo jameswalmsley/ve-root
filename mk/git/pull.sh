@@ -2,7 +2,7 @@
 
 function="pull"
 
-. ${BASE}/mk/git/git.sh
+. ${VEBASE}/mk/git/git.sh
 
 echo ${layer} - ${repo_name}
 

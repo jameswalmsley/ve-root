@@ -2,6 +2,6 @@
 
 function="fetch"
 
-. ${BASE}/mk/git/git.sh
+. ${VEBASE}/mk/git/git.sh
 
 git fetch --all --tags

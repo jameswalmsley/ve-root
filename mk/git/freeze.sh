@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ${BASE}/mk/git/git.sh
+. ${VEBASE}/mk/git/git.sh
 
 
 describe=$(git describe --always --tags)

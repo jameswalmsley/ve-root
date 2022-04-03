@@ -2,7 +2,7 @@
 
 function="unshallow"
 
-. ${BASE}/mk/git/git.sh
+. ${VEBASE}/mk/git/git.sh
 
 git fetch --unshallow 2> /dev/null || true
 git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
