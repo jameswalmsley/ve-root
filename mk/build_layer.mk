@@ -86,7 +86,7 @@ define git_pull_layer
 .PHONY: $(L).git.pull
 $(L).git.pull:
 	@$(foreach g, $($(L)_git-repos),\
-	BASE=$(BASE) bash $(BASE)/mk/git/pull.sh $(g);\
+	VEBASE=$(VEBASE) bash $(VEBASE)/mk/git/pull.sh $(g);\
 	)
 endef
 
@@ -98,7 +98,7 @@ define git_checkout_layer
 .PHONY: $(L).git.checkout
 $(L).git.checkout:
 	@$(foreach g, $($(L)_git-repos),\
-	BASE=$(BASE) bash $(BASE)/mk/git/checkout.sh $(g);\
+	VEBASE=$(VEBASE) bash $(VEBASE)/mk/git/checkout.sh $(g);\
 	)
 
 endef
@@ -112,7 +112,7 @@ define git_fetch_layer
 $(L).git.fetch:
 	@$(foreach g, $($(L)_git-repos),\
 	$(call git_repo_extract, $(g)) \
-	BASE=$(BASE) bash $(BASE)/mk/git/fetch.sh $(g);\
+	VEBASE=$(VEBASE) bash $(VEBASE)/mk/git/fetch.sh $(g);\
 	)
 endef
 
@@ -124,7 +124,7 @@ define git_submodule_update
 .PHONY: $(L).git.submodule.update
 $(L).git.submodule.update:
 	@$(foreach g, $($(L)_git-repos),\
-	BASE=$(BASE) bash $(BASE)/mk/git/submodule.sh $(g);\
+	VEBASE=$(VEBASE) bash $(VEBASE)/mk/git/submodule.sh $(g);\
 	)
 endef
 
@@ -137,7 +137,7 @@ define git_unshallow_layer
 $(L).git.unshallow:
 	@$(foreach g, $($(L)_git-repos),\
 	echo "unshallow: $(L)"; \
-	BASE=$(BASE) bash $(BASE)/mk/git/unshallow.sh $(g);\
+	VEBASE=$(VEBASE) bash $(VEBASE)/mk/git/unshallow.sh $(g);\
 	)
 endef
 
@@ -149,7 +149,7 @@ define git_status_layer
 .PHONY: $(L).git.status
 $(L).git.status:
 	@$(foreach g, $($(L)_git-repos),\
-	BASE=$(BASE) bash $(BASE)/mk/git/status.sh $(g);\
+	VEBASE=$(VEBASE) bash $(VEBASE)/mk/git/status.sh $(g);\
 	)
 endef
 
@@ -161,7 +161,7 @@ define git_describe_layer
 .PHONY: $(L).git.describe
 $(L).git.describe:
 	@$(foreach g, $($(L)_git-repos),\
-	BASE=$(BASE) bash $(BASE)/mk/git/describe.sh $(g);\
+	VEBASE=$(VEBASE) bash $(VEBASE)/mk/git/describe.sh $(g);\
 	)
 endef
 
@@ -173,7 +173,7 @@ define git_freeze
 .PHONY: $(L).git.freeze
 $(L).git.freeze:
 	@$(foreach g, $($(L)_git-repos),\
-	BASE=$(BASE) bash $(BASE)/mk/git/freeze.sh $(g);\
+	VEBASE=$(VEBASE) bash $(VEBASE)/mk/git/freeze.sh $(g);\
 	)
 endef
 
@@ -185,7 +185,7 @@ define git_rev-parse_head_layer
 .PHONY: $(L).git.rev-parse.head
 $(L).git.rev-parse.head:
 	@$(foreach g, $($(L)_git-repos),\
-	BASE=$(BASE) bash $(BASE)/mk/git/rev-parse.head.sh $(g);\
+	VEBASE=$(VEBASE) bash $(VEBASE)/mk/git/rev-parse.head.sh $(g);\
 	)
 endef
 

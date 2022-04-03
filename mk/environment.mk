@@ -1,7 +1,7 @@
 -include $(BASE)/.config
 all:
 
-include $(BASE)/configs/configs.mk
+include $(VEBASE)/configs/configs.mk
 
 
 ifndef CONFIG_RECIPE
@@ -31,10 +31,10 @@ BUILD:=$(OUT)/build
 STAMP:=$(OUT)/.stamp
 ROOTFS:=$(OUT)/rootfs
 
-DEFINE_RECIPE:=$(BASE)/mk/define_recipe.mk
-BUILD_RECIPE:=$(BASE)/mk/build_recipe.mk
-DEFINE_LAYER:=$(BASE)/mk/define_layer.mk
-BUILD_LAYER:=$(BASE)/mk/build_layer.mk
+DEFINE_RECIPE:=$(VEBASE)/mk/define_recipe.mk
+BUILD_RECIPE:=$(VEBASE)/mk/build_recipe.mk
+DEFINE_LAYER:=$(VEBASE)/mk/define_layer.mk
+BUILD_LAYER:=$(VEBASE)/mk/build_layer.mk
 
 ifeq ($(UID),)
 USER_ID:=$(shell id -u)

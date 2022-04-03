@@ -5,9 +5,12 @@
 #
 #  Author: James Walmsley <james@vitalelement.co.uk>
 #
-BASE:=$(shell readlink -f $(dir $(lastword $(MAKEFILE_LIST))))
+VEBASE:=$(shell readlink -f $(dir $(lastword $(MAKEFILE_LIST))))
+ifndef BASE
+	BASE:=$(VEBASE)
+endif
 
-include $(BASE)/mk/environment.mk
+include $(VEBASE)/mk/environment.mk
 
 ifdef CONFIG_RECIPE
 

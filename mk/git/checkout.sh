@@ -2,7 +2,7 @@
 
 function="checkout"
 
-. ${BASE}/mk/git/git.sh
+. ${VEBASE}/mk/git/git.sh
 
 git fetch origin --tags $ref
 git checkout $ref
