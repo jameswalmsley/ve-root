@@ -1,12 +1,9 @@
 [constants]
 arch = '@ARCH@'
-common_flags = ['--sysroot=@SYSROOT@']
-includes = ['-I/usr/include']
 
 [built-in options]
 pkg_config_path = ['@SYSROOT@/usr/local/lib64/pkgconfig']
-c_args = common_flags + includes
-cpp_args = common_flags + includes
-c_link_args = common_flags
-cpp_link_args = common_flags
+
+[properties]
+sys_root = '@SYSROOT@'
 

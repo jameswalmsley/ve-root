@@ -19,7 +19,7 @@ $$(L) += $(STAMP)/$(L)/$(strip $1)
 $(STAMP)/$$(L)/$(strip $1):
 	mkdir -p $$(builddir)/$(strip $(1))
 	meson $(MESON_OPTIONS) $(strip $(3)) $(strip $(2)) $$(builddir)/$(strip $(1))
-	cd $$(builddir)/$(strip $(1)) && ninja
+	cd $$(builddir)/$(strip $(1)) && ninja $$(BUILD_JOBS)
 	cd $$(builddir)/$(strip $(1)) && $$(SUDO) DESTDIR=$$(SYSROOT) ninja install
 	$$(stamp)
 endef
