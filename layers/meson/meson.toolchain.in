@@ -2,7 +2,7 @@
 arch = '@ARCH@'
 
 [built-in options]
-pkg_config_path = ['@SYSROOT@/usr/local/lib64/pkgconfig']
+pkg_config_path = ['@SYSROOT@/@PREFIX@/@LIBDIR@/pkgconfig']
 
 [properties]
 sys_root = '@SYSROOT@'
