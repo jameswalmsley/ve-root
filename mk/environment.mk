@@ -24,9 +24,10 @@ VARIANT:=$(CONFIG_VARIANT)
 _VARIANT:=/$(CONFIG_VARIANT)
 endif
 
+
 OUT:=$(shell pwd)/out/$(R)$(_VARIANT)
 TOP:=$(BASE)/recipes/$(R)
-SOURCE:=$(BASE)/sources/$(R)$(_VARIANT)
+SOURCE:=$(BASE)/sources/$(R)
 BUILD:=$(OUT)/build
 STAMP:=$(OUT)/.stamp
 ROOTFS:=$(OUT)/rootfs
