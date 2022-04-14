@@ -81,11 +81,11 @@ docker:
 
 .PHONY: docker.build
 docker.build:
-	cd $(BASE)/docker/$(DOCKER_IMAGE) && BASE=$(BASE) docker-compose build
+	cd $(BASE)/docker/$(DOCKER_IMAGE) && BASE=$(BASE) docker-compose build $(DOCKER_SERVICE)
 
 .PHONY: docker.build.force
 docker.build.force:
-	cd $(BASE)/docker/$(DOCKER_IMAGE) && BASE=$(BASE) docker-compose build --no-cache
+	cd $(BASE)/docker/$(DOCKER_IMAGE) && BASE=$(BASE) docker-compose build --no-cache ${DOCKER_SERVICE}
 
 .PHONY: chroot
 chroot:
