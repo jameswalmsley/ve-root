@@ -4,6 +4,7 @@ on:
     paths:
       - 'docker/**'
       - 'recipes/sway/**'
+      - '.github/workflows/sway-ubuntu.yml'
     
 jobs:
   build_containers:
@@ -49,6 +50,7 @@ jobs:
     container: jameswalmsley/swaybuilder-ubuntu:20.04
     needs: build_containers
     steps:
+      - run: git config --global --add safe.directory /__w/ve-root/ve-root
       - run: "echo Checking out ${{ github.ref }}"
       - name: Check out repository code
         uses: actions/checkout@v2
@@ -75,6 +77,7 @@ jobs:
     container: jameswalmsley/swaybuilder-ubuntu:18.04
     needs: build_containers
     steps:
+      - run: git config --global --add safe.directory /__w/ve-root/ve-root
       - run: "echo Checking out ${{ github.ref }}"
       - name: Check out repository code
         uses: actions/checkout@v2
