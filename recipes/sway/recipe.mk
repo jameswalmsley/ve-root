@@ -1,5 +1,8 @@
 include $(DEFINE_RECIPE)
 
+DOCKER_IMAGE?=jameswalmsley/swaybuilder-ubuntu
+DOCKER_SERVICE?=ubuntu-20.04
+
 SYSROOT?=$(OUT)/sysroot
 MESON_OPTIONS:=
 

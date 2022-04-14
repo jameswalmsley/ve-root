@@ -35,6 +35,8 @@ info:
 	@echo "OUT:            $(OUT)"
 	@echo "BUILD:          $(BUILD)"
 	@echo "ROOTFS:         $(ROOTFS)"
+	@echo "DOCKER_IMAGE:   $(DOCKER_IMAGE)"
+	@echo "DOCKER_SERVICE: $(DOCKER_SERVICE)"
 	@$(foreach l,$(recipe),$(call show_layer,$l);)
 
 recipe: $(recipe)

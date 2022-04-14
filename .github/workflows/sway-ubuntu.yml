@@ -1,9 +1,53 @@
 name: Build Sway for Ubuntu
-on: [push]
+on: 
+  push:
+    paths:
+      - 'docker/**'
+      - 'recipes/sway/**'
+    
 jobs:
+  build_containers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Sourcecode
+        uses: actions/checkout@v3
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v18.7
+        with:
+          files: |
+            docker/jameswalmsley/swaybuilder-ubuntu/**
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        if: steps.changed-files.outputs.any_changed == 'true'
+        with:
+          username: ${{ secrets.JAMES_DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.JAMES_DOCKER_HUB_PASSWORD }}
+
+      - name: Build swaybuilder-ubuntu:20.04
+        if: steps.changed-files.outputs.any_changed == 'true'
+        uses: docker/build-push-action@v2
+        with:
+          context: docker/jameswalmsley/swaybuilder-ubuntu
+          file: docker/jameswalmsley/swaybuilder-ubuntu/ubuntu-20.04.Dockerfile
+          push: true
+          tags: jameswalmsley/swaybuilder-ubuntu:20.04
+
+      - name: Build swaybuilder-ubuntu:18.04
+        if: steps.changed-files.outputs.any_changed == 'true'
+        uses: docker/build-push-action@v2
+        with:
+          context: docker/jameswalmsley/swaybuilder-ubuntu
+          file: docker/jameswalmsley/swaybuilder-ubuntu/ubuntu-18.04.Dockerfile
+          push: true
+          tags: jameswalmsley/swaybuilder-ubuntu:18.04
+
   build_20_04:
-    runs-on: [self-hosted, ubuntu-latest]
+    runs-on: [self-hosted, Linux, x64]
     container: jameswalmsley/swaybuilder-ubuntu:20.04
+    needs: build_containers
     steps:
       - run: "echo Checking out ${{ github.ref }}"
       - name: Check out repository code
@@ -27,8 +71,9 @@ jobs:
           path: out/sway/*.tar.gz
 
   build_18_04:
-    runs-on: [self-hosted, ubuntu-latest]
+    runs-on: [self-hosted, Linux, x64]
     container: jameswalmsley/swaybuilder-ubuntu:18.04
+    needs: build_containers
     steps:
       - run: "echo Checking out ${{ github.ref }}"
       - name: Check out repository code
