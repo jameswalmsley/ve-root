@@ -24,6 +24,10 @@ VARIANT:=$(CONFIG_VARIANT)
 _VARIANT:=/$(CONFIG_VARIANT)
 endif
 
+ifeq ($(OS),Windows_NT)
+WINDOWS:=y
+endif
+
 
 OUT:=$(shell pwd)/out/$(R)$(_VARIANT)
 TOP:=$(BASE)/recipes/$(R)
@@ -87,7 +91,9 @@ ifeq ("$(wildcard $(SRCDEST))","")
 	cd $(SOURCE)/$(L)/$(strip $(1)) && git fetch --depth 1 origin $(GIT_$(L)_$(strip $(1))) || git fetch origin
 	cd $(SOURCE)/$(L)/$(strip $(1)) && git checkout $(GIT_$(L)_$(strip $(1))) || git checkout FETCH_HEAD
 	cd $(SOURCE)/$(L)/$(strip $(1)) && git submodule update --init --recursive
+ifneq ($(WINDOWS),y)
 	chown -R $(USER_ID):$(GROUP_ID) $(SOURCE)/$(L)/$(strip $(1))
+endif
 endif
 
 
