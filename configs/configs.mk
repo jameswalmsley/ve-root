@@ -1,5 +1,5 @@
 
-CONFIGS:=$(notdir $(shell ls $(BASE)/configs/*_defconfig))
+CONFIGS:=$(notdir $(wildcard $(BASE)/configs/*_defconfig))
 
 .PHONY: configs
 configs:

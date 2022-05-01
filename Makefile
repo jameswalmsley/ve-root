@@ -5,7 +5,7 @@
 #
 #  Author: James Walmsley <james@vitalelement.co.uk>
 #
-VEBASE:=$(shell readlink -f $(dir $(lastword $(MAKEFILE_LIST))))
+VEBASE:=$(realpath $(dir $(lastword $(MAKEFILE_LIST))))
 ifndef BASE
 	BASE:=$(VEBASE)
 endif

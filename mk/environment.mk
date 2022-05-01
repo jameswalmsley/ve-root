@@ -11,6 +11,7 @@ info:
 
 else
 
+include $(VEBASE)/mk/os.mk
 #
 # Variables
 #
@@ -24,12 +25,7 @@ VARIANT:=$(CONFIG_VARIANT)
 _VARIANT:=/$(CONFIG_VARIANT)
 endif
 
-ifeq ($(OS),Windows_NT)
-WINDOWS:=y
-endif
-
-
-OUT:=$(shell pwd)/out/$(R)$(_VARIANT)
+OUT:=$(CURDIR)/out/$(R)$(_VARIANT)
 TOP:=$(BASE)/recipes/$(R)
 SOURCE:=$(BASE)/sources/$(R)
 BUILD:=$(OUT)/build
@@ -41,12 +37,14 @@ BUILD_RECIPE:=$(VEBASE)/mk/build_recipe.mk
 DEFINE_LAYER:=$(VEBASE)/mk/define_layer.mk
 BUILD_LAYER:=$(VEBASE)/mk/build_layer.mk
 
+ifndef WINDOWS
 ifeq ($(UID),)
 USER_ID:=$(shell id -u)
 endif
 
 ifeq ($(GID),)
 GROUP_ID:=$(shell id -g)
+endif
 endif
 
 define \n
