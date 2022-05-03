@@ -27,6 +27,7 @@ endef
 
 .PHONY: info
 info:
+	@echo "OS:             $(OS)"
 	@echo "BASE:           $(BASE)"
 	@echo "RECIPE:         $(RECIPE)"
 	@echo "TOP:            $(TOP)"
