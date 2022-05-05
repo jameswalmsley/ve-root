@@ -54,6 +54,33 @@ jobs:
           push: true
           tags: jameswalmsley/swaybuilder-ubuntu:18.04
 
+  build_22_04:
+    runs-on: [self-hosted, Linux, x64]
+    container: jameswalmsley/swaybuilder-ubuntu:22.04
+    needs: build_containers
+    steps:
+      - run: git config --global --add safe.directory /__w/ve-root/ve-root
+      - run: "echo Checking out ${{ github.ref }}"
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Build Sway
+        run: |
+          export SUDO=
+          export CONFIG_PACKAGE=y
+          apt-get -y update
+          DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential make
+          DEBIAN_FRONTEND=noninteractive apt-get -y install git python3-pip cmake pkg-config
+          make sway_defconfig
+          make pip-install
+          make deb-install
+          make source-checkout -j$(nproc)
+          make
+      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - uses: actions/upload-artifact@v3
+        with:
+          name: sway-ubuntu-22-04
+          path: out/sway/*.tar.gz
+
   build_20_04:
     runs-on: [self-hosted, Linux, x64]
     container: jameswalmsley/swaybuilder-ubuntu:20.04
@@ -74,7 +101,7 @@ jobs:
           make pip-install
           make deb-install
           make source-checkout -j$(nproc)
-          make -j$(nproc)
+          make
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - uses: actions/upload-artifact@v3
         with:
@@ -101,7 +128,7 @@ jobs:
           make pip-install
           make deb-install
           make source-checkout -j$(nproc)
-          make -j$(nproc)
+          make
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - uses: actions/upload-artifact@v3
         with:
@@ -109,7 +136,7 @@ jobs:
           path: out/sway/*.tar.gz
 
   release_sway:
-    needs: [build_20_04, build_18_04]
+    needs: [build_22_04, build_20_04, build_18_04]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v3

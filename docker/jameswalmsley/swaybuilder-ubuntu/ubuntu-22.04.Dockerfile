@@ -5,6 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get -y install \
     autoconf \
     bison \
+    build-essential \
     byacc \
     check \
     clang-12 \
@@ -39,6 +40,7 @@ RUN apt-get update && apt-get -y install \
     libgl1-mesa-dev \
     libgl1-mesa-dri \
     libgles2-mesa-dev \
+    libglib2.0-dev \
     libgstreamer-plugins-base1.0-dev \
     libgstreamer1.0-dev \
     libgtk-3-dev \
@@ -102,6 +104,7 @@ RUN apt-get update && apt-get -y install \
     libxxf86vm-dev \
     libzstd-dev \
     llvm-12 \
+    make \
     mesa-common-dev \
     mupdf \
     nettle-dev \
@@ -109,6 +112,7 @@ RUN apt-get update && apt-get -y install \
     pigz \
     pkg-config \
     poppler-data \
+    python3-pip \
     sudo \
     unzip \
     valac \
@@ -124,8 +128,10 @@ RUN apt-get update && apt-get -y install \
     x11proto-xinerama-dev \
     xfonts-utils \
     xtrans-dev \
-    yasm \
     xutils-dev \
-    && apt-get -y clean
+    yasm \
+    && apt-get -y clean && \
+    pip3 install meson ninja
+
 
 

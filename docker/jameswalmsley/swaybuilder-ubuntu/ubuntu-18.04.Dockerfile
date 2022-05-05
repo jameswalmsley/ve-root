@@ -8,6 +8,7 @@ RUN apt-get update && apt-get -y install software-properties-common wget && \
         apt-get -y update && apt-get -y install \
             autoconf \
             bison \
+            build-essential \
             byacc \
             check \
             clang-12 \
@@ -116,6 +117,7 @@ RUN apt-get update && apt-get -y install software-properties-common wget && \
             libxxf86vm-dev \
             libzstd-dev \
             llvm-12 \
+            make \
             mesa-common-dev \
             modemmanager-dev \
             mupdf \
@@ -162,5 +164,5 @@ RUN apt-get update && apt-get -y install software-properties-common wget && \
             xtrans-dev \
             xutils-dev \
             yasm \
-        && apt-get -y clean
-
+        && apt-get -y clean && \
+        pip3 install meson ninja
