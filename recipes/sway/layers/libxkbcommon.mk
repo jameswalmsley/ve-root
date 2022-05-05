@@ -17,7 +17,6 @@ $(libxkbcommon):
 	mkdir -p $(builddir)/libxkbcommon
 	cd $(srcdir)/libxkbcommon && meson $(MESON_OPTIONS) $(srcdir)/libxkbcommon $(builddir)/libxkbcommon -Denable-x11=false -Denable-docs=false
 	cd $(builddir)/libxkbcommon && ninja
-	cd $(builddir)/libxkbcommon && $(SUDO) ninja install
 	cd $(builddir)/libxkbcommon && $(SUDO) DESTDIR=$(SYSROOT) ninja install
 	$(stamp)
 

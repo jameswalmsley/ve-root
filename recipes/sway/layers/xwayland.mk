@@ -56,7 +56,6 @@ $(xwayland):
 	cd $(srcdir)/$(bdir) && meson $(builddir)/$(bdir) $(MESON_OPTIONS)  -Dipv6=true -Dxvfb=false -Dxdmcp=false -Dxcsecurity=true -Ddri3=true -Dglamor=true
 	cd $(builddir)/$(bdir) && ninja
 	cd $(builddir)/$(bdir) && $(SUDO) DESTDIR=$(SYSROOT) ninja install
-	cd $(builddir)/$(bdir) && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:

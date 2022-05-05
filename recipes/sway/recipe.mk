@@ -37,7 +37,12 @@ endif
 
 endif
 
-export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/local/lib/x86-_64-linux-gnu/pkgconfig
+export PKG_CONFIG_SYSROOT_DIR=$(SYSROOT)
+export PKG_CONFIG_PATH=$(SYSROOT)/usr/local/lib/pkgconfig:$(SYSROOT)/usr/local/lib64/pkgconfig
+
+pkg:
+	echo $${PKG_CONFIG_PATH}
+	echo $${PKG_CONFIG_SYSROOT_DIR}
 
 ifeq ($(DISTRO),arch)
 WAYBAR_GIT_REF=master
@@ -64,6 +69,7 @@ LAYERS += libseat
 LAYERS += wlroots
 LAYERS += json-c
 LAYERS += sway
+LAYERS += sway-systemd
 
 LAYERS += libva
 LAYERS += ffmpeg

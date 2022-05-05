@@ -19,7 +19,6 @@ $(libdrm):
 	cd $(srcdir)/libdrm && meson $(MESON_OPTIONS) $(srcdir)/libdrm $(builddir)/libdrm -Dinstall-test-programs=false
 	cd $(builddir)/libdrm && ninja
 	cd $(builddir)/libdrm && $(SUDO) DESTDIR=$(SYSROOT) ninja install
-	cd $(builddir)/libdrm && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:

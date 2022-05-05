@@ -15,23 +15,25 @@ DEPENDS += sway
 DEPENDS += greetd
 DEPENDS += gtkgreet
 
-greetd.service:=/etc/systemd/system/greetd.service
+greetd.service:=$(SYSROOT)/etc/systemd/system/greetd.service
 gnome-keyring.pam:=$(LSTAMP)/gnome-keyring.pam
-greetd.pam:=/etc/pam.d/greetd
-greetd.config:=/etc/greetd/config.toml
-greetd.environments:=/etc/greetd/environments
-greetd.sway-config:=/etc/greetd/sway-config
-sway-run:=/usr/local/bin/sway-run
-sway-wayland-enablement:=/usr/local/bin/wayland_enablement.sh
+greetd.pam:=$(SYSROOT)/etc/pam.d/greetd
+greetd.config:=$(SYSROOT)/etc/greetd/config.toml
+greetd.environments:=$(SYSROOT)/etc/greetd/environments
+greetd.sway-config:=$(SYSROOT)/etc/greetd/sway-config
+sway-run:=$(SYSROOT)/usr/local/bin/sway-run
+sway-wayland-enablement:=$(SYSROOT)/usr/local/bin/wayland_enablement.sh
+sway-session:=$(SYSROOT)/usr/local/share/wayland-sessions/sway.desktop
 
-$(L) += $(greetd.service)
+# $(L) += $(greetd.service)
 #$(L) += $(gnome-keyring.pam)
 #$(L) += $(greetd.pam)
-$(L) += $(greetd.config)
-$(L) += $(greetd.environments)
-$(L) += $(greetd.sway-config)
+# $(L) += $(greetd.config)
+# $(L) += $(greetd.environments)
+# $(L) += $(greetd.sway-config)
 $(L) += $(sway-wayland-enablement)
 $(L) += $(sway-run)
+$(L) += $(sway-session)
 
 include $(BUILD_LAYER)
 
@@ -39,7 +41,7 @@ $(greetd.service):
 	sudo cp $(SRC_greetd)/greetd/greetd.service $@
 
 $(greetd.pam):
-	@echo sudo cp $(BASE_sway-systemd)/etc/pam.d/greetd  /etc/pam.d/greetd
+	@echo sudo cp $(BASE_sway-systemd)/etc/pam.d/greetd  $@
 
 $(greetd.environments):
 	sudo cp $(BASE_sway-systemd)/etc/greetd/environments $@
@@ -55,3 +57,6 @@ $(sway-wayland-enablement):
 
 $(sway-run):
 	sudo cp $(BASE_sway-systemd)/usr/local/bin/sway-run $@
+
+$(sway-session):
+	$(SUDO) cp $(BASE_sway-systemd)/usr/local/share/wayland-sessions/sway.desktop $@

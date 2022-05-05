@@ -19,7 +19,6 @@ $(libepoxy):
 	cd $(builddir)/libepoxy && meson $(MESON_OPTIONS) $(srcdir)/libepoxy $(builddir)/libepoxy
 	cd $(builddir)/libepoxy && ninja
 	cd $(builddir)/libepoxy && $(SUDO) DESTDIR=$(SYSROOT) ninja install
-	cd $(builddir)/libepoxy && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:

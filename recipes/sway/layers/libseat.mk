@@ -16,7 +16,6 @@ $(libseat):
 	cd $(builddir)/libseat && meson $(MESON_OPTIONS) $(srcdir)/libseat $(builddir)/libseat
 	cd $(builddir)/libseat && ninja
 	cd $(builddir)/libseat && $(SUDO) DESTDIR=$(SYSROOT) ninja install
-	cd $(builddir)/libseat && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:
