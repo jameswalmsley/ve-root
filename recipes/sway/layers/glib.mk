@@ -16,7 +16,6 @@ $(glib):
 	cd $(builddir)/glib && meson $(srcdir)/glib $(builddir)/glib $(MESON_OPTIONS) -Dinstalled_tests=false
 	cd $(builddir)/glib && ninja
 	cd $(builddir)/glib && $(SUDO) DESTDIR=$(SYSROOT) ninja install
-	cd $(builddir)/glib && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:

@@ -41,7 +41,6 @@ $(pipewire):
 	cd $(builddir)/pipewire && meson $(srcdir)/pipewire $(builddir)/pipewire $(MESON_OPTIONS)
 	cd $(builddir)/pipewire && ninja
 	cd $(builddir)/pipewire && $(SUDO) DESTDIR=$(SYSROOT) ninja install
-	cd $(builddir)/pipewire && $(SUDO) ninja install && rm -rf $(builddir)/pipewire/meson-logs/install-log.txt
 	$(stamp)
 
 $(L).clean:

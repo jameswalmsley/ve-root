@@ -19,7 +19,7 @@ $(libglvnd):
 	mkdir -p $(builddir)/$(bdir)
 	cd $(srcdir)/$(bdir) && meson $(builddir)/$(bdir) --buildtype=release
 	cd $(builddir)/$(bdir) && ninja
-	cd $(builddir)/$(bdir) && sudo ninja install
+	cd $(builddir)/$(bdir) && $(SUDO) DESTDIR=$(SYSROOT) ninja install
 	$(stamp)
 
 $(L).clean:

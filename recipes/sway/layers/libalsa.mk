@@ -17,7 +17,6 @@ $(libalsa):
 	cp -r $(srcdir)/libalsa $(builddir)
 	cd $(builddir)/libalsa && ./gitcompile --prefix=/usr/local
 	cd $(builddir)/libalsa && $(SUDO) DESTDIR=$(SYSROOT) $(MAKE) install
-	cd $(builddir)/libalsa && $(SUDO) $(MAKE) install
 	$(stamp)
 
 $(L).clean:

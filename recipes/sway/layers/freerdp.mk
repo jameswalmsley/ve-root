@@ -16,6 +16,5 @@ $(freerdp):
 	rm -rf $(builddir)/$(bdir)
 	mkdir -p $(builddir)/$(bdir)
 	cd $(builddir)/$(bdir) && cmake -DCMAKE_BUILD_TYPE=Release -GNinja $(srcdir)/freerdp
-	cd $(builddir)/$(bdir) && ninja && sudo ninja install
 	$(stamp)
 

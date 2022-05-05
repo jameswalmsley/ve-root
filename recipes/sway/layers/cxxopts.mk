@@ -16,7 +16,6 @@ $(cxxopts):
 	cd $(builddir)/cxxopts && cmake -GNinja -DCMAKE_BUILD_TYPE=Release $(srcdir)/cxxopts
 	cd $(builddir)/cxxopts && ninja
 	cd $(builddir)/cxxopts && $(SUDO) DESTDIR=$(SYSROOT) ninja install
-	cd $(builddir)/cxxopts && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:

@@ -25,7 +25,6 @@ $(geoclue):
 	cd $(builddir)/geoclue && meson $(srcdir)/geoclue $(builddir)/geoclue $(MESON_OPTIONS) -Dgtk-doc=false
 	cd $(builddir)/geoclue && ninja
 	cd $(builddir)/geoclue && $(SUDO) DESTDIR=$(SYSROOT) ninja install
-	cd $(builddir)/geoclue && $(SUDO) ninja install && rm -rf $(builddir)/geoclue/meson-logs/install-log.txt
 	$(stamp)
 
 $(L).clean:
