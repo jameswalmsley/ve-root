@@ -1,5 +1,29 @@
 version: "2"
 services:
+  ubuntu-22.04:
+    build:
+      context: .
+      dockerfile: ubuntu-22.04.Dockerfile
+    image: jameswalmsley/swaybuilder-ubuntu:22.04
+    volumes:
+      - /home/${CURRENT_USER}:/home/${CURRENT_USER}
+      - ../../entrypoint.sh:/entrypoint.sh
+      - ../../userentry.sh:/userentry.sh
+      - /tmp:/tmp
+    environment:
+      - DISPLAY
+      - CURRENT_UID
+      - CURRENT_GID
+      - CURRENT_USER
+      - CURRENT_DIR
+      - DISTCC_HOSTS
+      - TERM=xterm-256color
+    stdin_open: true
+    tty: true
+    privileged: true
+    entrypoint: /entrypoint.sh
+    working_dir: /work
+
   ubuntu-20.04:
     build:
       context: .

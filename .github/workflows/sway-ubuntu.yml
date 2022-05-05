@@ -27,6 +27,15 @@ jobs:
           username: ${{ secrets.JAMES_DOCKER_HUB_USERNAME }}
           password: ${{ secrets.JAMES_DOCKER_HUB_PASSWORD }}
 
+      - name: Build swaybuilder-ubuntu:22.04
+        if: steps.changed-files.outputs.any_changed == 'true'
+        uses: docker/build-push-action@v2
+        with:
+          context: docker/jameswalmsley/swaybuilder-ubuntu
+          file: docker/jameswalmsley/swaybuilder-ubuntu/ubuntu-22.04.Dockerfile
+          push: true
+          tags: jameswalmsley/swaybuilder-ubuntu:22.04
+
       - name: Build swaybuilder-ubuntu:20.04
         if: steps.changed-files.outputs.any_changed == 'true'
         uses: docker/build-push-action@v2
