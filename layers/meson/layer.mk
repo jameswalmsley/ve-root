@@ -36,7 +36,7 @@ endef
 $(meson-tc): $(BASE_meson)/meson.toolchain.in
 	mkdir -p $(SYSROOT)
 	cp $(BASE_meson)/meson.toolchain.in $@
-	sed -i s:@SYSROOT@:$(SYSROOT): $@
-	sed -i s:@PREFIX@:$(PREFIX): $@
-	sed -i s:@LIBDIR@:$(LIBDIR): $@
+	sed -i s,@SYSROOT@,$(SYSROOT), $@
+	sed -i s,@PREFIX@,$(PREFIX), $@
+	sed -i s,@LIBDIR@,$(LIBDIR), $@
 
