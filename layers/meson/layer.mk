@@ -29,7 +29,7 @@ define meson_srcdir
 endef
 
 define meson
-	$(call meson_srcdir, $1, $$(srcdir)/$(strip $1))
+	$(call meson_srcdir, $1, $$(srcdir)/$(strip $1),$(2))
 endef
 
 
