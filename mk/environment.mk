@@ -130,6 +130,24 @@ define get_archive
 	$(eval $(get_archive_impl))
 endef
 
+define get_file_impl
+$(eval SRCDEST:=$(SOURCE)/$(L)/$(strip $(1))/$(notdir $(strip $(2))))
+$(SRCDEST):
+	@echo "Fetching $$@"
+	mkdir -p $(SOURCE)/$(L)/$(strip $(1))
+	wget -O $$@ $(2)
+
+
+source-checkout += $(SRCDEST)
+
+$$($(L)): $(SRCDEST)
+
+endef
+
+define get_file
+	$(eval $(get_file_impl))
+endef
+
 define print_dep_er
 	echo $(1)
 endef
