@@ -13,7 +13,7 @@ include $(BUILD_LAYER)
 
 $(scdoc):
 	cd $(srcdir)/scdoc && $(MAKE) OUTDIR=$(builddir)/scdoc
-	cd $(srcdir)/scdoc && $(SUDO) $(MAKE) OUTDIR=$(builddir)/scdoc DESTDIR=$(SYSROOT) install
+	cd $(srcdir)/scdoc && $(SUDO) $(MAKE) OUTDIR=$(builddir)/scdoc install
 	$(stamp)
 
 

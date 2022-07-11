@@ -19,7 +19,7 @@ $(ffmpeg):
 	mkdir -p $(builddir)/ffmpeg
 	cd $(builddir)/ffmpeg && $(srcdir)/ffmpeg/configure --enable-shared
 	cd $(builddir)/ffmpeg && $(MAKE)
-	cd $(builddir)/ffmpeg && $(SUDO) $(MAKE) DESTDIR=$(SYSROOT) install
+	cd $(builddir)/ffmpeg && $(SUDO) $(MAKE) install
 	$(stamp)
 
 $(L).clean:

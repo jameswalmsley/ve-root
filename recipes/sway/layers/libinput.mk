@@ -18,9 +18,9 @@ include $(BUILD_LAYER)
 
 $(libinput):
 	mkdir -p $(builddir)/libinput
-	cd $(builddir)/libinput && meson $(MESON_OPTIONS) $(srcdir)/libinput $(builddir)/libinput -Ddebug-gui=false -Dtests=false
+	cd $(builddir)/libinput && meson $(MESON_OPTIONS) $(srcdir)/libinput $(builddir)/libinput -Ddebug-gui=false -Dtests=false -Dlibwacom=false
 	cd $(builddir)/libinput && ninja
-	cd $(builddir)/libinput && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/libinput && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:

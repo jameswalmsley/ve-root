@@ -15,7 +15,7 @@ $(libxcvt):
 	mkdir -p $(builddir)/libxcvt
 	cd $(builddir)/libxcvt && meson $(MESON_OPTIONS) $(srcdir)/libxcvt $(builddir)/libxcvt
 	cd $(builddir)/libxcvt && ninja
-	cd $(builddir)/libxcvt && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/libxcvt && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:

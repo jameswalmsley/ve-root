@@ -46,8 +46,8 @@ MESA_CFLAGS += -Wall -O2
 MESA_CXXFLAGS += -Wall -O2
 
 VULKAN_DRIVERS += intel amd swrast
-DRI_DRIVERS += r100 r200 nouveau i915 i965
-GALLIUM_DRIVERS += r300 r600 nouveau virgl svga d3d12 zink
+DRI_DRIVERS += nouveau i915 i965
+GALLIUM_DRIVERS += nouveau virgl svga d3d12 zink
 
 EGL_PLATFORMS:=x11
 
@@ -90,7 +90,8 @@ MESA_FLAGS += \
 	-Dgallium-xvmc=disabled \
 	-Dgallium-omx=disabled \
 	-Db_ndebug=true \
-	-Dbuild-tests=true \
+	-Dbuild-tests=false \
+	-Dvalgrind=false \
 	$(MESA_OPTIONS)
 
 $(mesa):
@@ -98,7 +99,7 @@ $(mesa):
 	@echo $(MESA_FLAGS)
 	cd $(builddir)/mesa && CFLAGS="$(MESA_CFLAGS)" CXXFLAGS="$(MESA_CXXFLAGS)" meson $(MESON_OPTIONS) $(srcdir)/mesa $(builddir)/mesa $(MESA_OPTIONS)
 	cd $(builddir)/mesa && ninja
-	cd $(builddir)/mesa && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/mesa && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:

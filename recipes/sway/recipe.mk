@@ -6,10 +6,12 @@ DOCKER_SERVICE?=ubuntu-20.04
 SYSROOT?=$(OUT)/sysroot
 MESON_OPTIONS:=
 
-MESON_OPTIONS += --buildtype=release
+MESON_OPTIONS += --buildtype=release --prefix=$(SYSROOT)/usr/local
+CMAKE_OPTIONS += -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$(SYSROOT)/usr/local
+
 SUDO?=sudo
-CLANG:=clang
-CLANG++:=clang++
+CLANG:=clang-14
+CLANG++:=clang++-14
 MAKE:=make -j$(shell nproc)
 
 DISTRO:=$(shell cat /etc/os-release | grep ^ID= | cut -d= -f2)
@@ -20,8 +22,8 @@ DISTRO_VER:=$(shell cat /etc/os-release | grep ^VERSION_ID= | cut -d= -f2)
 DISTRO_VER:=$(shell echo $(DISTRO_VER))
 DISTRO_FULL:=$(DISTRO)-$(DISTRO_VER)
 
-CLANG:=clang-12
-CLANG++:=clang++-12
+CLANG:=clang-14
+CLANG++:=clang++-14
 
 CONFIG_LIBFUSE:=y
 
@@ -37,8 +39,9 @@ endif
 
 endif
 
-export PKG_CONFIG_SYSROOT_DIR=$(SYSROOT)
-export PKG_CONFIG_PATH=$(SYSROOT)/usr/local/lib/pkgconfig:$(SYSROOT)/usr/local/lib64/pkgconfig
+# export PKG_CONFIG_SYSROOT_DIR=$(SYSROOT)
+export PKG_CONFIG_PATH=$(SYSROOT)/usr/local/lib/pkgconfig:$(SYSROOT)/usr/local/lib64/pkgconfig:$(SYSROOT)/usr/local/lib/x86_64-linux-gnu/pkgconfig
+export PREFIX=$(SYSROOT)/usr/local
 
 pkg:
 	echo $${PKG_CONFIG_PATH}
@@ -57,11 +60,14 @@ LAYERS += libdrm
 LAYERS += wayland
 LAYERS += wayland-protocols
 LAYERS += vulkan
+# LAYERS += valgrind
 LAYERS += mesa
 LAYERS += xorgproto
 LAYERS += libxcvt
 LAYERS += libepoxy
+LAYERS += libevdev
 LAYERS += libinput
+LAYERS += pixman
 LAYERS += xwayland
 LAYERS += libxkbcommon
 

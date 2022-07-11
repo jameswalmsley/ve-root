@@ -18,7 +18,7 @@ $(mako):
 	mkdir -p $(builddir)/mako
 	cd $(srcdir)/mako && meson $(builddir)/mako $(MESON_OPTIONS)
 	cd $(builddir)/mako && ninja
-	cd $(builddir)/mako && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/mako && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:

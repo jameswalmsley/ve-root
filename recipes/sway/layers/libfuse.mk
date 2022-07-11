@@ -15,7 +15,7 @@ $(libfuse):
 	mkdir -p $(builddir)/libfuse
 	cd $(builddir)/libfuse && meson $(srcdir)/libfuse $(builddir)/libfuse $(MESON_OPTIONS) -Dexamples=false -Dtests=false
 	cd $(builddir)/libfuse && ninja
-	cd $(builddir)/libfuse && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/libfuse && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:

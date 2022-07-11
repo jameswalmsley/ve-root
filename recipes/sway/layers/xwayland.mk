@@ -53,9 +53,9 @@ include $(BUILD_LAYER)
 $(xwayland): bdir:=$(bdir)
 $(xwayland):
 	mkdir -p $(builddir)/$(bdir)
-	cd $(srcdir)/$(bdir) && meson $(builddir)/$(bdir) $(MESON_OPTIONS)  -Dipv6=true -Dxvfb=false -Dxdmcp=false -Dxcsecurity=true -Ddri3=true -Dglamor=true
+	cd $(srcdir)/$(bdir) && meson $(builddir)/$(bdir) $(MESON_OPTIONS)  -Dipv6=true -Dxvfb=false -Dxdmcp=false -Dxcsecurity=true -Ddri3=true -Dglamor=true -Dsecure-rpc=false
 	cd $(builddir)/$(bdir) && ninja
-	cd $(builddir)/$(bdir) && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/$(bdir) && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:

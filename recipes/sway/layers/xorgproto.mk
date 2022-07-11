@@ -16,8 +16,8 @@ include $(BUILD_LAYER)
 $(xorgproto): bdir:=$(bdir)
 $(xorgproto):
 	mkdir -p $(builddir)/$(bdir)
-	cd $(builddir)/$(bdir) && $(srcdir)/$(bdir)/autogen.sh
-	cd $(builddir)/$(bdir) && make && $(SUDO) make DESTDIR=$(SYSROOT) install
+	cd $(builddir)/$(bdir) && $(srcdir)/$(bdir)/autogen.sh --prefix=$(PREFIX)
+	cd $(builddir)/$(bdir) && make && $(SUDO) make install
 	$(stamp)
 
 $(L).clean:

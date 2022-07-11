@@ -15,7 +15,7 @@ include $(BUILD_LAYER)
 
 $(wayland-protocols):
 	cd $(srcdir)/wayland-protocols && meson $(MESON_OPTIONS) $(builddir)
-	cd $(builddir) && ninja && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir) && ninja && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:
