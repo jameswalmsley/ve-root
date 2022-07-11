@@ -17,8 +17,8 @@ $(light): bdir:=$(bdir)
 $(light):
 	mkdir -p $(builddir)/$(bdir)
 	cd $(srcdir)/$(bdir) && git reset --hard && ./autogen.sh
-	cd $(builddir)/$(bdir) && $(srcdir)/$(bdir)/configure
+	cd $(builddir)/$(bdir) && $(srcdir)/$(bdir)/configure --prefix=$(SYSROOT)/usr/local
 	cd $(builddir)/$(bdir) && $(MAKE)
-	cd $(builddir)/light && $(SUDO) $(MAKE) DESTDIR=$(SYSROOT) install
+	cd $(builddir)/light && $(SUDO) $(MAKE) install
 	$(stamp)
 

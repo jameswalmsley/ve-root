@@ -17,7 +17,7 @@ $(wl-clipboard):
 	mkdir -p $(builddir)/wl-clipboard
 	cd $(srcdir)/wl-clipboard && meson $(builddir)/wl-clipboard $(MESON_OPTIONS)
 	cd $(builddir)/wl-clipboard && ninja
-	cd $(builddir)/wl-clipboard && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/wl-clipboard && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:

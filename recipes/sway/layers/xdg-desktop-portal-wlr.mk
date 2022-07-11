@@ -23,7 +23,7 @@ $(portal-wlr):
 	mkdir -p $(builddir)/portal-wlr
 	cd $(srcdir)/portal-wlr && meson $(builddir)/portal-wlr $(MESON_OPTIONS)
 	cd $(builddir)/portal-wlr && ninja
-	cd $(builddir)/portal-wlr && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/portal-wlr && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:

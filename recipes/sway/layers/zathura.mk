@@ -34,21 +34,21 @@ $(zathura):
 	mkdir -p $(builddir)/zathura
 	cd $(srcdir)/zathura && meson $(builddir)/zathura $(MESON_OPTIONS)
 	cd $(builddir)/zathura && ninja
-	cd $(builddir)/zathura && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/zathura && $(SUDO) ninja install
 	$(stamp)
 
 $(zathura-plugin-mupdf):
 	mkdir -p $(builddir)/zathura-plugin-mupdf
 	cd $(srcdir)/zathura-plugin-mupdf && meson $(builddir)/zathura-plugin-mupdf $(MESON_OPTIONS)
 	cd $(builddir)/zathura-plugin-mupdf && ninja
-	cd $(builddir)/zathura-plugin-mupdf && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/zathura-plugin-mupdf && $(SUDO) ninja install
 	$(stamp)
 
 $(zathura-plugin-poppler):
 	mkdir -p $(builddir)/zathura-plugin-poppler
 	cd $(srcdir)/zathura-plugin-poppler && meson $(builddir)/zathura-plugin-poppler $(MESON_OPTIONS)
 	cd $(builddir)/zathura-plugin-poppler && ninja
-	cd $(builddir)/zathura-plugin-poppler && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/zathura-plugin-poppler && $(SUDO) ninja install
 	$(stamp)
 
 $(zathura-plugin-mupdf): $(zathura)

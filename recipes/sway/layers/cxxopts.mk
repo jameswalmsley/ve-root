@@ -13,9 +13,9 @@ include $(BUILD_LAYER)
 
 $(cxxopts):
 	mkdir -p $(builddir)/cxxopts
-	cd $(builddir)/cxxopts && cmake -GNinja -DCMAKE_BUILD_TYPE=Release $(srcdir)/cxxopts
+	cd $(builddir)/cxxopts && cmake -GNinja -DCMAKE_BUILD_TYPE=Release $(srcdir)/cxxopts -DCXXOPTS_BUILD_TESTS=OFF -DCXXOPTS_BUILD_EXAMPLES=OFF
 	cd $(builddir)/cxxopts && ninja
-	cd $(builddir)/cxxopts && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/cxxopts && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:

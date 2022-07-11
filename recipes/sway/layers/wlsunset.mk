@@ -18,7 +18,7 @@ $(wlsunset):
 	mkdir -p $(builddir)/wlsunset
 	cd $(srcdir)/wlsunset && meson $(MESON_OPTIONS) $(srcdir)/wlsunset $(builddir)/wlsunset
 	cd $(builddir)/wlsunset && ninja
-	cd $(builddir)/wlsunset && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/wlsunset && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:

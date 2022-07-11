@@ -10,8 +10,8 @@ MESON_OPTIONS += --buildtype=release --prefix=$(SYSROOT)/usr/local
 CMAKE_OPTIONS += -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$(SYSROOT)/usr/local
 
 SUDO?=sudo
-CLANG:=clang-14
-CLANG++:=clang++-14
+CLANG:=clang-12
+CLANG++:=clang++-12
 MAKE:=make -j$(shell nproc)
 
 DISTRO:=$(shell cat /etc/os-release | grep ^ID= | cut -d= -f2)
@@ -22,8 +22,8 @@ DISTRO_VER:=$(shell cat /etc/os-release | grep ^VERSION_ID= | cut -d= -f2)
 DISTRO_VER:=$(shell echo $(DISTRO_VER))
 DISTRO_FULL:=$(DISTRO)-$(DISTRO_VER)
 
-CLANG:=clang-14
-CLANG++:=clang++-14
+CLANG:=clang-12
+CLANG++:=clang++-12
 
 CONFIG_LIBFUSE:=y
 
@@ -54,76 +54,86 @@ endif
 DEB_PACKAGES:=pkg-config cmake autoconf git
 PIP_PACKAGES:=meson ninja
 
-LAYERS += build-deps
-LAYERS += scdoc
-LAYERS += libdrm
-LAYERS += wayland
-LAYERS += wayland-protocols
-LAYERS += vulkan
-# LAYERS += valgrind
-LAYERS += mesa
-LAYERS += xorgproto
-LAYERS += libxcvt
-LAYERS += libepoxy
-LAYERS += libevdev
-LAYERS += libinput
-LAYERS += pixman
-LAYERS += xwayland
-LAYERS += libxkbcommon
+LAYERS-y += build-deps
+LAYERS-y += scdoc
+LAYERS-y += libdrm
+LAYERS-y += wayland
+LAYERS-y += wayland-protocols
+LAYERS-y += vulkan
+LAYERS-y += mesa
+LAYERS-y += xorgproto
+LAYERS-y += libxcvt
+LAYERS-y += libepoxy
+LAYERS-y += libevdev
+LAYERS-y += libinput
+LAYERS-y += pixman
+LAYERS-y += xwayland
+LAYERS-y += libxkbcommon
 
-LAYERS += libseat
-LAYERS += wlroots
-LAYERS += json-c
-LAYERS += sway
-LAYERS += sway-systemd
+LAYERS-y += libseat
+LAYERS-y += wlroots
+LAYERS-y += json-c
+LAYERS-y += sway
+LAYERS-y += sway-systemd
 
-LAYERS += libva
-LAYERS += ffmpeg
+LAYERS-y += libva
+LAYERS-y += ffmpeg
 
-LAYERS += swaylock-effects
-LAYERS += swayidle
-LAYERS += swaybg
-LAYERS += kanshi
-LAYERS += mako
+LAYERS-y += swaylock-effects
+LAYERS-y += swayidle
+LAYERS-y += swaybg
+LAYERS-y += kanshi
+LAYERS-y += mako
 
-LAYERS += grim
-LAYERS += slurp
-LAYERS += wl-clipboard
-LAYERS += swappy
-# LAYERS += waypipe
+LAYERS-y += grim
+LAYERS-y += slurp
+LAYERS-y += wl-clipboard
+LAYERS-y += swappy
+# LAYERS-y += waypipe
 
 LAYERS-$(CONFIG_LIBALSA) += libalsa
-LAYERS += pipewire
+LAYERS-y += pipewire
 LAYERS-$(CONFIG_LIBGEOCLUE) += geoclue
 LAYERS-$(CONFIG_LIBFUSE) += libfuse
 LAYERS-$(CONFIG_GLIB) += glib
-LAYERS += gtk-layer-shell
-LAYERS += libportal
-LAYERS += xdg-desktop-portal
-LAYERS += libinih
-LAYERS += xdg-desktop-portal-wlr
+LAYERS-y += gtk-layer-shell
+LAYERS-y += libportal
+LAYERS-y += xdg-desktop-portal
+LAYERS-y += libinih
+LAYERS-y += xdg-desktop-portal-wlr
 
-LAYERS += waybar
-LAYERS += wshowkeys
-LAYERS += wf-recorder
+LAYERS-y += waybar
+LAYERS-y += wshowkeys
+LAYERS-y += wf-recorder
 
-LAYERS += mupdf
-LAYERS += zathura
-LAYERS += wlsunset
+LAYERS-y += mupdf
+LAYERS-y += zathura
+LAYERS-y += wlsunset
 
 ifneq ($(DISTRO),arch)
-	LAYERS += imv
+	LAYERS-y += imv
 endif
 
-LAYERS += light
-LAYERS += cxxopts
-LAYERS += pamixer
-LAYERS += avizo
+LAYERS-y += light
+LAYERS-y += cxxopts
+LAYERS-y += pamixer
+LAYERS-y += avizo
 
-LAYERS += sway-scripts
+LAYERS-y += sway-scripts
 
 LAYERS-$(CONFIG_PACKAGE) += package
 
 LAYERS += $(LAYERS-y)
 
 include $(BUILD_RECIPE)
+
+
+.PHONY:install
+install: DESTDIR?=/
+install:
+	rm -rf $(OUT)/install-sysroot
+	mkdir -p $(OUT)/install-sysroot
+	cp -r $(SYSROOT)/* $(OUT)/install-sysroot
+	find $(OUT)/install-sysroot -name "*.pc" | xargs sed -i "s,^prefix=.*,prefix=/usr/local,g"
+	find $(OUT)/install-sysroot -name "*.pc" | xargs grep "^prefix="
+	$(SUDO) rsync -avK --chown=root:root $(OUT)/install-sysroot/* $(DESTDIR)

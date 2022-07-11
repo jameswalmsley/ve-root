@@ -38,25 +38,25 @@ $(L) += $(sway-session)
 include $(BUILD_LAYER)
 
 $(greetd.service):
-	sudo cp $(SRC_greetd)/greetd/greetd.service $@
+	$(SUDO) cp $(SRC_greetd)/greetd/greetd.service $@
 
 $(greetd.pam):
-	@echo sudo cp $(BASE_sway-systemd)/etc/pam.d/greetd  $@
+	@echo $(SUDO) cp $(BASE_sway-systemd)/etc/pam.d/greetd  $@
 
 $(greetd.environments):
-	sudo cp $(BASE_sway-systemd)/etc/greetd/environments $@
+	$(SUDO) cp $(BASE_sway-systemd)/etc/greetd/environments $@
 
 $(greetd.config):
-	sudo cp $(BASE_sway-systemd)/etc/greetd/config.toml $@
+	$(SUDO) cp $(BASE_sway-systemd)/etc/greetd/config.toml $@
 
 $(greetd.sway-config):
-	sudo cp $(BASE_sway-systemd)/etc/greetd/sway-config $@
+	$(SUDO) cp $(BASE_sway-systemd)/etc/greetd/sway-config $@
 
 $(sway-wayland-enablement):
-	sudo cp $(BASE_sway-systemd)/usr/local/bin/wayland_enablement.sh $@
+	$(SUDO) cp $(BASE_sway-systemd)/usr/local/bin/wayland_enablement.sh $@
 
 $(sway-run):
-	sudo cp $(BASE_sway-systemd)/usr/local/bin/sway-run $@
+	$(SUDO) cp $(BASE_sway-systemd)/usr/local/bin/sway-run $@
 
 $(sway-session):
 	$(SUDO) cp $(BASE_sway-systemd)/usr/local/share/wayland-sessions/sway.desktop $@

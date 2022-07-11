@@ -21,7 +21,7 @@ $(swappy):
 	mkdir -p $(builddir)/swappy
 	cd $(srcdir)/swappy && meson $(MESON_OPTIONS) $(srcdir)/swappy $(builddir)/swappy
 	cd $(builddir)/swappy && ninja
-	cd $(builddir)/swappy && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/swappy && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:

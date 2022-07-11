@@ -23,7 +23,7 @@ $(libportal):
 	mkdir -p $(builddir)/libportal
 	cd $(builddir)/libportal && meson $(srcdir)/libportal $(builddir)/libportal $(MESON_OPTIONS) -Ddocs=false -Dtests=false -Dbackends=gtk3
 	cd $(builddir)/libportal && ninja
-	cd $(builddir)/libportal && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/libportal && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:

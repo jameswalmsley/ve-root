@@ -20,7 +20,7 @@ $(gtk-layer-shell):
 	mkdir -p $(builddir)/gtk-layer-shell
 	cd $(srcdir)/gtk-layer-shell && meson $(MESON_OPTIONS) $(srcdir)/gtk-layer-shell $(builddir)/gtk-layer-shell
 	cd $(builddir)/gtk-layer-shell && ninja
-	cd $(builddir)/gtk-layer-shell && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/gtk-layer-shell && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:

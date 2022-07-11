@@ -15,7 +15,7 @@ $(libinih):
 	mkdir -p $(builddir)/libinih
 	cd $(builddir)/libinih && meson $(MESON_OPTIONS) $(srcdir)/libinih $(builddir)/libinih
 	cd $(builddir)/libinih && ninja
-	cd $(builddir)/libinih && $(SUDO) DESTDIR=$(SYSROOT) ninja install
+	cd $(builddir)/libinih && $(SUDO) ninja install
 	$(stamp)
 
 $(L).clean:
