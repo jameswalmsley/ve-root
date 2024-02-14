@@ -92,7 +92,6 @@ if [ $? -ne -0 ]; then
 {% endif %}
 fi
 
-
 if [ -e "/data/.rw-mount" ]; then
     echo "INFO: Mounting rw-rootfs."
     mount -t ext4 -o rw ${MAPPER_DEVICE} /mnt/newroot

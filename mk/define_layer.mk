@@ -33,6 +33,7 @@ $(L).clean: | $(L).invalidate
 $(L).clean: builddir:=$(BUILD_$(LAYER))
 $(L).clean: srcdir:=$(SRC_$(LAYER))
 $(L).clean: basedir:=$(BASE_$(LAYER))
+$(L).clean: overlaydir:=$(OVERLAYFS)/$(L)
 endef
 
 $(eval $(layer_invalidate))

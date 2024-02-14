@@ -1,9 +1,11 @@
-
 $($(L)): | $(L).preamble
+$($(L)): | $(L).overlay_mount
 
 $(L).outro: | $($(L))
+$(L).overlay_umount: | $($(L))
 $(eval $(L) += $(L).outro)
 $(eval $(L) += $(L).preamble)
+$(eval $(L) += $(L).overlay_umount)
 
 # Evaluates to:
 # Recipe: kernel
@@ -19,7 +21,6 @@ endif
 #
 #  Layer DEPENDS and RUNAFTER.
 #
-
 
 $(foreach dep, $(DEPENDS), \
 $(eval DEPENDS_$(L)+=$(dep)) \
@@ -76,6 +77,7 @@ $(foreach t, $($(L)) $($(T)),\
 $(t): builddir:=$(BUILD)/$(L)$(\n)\
 $(t): srcdir:=$(SOURCE)/$(L)$(\n)\
 $(t): basedir:=$(LBASE)$(\n)\
+$(t): overlaydir:=$(OVERLAYFS)/$(L)/mnt$(\n)\
 ifeq ($(filter $(LAYER),$(ROOTFS_DEPENDS)),)$(\n)\
 $(t): RECIPE:=$(RECIPE)$(\n)\
 else$(\n)\
@@ -199,6 +201,41 @@ endef
 git.rev-parse.head: | $(L).git.rev-parse.head
 
 $(eval $(git_rev-parse_head_layer))
+
+$(eval $(L)_OVERLAY_LOWERDIRS:=$(subst $(space),:,$(strip $(patsubst %,$(OVERLAYFS)/L_%/upper,$(call reverse,$(LAYERS_INCLUDED))) $(OVERLAYFS)/L_base/upper)))
+
+define overlay_mount
+.PHONY:$(L).overlay_mount
+$(L).overlay_mount:
+	@mkdir -p $(OVERLAYFS)/L_base/upper
+	@mkdir -p $(OVERLAYFS)/$(L)/mnt
+	@mkdir -p $(OVERLAYFS)/$(L)/upper
+	@mkdir -p $(OVERLAYFS)/$(L)/workdir
+	@-umount -R $(OVERLAYFS)/$(L)/mnt 2> /dev/null; true
+	mount -t overlay overlay -olowerdir=$($(L)_OVERLAY_LOWERDIRS),upperdir=$(OVERLAYFS)/$(L)/upper,workdir=$(OVERLAYFS)/$(L)/workdir $(OVERLAYFS)/$(L)/mnt
+
+endef
+$(eval $(overlay_mount))
+
+define overlay_umount
+.PHONY:$(L).overlay_umount
+$(L).overlay_umount:
+	@-umount -R $(OVERLAYFS)/$(L)/mnt
+
+endef
+
+$(eval $(overlay_umount))
+
+define overlay_chroot
+.PHONY:$(L).chroot
+$(L).chroot: | $(L).overlay_mount
+	arch-chroot $(OVERLAYFS)/$(L)/mnt
+	umount -R $(OVERLAYFS)/$(L)/mnt
+
+endef
+
+$(eval $(overlay_chroot))
+
 
 $(eval LAYERS_INCLUDED += $(LAYER))
 

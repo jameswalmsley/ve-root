@@ -31,6 +31,8 @@ SOURCE:=$(BASE)/sources/$(R)
 BUILD:=$(OUT)/build
 STAMP:=$(OUT)/.stamp
 ROOTFS:=$(OUT)/rootfs
+BOOT:=$(OUT)/boot
+OVERLAYFS:=$(OUT)/overlayfs
 
 DEFINE_RECIPE:=$(VEBASE)/mk/define_recipe.mk
 BUILD_RECIPE:=$(VEBASE)/mk/build_recipe.mk
@@ -62,7 +64,7 @@ define touch_stamp
 endef
 
 stamp=$(call touch_stamp)
-
+reverse = $(if $(wordlist 2,2,$(1)),$(call reverse,$(wordlist 2,$(words $(1)),$(1))) $(firstword $(1)),$(1))
 
 #
 # $(call select_file,try,default)
