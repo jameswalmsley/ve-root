@@ -110,13 +110,19 @@ endef
 #
 # Archive checkouts
 #
+#
+#
+WGET_FLAGS:=
+ifdef NONINTERACTIVE
+WGET_FLAGS:=-nv
+endif
 
 define get_archive_impl
 $(eval SRCDEST:=$(SOURCE)/$(L)/$(strip $(1))/$(notdir $(strip $(2))))
 $(SRCDEST):
 	@echo "Fetching $$@"
 	mkdir -p $(SOURCE)/$(L)/$(strip $(1))
-	wget -O $$@ $(2)
+	wget $(WGET_FLAGS) -O $$@ $(2)
 	tar xvf $$@ -C $(SOURCE)/$(L)/$(strip $(1))
 
 
@@ -130,12 +136,31 @@ define get_archive
 	$(eval $(get_archive_impl))
 endef
 
+define get_image_xz_impl
+$(eval SRCDEST:=$(SOURCE)/$(L)/$(strip $(1))/$(notdir $(strip $(2))))
+$(SRCDEST):
+	@echo "Fetching $$@"
+	mkdir -p $(SOURCE)/$(L)/$(strip $(1))
+	wget $(WGET_FLAGS) -O $$@ $(2)
+	unxz -k $$@
+
+
+source-checkout += $(SRCDEST)
+
+$$($(L)): $(SRCDEST)
+
+endef
+
+define get_image_xz
+	$(eval $(get_image_xz_impl))
+endef
+
 define get_file_impl
 $(eval SRCDEST:=$(SOURCE)/$(L)/$(strip $(1))/$(notdir $(strip $(2))))
 $(SRCDEST):
 	@echo "Fetching $$@"
 	mkdir -p $(SOURCE)/$(L)/$(strip $(1))
-	wget -O $$@ $(2)
+	wget $(WGET_FLAGS) -O $$@ $(2)
 
 
 source-checkout += $(SRCDEST)
