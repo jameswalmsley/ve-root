@@ -37,5 +37,23 @@ endef
 
 $(eval $(layer_invalidate))
 
+define layer_preamble
+.PHONY: $(L).preamble
+$(L).preamble:
+	@echo "::group:: 🔨 Building Layer - $(L)"
+
+endef
+
+$(eval $(layer_preamble))
+
+
+define layer_outro
+.PHONY: $(L).outro
+$(L).outro:
+	@echo "::endgroup::"
+endef
+
+$(eval $(layer_outro))
+
 DEPENDS:=
 RUNAFTER:=

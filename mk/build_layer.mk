@@ -1,3 +1,10 @@
+
+$($(L)): | $(L).preamble
+
+$(L).outro: | $($(L))
+$(eval $(L) += $(L).outro)
+$(eval $(L) += $(L).preamble)
+
 # Evaluates to:
 # Recipe: kernel
 # L_kernel: $(L_kernel)
