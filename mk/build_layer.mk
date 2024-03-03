@@ -1,11 +1,14 @@
 $($(L)): | $(L).preamble
+$($(L)): $(BUILD)/$(L)
+$(BUILD)/$(L):
+	mkdir -p $@
 
 
 $(L).outro: | $($(L))
 $(eval $(L) += $(L).outro)
 $(eval $(L) += $(L).preamble)
 
-ifeq ($(OVERLAYFS),y)
+ifeq ($(CONFIG_OVERLAYFS),y)
 $($(L)): | $(L).overlay_mount
 $(L).overlay_umount: | $($(L))
 $(eval $(L) += $(L).overlay_umount)
@@ -206,7 +209,7 @@ git.rev-parse.head: | $(L).git.rev-parse.head
 
 $(eval $(git_rev-parse_head_layer))
 
-ifeq ($(OVERLAYFS),y)
+ifeq ($(CONFIG_OVERLAYFS),y)
 $(eval $(L)_OVERLAY_LOWERDIRS:=$(subst $(space),:,$(strip $(patsubst %,$(OVERLAYFS)/L_%/upper,$(call reverse,$(LAYERS_INCLUDED))) $(OVERLAYFS)/L_base/upper)))
 
 define overlay_mount
