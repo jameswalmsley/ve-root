@@ -29,8 +29,8 @@ define layer_clean_invalidate
 $(L).invalidate $(L).i:
 	rm -rf $$($(L))
 ifeq ($(CONFIG_OVERLAYFS),y)
-	-umount -R $(OVERLAYFS)/$(L)/mnt
-	rm -rf $(OVERLAYFS)/$(L)
+	@-umount -R $(OVERLAYFS)/$(L)/mnt 2> /dev/null; true
+	@rm -rf $(OVERLAYFS)/$(L)
 endif
 
 .PHONY: $(L)._clean

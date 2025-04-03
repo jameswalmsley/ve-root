@@ -216,9 +216,6 @@ $(eval $(L)_OVERLAY_LOWERDIRS:=$(subst $(space),:,$(strip $(patsubst %,$(OVERLAY
 define overlay_mount
 .PHONY:$(L).overlay_mount
 $(L).overlay_mount:
-	-@$(foreach layer, $(LAYERS),\
-	umount -R $(OVERLAYFS)/L_$(layer)/mnt 2> /dev/null; true;\
-	)
 	@mkdir -p $(OVERLAYFS)/L_base/upper
 	@mkdir -p $(OVERLAYFS)/$(L)/mnt
 	@mkdir -p $(OVERLAYFS)/$(L)/upper
