@@ -24,22 +24,29 @@ $(eval recipe += $(L))
 
 .PHONY: $(L).clean
 
-define layer_invalidate
+define layer_clean_invalidate
 .PHONY: $(L).invalidate $(L).i
 $(L).invalidate $(L).i:
 	rm -rf $$($(L))
 ifeq ($(CONFIG_OVERLAYFS),y)
+	-umount -R $(OVERLAYFS)/$(L)/mnt
 	rm -rf $(OVERLAYFS)/$(L)
 endif
 
+.PHONY: $(L)._clean
+$(L)._clean:
+	rm -rf $(BUILD)/$(L)
+
 $(L).clean: | $(L).invalidate
+$(L).clean: | $(L)._clean
 $(L).clean: builddir:=$(BUILD_$(LAYER))
 $(L).clean: srcdir:=$(SRC_$(LAYER))
 $(L).clean: basedir:=$(BASE_$(LAYER))
 $(L).clean: overlaydir:=$(OVERLAYFS)/$(L)
+
 endef
 
-$(eval $(layer_invalidate))
+$(eval $(layer_clean_invalidate))
 
 define layer_preamble
 .PHONY: $(L).preamble
