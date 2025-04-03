@@ -63,7 +63,7 @@ define touch_stamp
 	mkdir -p $(dir $@) && touch $@
 endef
 
-stamp=$(call touch_stamp)
+stamp=@$(call touch_stamp)
 reverse = $(if $(wordlist 2,2,$(1)),$(call reverse,$(wordlist 2,$(words $(1)),$(1))) $(firstword $(1)),$(1))
 
 #
