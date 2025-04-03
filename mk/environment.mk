@@ -30,9 +30,9 @@ TOP:=$(BASE)/recipes/$(R)
 SOURCE:=$(BASE)/sources/$(R)
 BUILD:=$(OUT)/build
 STAMP:=$(OUT)/.stamp
+OVERLAYFS:=$(OUT)/overlayfs
 ROOTFS:=$(OUT)/rootfs
 BOOT:=$(OUT)/boot
-OVERLAYFS:=$(OUT)/overlayfs
 
 DEFINE_RECIPE:=$(VEBASE)/mk/define_recipe.mk
 BUILD_RECIPE:=$(VEBASE)/mk/build_recipe.mk
