@@ -126,3 +126,8 @@ git.freeze:
 .PHONY: git.status
 git.status:
 	@echo ""
+
+ifeq ($(CONFIG_OVERLAYFS),y)
+.PHONY: size
+size:
+endif
