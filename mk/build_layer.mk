@@ -248,7 +248,19 @@ $(L).chroot: | $(L).overlay_mount
 endef
 
 $(eval $(overlay_chroot))
+
+define layer_size
+.PHONY:$(L).size
+$(L).size:
+	@ printf  "%-20s :" ${L};  du -hs $(OVERLAYFS)/$(L)/upper | cut -f1
+
+size: | $(L).size
+endef
+
 endif
+
+
+$(eval $(layer_size))
 
 $(eval LAYERS_INCLUDED += $(LAYER))
 
