@@ -30,7 +30,7 @@ endif
 #
 
 $(foreach dep, $(DEPENDS), \
-$(eval DEPENDS_$(L)+=$(dep)) \
+$(eval DEPENDS_$(L)+=$$(L_$(dep))) \
 )
 
 #
@@ -215,6 +215,7 @@ $(eval $(L)_OVERLAY_LOWERDIRS:=$(subst $(space),:,$(strip $(patsubst %,$(OVERLAY
 
 define overlay_mount
 .PHONY:$(L).overlay_mount
+$(L).overlay_mount: | $$(DEPENDS_$(L))
 $(L).overlay_mount:
 	@mkdir -p $(OVERLAYFS)/L_base/upper
 	@mkdir -p $(OVERLAYFS)/$(L)/mnt
