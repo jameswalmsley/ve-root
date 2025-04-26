@@ -229,7 +229,10 @@ $(L).overlay_mount:
 	@umount -R $(OVERLAYFS)/$(L)/mnt 2> /dev/null; true
 	@mount -t overlay overlay -olowerdir=$($(L)_OVERLAY_LOWERDIRS),upperdir=$(OVERLAYFS)/$(L)/upper,workdir=$(OVERLAYFS)/$(L)/workdir $(OVERLAYFS)/$(L)/mnt
 	@mkdir -p $(OVERLAYFS)/$(L)/mnt/$(CONFIG_OVERLAYFS_ROOTFS_PATH)/overlay
+	@mkdir -p $(OVERLAYFS)/$(L)/mnt/$(CONFIG_OVERLAYFS_ROOTFS_PATH)/overlay-builddir
 	@mount --bind -o ro $(LBASE) $(OVERLAYFS)/$(L)/mnt/$(CONFIG_OVERLAYFS_ROOTFS_PATH)/overlay
+	@mkdir -p $(BUILD)/$(L)
+	@mount --bind $(BUILD)/$(L) $(OVERLAYFS)/$(L)/mnt/$(CONFIG_OVERLAYFS_ROOTFS_PATH)/overlay-builddir
 
 endef
 $(eval $(overlay_mount))
@@ -238,7 +241,9 @@ define overlay_umount
 .PHONY:$(L).overlay_umount
 $(L).overlay_umount:
 	@-umount -R $(OVERLAYFS)/$(L)/mnt/$(CONFIG_OVERLAYFS_ROOTFS_PATH)/overlay
+	@-umount -R $(OVERLAYFS)/$(L)/mnt/$(CONFIG_OVERLAYFS_ROOTFS_PATH)/overlay-builddir
 	@-rm -rf $(OVERLAYFS)/$(L)/mnt/$(CONFIG_OVERLAYFS_ROOTFS_PATH)/overlay
+	@-rm -rf $(OVERLAYFS)/$(L)/mnt/$(CONFIG_OVERLAYFS_ROOTFS_PATH)/overlay-builddir
 	@-umount -R $(OVERLAYFS)/$(L)/mnt 2> /dev/null; true
 
 endef
