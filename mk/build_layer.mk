@@ -5,13 +5,13 @@ $(BUILD)/$(L):
 
 
 $(L).outro: | $($(L))
-$(eval $(L) += $(L).outro)
-$(eval $(L) += $(L).preamble)
+#$(eval $(L) += $(L).outro)
+#$(eval $(L) += $(L).preamble)
 
 ifeq ($(CONFIG_OVERLAYFS),y)
 $($(L)): | $(L).overlay_mount
 $(L).overlay_umount: | $($(L))
-$(eval $(L) += $(L).overlay_umount)
+#$(eval $(L) += $(L).overlay_umount)
 endif
 
 # Evaluates to:

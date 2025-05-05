@@ -34,7 +34,7 @@ $(eval $(call select_layer,$(layer))) \
 
 define eval_layer_deps
 $(foreach dep,$(2), \
-$(eval $$(L_$(1)): $$(L_$(dep))) \
+$(eval $$(L_$(1)): $(dep)) \
 )
 endef
 
