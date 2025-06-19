@@ -237,7 +237,7 @@ $(eval $(overlay_umount))
 define overlay_chroot
 .PHONY:$(L).chroot
 $(L).chroot: | $(L).overlay_mount
-	arch-chroot $(OVERLAYFS)/$(L)/mnt
+	arch-chroot $(OVERLAYFS)/$(L)/mnt/$(CONFIG_OVERLAYFS_ROOTFS_PATH)
 	umount -R $(OVERLAYFS)/$(L)/mnt
 
 endef

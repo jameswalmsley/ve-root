@@ -28,6 +28,9 @@ define layer_invalidate
 .PHONY: $(L).invalidate $(L).i
 $(L).invalidate $(L).i:
 	rm -rf $$($(L))
+ifeq ($(CONFIG_OVERLAYFS),y)
+	rm -rf $(OVERLAYFS)/$(L)
+endif
 
 $(L).clean: | $(L).invalidate
 $(L).clean: builddir:=$(BUILD_$(LAYER))
