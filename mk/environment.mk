@@ -134,8 +134,25 @@ $$($(L)): $(SRCDEST)
 
 endef
 
+define get_archive_dl_impl
+$(eval SRCDEST:=$(SOURCE)/$(L)/$(strip $(1))/$(notdir $(strip $(2))))
+$(SRCDEST):
+	@echo "Fetching $$@"
+	mkdir -p $(SOURCE)/$(L)/$(strip $(1))
+	wget $(WGET_FLAGS) -O $$@ $(2)
+
+source-checkout += $(SRCDEST)
+
+$$($(L)): $(SRCDEST)
+
+endef
+
 define get_archive
 	$(eval $(get_archive_impl))
+endef
+
+define get_archive_dl
+	$(eval $(get_archive_dl_impl))
 endef
 
 define get_image_xz_impl
