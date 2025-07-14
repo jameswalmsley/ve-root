@@ -77,16 +77,16 @@ docker.info:
 
 .PHONY: docker
 docker:
-	cd $(BASE)/docker/$(DOCKER_IMAGE) && BASE=$(BASE)  CURRENT_DIR=$(shell pwd) CURRENT_UID=$(shell id -u) \
+	cd $(BASE)/docker/$(DOCKER_IMAGE) && DOCKER_BASE=$(WORKSPACE)  CURRENT_DIR=$(shell pwd) CURRENT_UID=$(shell id -u) \
 		CURRENT_GID=$(shell id -g) CURRENT_USER=$(shell whoami) docker compose run --rm $(DOCKER_SERVICE) $(DOCKER_COMMAND)
 
 .PHONY: docker.build
 docker.build:
-	cd $(BASE)/docker/$(DOCKER_IMAGE) && BASE=$(BASE) docker compose build $(DOCKER_SERVICE)
+	cd $(BASE)/docker/$(DOCKER_IMAGE) && DOCKER_BASE=$(WORKSPACE) docker compose build $(DOCKER_SERVICE)
 
 .PHONY: docker.build.force
 docker.build.force:
-	cd $(BASE)/docker/$(DOCKER_IMAGE) && BASE=$(BASE) docker compose build --no-cache ${DOCKER_SERVICE}
+	cd $(BASE)/docker/$(DOCKER_IMAGE) && DOCKER_BASE=$(WORKSPACE) docker compose build --no-cache ${DOCKER_SERVICE}
 
 .PHONY: chroot
 chroot:

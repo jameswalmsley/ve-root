@@ -25,9 +25,11 @@ VARIANT:=$(CONFIG_VARIANT)
 _VARIANT:=/$(CONFIG_VARIANT)
 endif
 
+WORKSPACE?=$(BASE)
+
 OUT:=$(CURDIR)/out/$(R)$(_VARIANT)
 TOP:=$(BASE)/recipes/$(R)
-SOURCE:=$(BASE)/sources/$(R)
+SOURCE:=$(WORKSPACE)/sources/$(R)
 BUILD:=$(OUT)/build
 STAMP:=$(OUT)/.stamp
 OVERLAYFS:=$(OUT)/overlayfs
