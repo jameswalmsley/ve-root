@@ -11,7 +11,7 @@ $(L).outro: | $($(L))
 ifeq ($(CONFIG_OVERLAYFS),y)
 $($(L)): | $(L).overlay_mount
 $(L).overlay_umount: | $($(L))
-#$(eval $(L) += $(L).overlay_umount)
+$(eval $(L) += $(L).overlay_umount)
 endif
 
 # Evaluates to:
