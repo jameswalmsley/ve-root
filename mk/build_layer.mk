@@ -10,14 +10,14 @@ $(L).outro: | $($(L))
 
 ifeq ($(CONFIG_OVERLAYFS),y)
 $($(L)): | $(L).overlay_mount
-$(L).overlay_umount: | $($(L))
-$(eval $(L) += $(L).overlay_umount)
+$(eval $(L).overlay_umount: | $($(L)))
+$(eval $(L).overlay_umount: $(L).overlay_mount)
 endif
 
 # Evaluates to:
 # Recipe: kernel
 # L_kernel: $(L_kernel)
-$(eval $(L):$$($(L)))
+$(eval $(L):$$($(L)) | $(L).overlay_umount $(L).outro)
 
 # Usually a layer depends on its source file.
 # This can be disabled by setting LAYER_NODEPEND_FILE:=y
@@ -41,6 +41,10 @@ ifneq ($(ENABLE_PARALLEL_LAYERS),y)
 
 define serialise_layers
 RUNAFTER += $(patsubst L_%,%,$(lastword $(filter-out $(lastword $(recipe)),$(recipe))))
+ifneq ($(patsubst L_%,%,$(lastword $(filter-out $(lastword $(recipe)),$(recipe)))),)
+$(L): | L_$(patsubst L_%,%,$(lastword $(filter-out $(lastword $(recipe)),$(recipe)))).overlay_umount
+$(L): | L_$(patsubst L_%,%,$(lastword $(filter-out $(lastword $(recipe)),$(recipe)))).outro
+endif
 endef
 
 $(eval $(serialise_layers))
@@ -220,7 +224,11 @@ $(eval $(L)_OVERLAY_LOWERDIRS:=$(subst $(space),:,$(strip $(patsubst %,$(OVERLAY
 
 define overlay_mount
 .PHONY:$(L).overlay_mount
-$(L).overlay_mount: | $$(DEPENDS_$(L)) $$(RUNAFTER_$(L))
+ifneq ($(patsubst %,%,$(lastword $(filter-out $(lastword $(recipe)),$(recipe)))),)
+$(L).preamble $(L).overlay_mount: | $$(DEPENDS_$(L)) $$(RUNAFTER_$(L)) L_$(patsubst L_%,%,$(lastword $(filter-out $(lastword $(recipe)),$(recipe)))).overlay_umount L_$(patsubst L_%,%,$(lastword $(filter-out $(lastword $(recipe)),$(recipe)))).preamble
+else
+$(L).preamble $(L).overlay_mount: | $$(DEPENDS_$(L)) $$(RUNAFTER_$(L))
+endif
 $(L).overlay_mount:
 	@mkdir -p $(OVERLAYFS)/L_base/upper
 	@mkdir -p $(OVERLAYFS)/$(L)/mnt
@@ -269,7 +277,6 @@ size: | $(L).size
 endef
 
 endif
-
 
 $(eval $(layer_size))
 
