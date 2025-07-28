@@ -12,6 +12,12 @@ $(eval T:=T_$(LAYER))
 LSTAMP:=$(STAMP)/$(L)
 .PHONY: $(L)
 
+#
+# Ensure the $(L) variable is treated as an immediately evaluated variable
+# Then subsequent += will also be immediately evaluated.
+#
+$(L):=
+
 $(eval BUILD_$(LAYER):=$(BUILD)/$(L))
 
 $(eval BASE_$(LAYER):=$(LBASE))
