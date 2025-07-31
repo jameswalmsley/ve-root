@@ -40,6 +40,14 @@ info:
 	@echo "DOCKER_SERVICE: $(DOCKER_SERVICE)"
 	@$(foreach l,$(recipe),$(call show_layer,$l);)
 
+.PHONY: check-deps
+check-deps:
+	@$(foreach layer,$(recipe),\
+		echo "=== Dependencies for $(layer) ==="; \
+		echo "$($(layer)): $(DEPENDS_$(layer))"; \
+		echo ""; \
+	)
+
 recipe: $(recipe)
 $(recipe): | $(source-checkout)
 

@@ -34,9 +34,14 @@ $(eval DEPENDS_$(L)+=$$(L_$(dep))) \
 )
 
 #
+# All targets of this layer, depend on all targets of
+# any dependent layers
+#
+$(eval $($(L)): $(DEPENDS_$(L)))
+
+#
 # Serialise each layer added.
 #
-
 ifneq ($(ENABLE_PARALLEL_LAYERS),y)
 
 define serialise_layers
