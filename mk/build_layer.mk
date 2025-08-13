@@ -240,7 +240,7 @@ $(L).overlay_mount:
 	@mkdir -p $(OVERLAYFS)/$(L)/upper
 	@mkdir -p $(OVERLAYFS)/$(L)/workdir
 	@umount -R $(OVERLAYFS)/$(L)/mnt 2> /dev/null; true
-	@mount -t overlay overlay -olowerdir=$($(L)_OVERLAY_LOWERDIRS),upperdir=$(OVERLAYFS)/$(L)/upper,workdir=$(OVERLAYFS)/$(L)/workdir $(OVERLAYFS)/$(L)/mnt
+	@mount -t overlay overlay -olowerdir=$($(L)_OVERLAY_LOWERDIRS),upperdir=$(OVERLAYFS)/$(L)/upper,workdir=$(OVERLAYFS)/$(L)/workdir,index=off,metacopy=off $(OVERLAYFS)/$(L)/mnt
 	@mkdir -p $(OVERLAYFS)/$(L)/mnt/$(CONFIG_OVERLAYFS_ROOTFS_PATH)/overlay
 	@mkdir -p $(OVERLAYFS)/$(L)/mnt/$(CONFIG_OVERLAYFS_ROOTFS_PATH)/overlay-builddir
 	@mount --bind -o ro $(LBASE) $(OVERLAYFS)/$(L)/mnt/$(CONFIG_OVERLAYFS_ROOTFS_PATH)/overlay
