@@ -139,3 +139,9 @@ ifeq ($(CONFIG_OVERLAYFS),y)
 .PHONY: size
 size:
 endif
+
+KCONFIG_ARGS:=
+.PHONY: menuconfig
+menuconfig:
+	$(KCONFIG_ARGS) python3 $(VEBASE)/scripts/kconfig/menuconfig.py
+

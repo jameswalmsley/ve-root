@@ -10,6 +10,7 @@ info:
 	@echo "You MUST configure the build system."
 
 else
+include $(VEBASE)/mk/normalise-config.mk
 
 include $(VEBASE)/mk/os.mk
 #
