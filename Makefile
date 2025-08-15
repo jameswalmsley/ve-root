@@ -19,7 +19,8 @@ all: recipe
 
 .PHONY: source-checkout
 
-include $(BASE)/recipes/$(CONFIG_RECIPE)/recipe.mk
+RECIPE_BASE ?= $(BASE)/recipes/$(CONFIG_RECIPE)
+include $(RECIPE_BASE)/recipe.mk
 
 define show_layer
 	echo "LAYER +=        $(1)"

@@ -29,7 +29,7 @@ endif
 WORKSPACE?=$(BASE)
 
 OUT:=$(CURDIR)/out/$(R)$(_VARIANT)
-TOP:=$(BASE)/recipes/$(R)
+TOP:=$(RECIPE_BASE)
 SOURCE:=$(WORKSPACE)/sources/$(R)
 BUILD:=$(OUT)/build
 STAMP:=$(OUT)/.stamp
