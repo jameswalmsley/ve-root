@@ -19,6 +19,9 @@ include $(VEBASE)/mk/os.mk
 
 R?=$(CONFIG_RECIPE)
 
+OUT_BASE?=$(CURDIR)/out/$(R)
+SOURCE_BASE?=$(WORKSPACE)/sources/$(R)
+
 _VARIANT:=
 VARIANT:=
 ifneq ($(CONFIG_VARIANT),)
@@ -28,9 +31,9 @@ endif
 
 WORKSPACE?=$(BASE)
 
-OUT:=$(CURDIR)/out/$(R)$(_VARIANT)
 TOP:=$(RECIPE_BASE)
-SOURCE:=$(WORKSPACE)/sources/$(R)
+OUT:=$(OUT_BASE)$(_VARIANT)
+SOURCE:=$(SOURCE_BASE)
 BUILD:=$(OUT)/build
 STAMP:=$(OUT)/.stamp
 OVERLAYFS:=$(OUT)/overlayfs
